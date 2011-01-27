@@ -1,0 +1,174 @@
+
+* {
+	padding:0;
+	margin: 0;
+	line-height: 15px;
+	font-size: 12px;
+	font-family: helvetica, arial, sans-serif;
+}
+
+.wrapper {
+	width: 100%;
+	height:100%;
+	background-color: #ffffff;
+	color: #1d1d1d;
+}
+
+.header {
+	height: 80px;
+	width: 100%;
+	position: relative;
+	background-color: #535353;
+}
+
+.header .user_navigation {
+	position: absolute;
+	top:15px;
+	left:30px;
+	color: #dfdfdf;
+}
+
+.header ul {
+	list-style: none;
+	list-style-type: none;
+}
+
+
+.header ul li {
+	float:left;
+	background-image: url("menu_br.jpg");
+	background-position: left;
+	background-repeat: no-repeat;
+	padding: 0 7px;
+}
+
+.header ul li a, .image_info table a{
+	text-decoration: none;
+	color: #adb3f7;
+}
+.image_info table a{
+	color: #444fd0;
+}
+
+.header ul li.username{
+	background-image: none;
+}
+
+.header ul li.username a{
+	color: #dfdfdf;
+}
+
+#logo {
+	width: 400px;
+	height: 54px;
+	position: absolute;
+	right: 20px;
+	bottom: 2px;
+	display: block;
+	background: url("../images/logo.jpg") no-repeat;
+}
+
+.left_side {
+height: 100%;
+width:220px;
+background-color: #535353;
+float:left;
+}
+
+.left_side .main_navi {
+padding:20px 0 20px 30px;
+}
+
+.left_side ul {
+list-style: none;
+list-style-type: none;
+padding-left: 15px;
+}
+
+.left_side ul li{
+padding: 2px 0;
+}
+.left_side ul li a{
+color: #dfdfdf;
+text-decoration: none;
+}
+.left_side ul li a:hover, .header ul li a:hover{
+color: #ffffff;
+}
+.left_side ul li.active a{
+color: #13b55f;
+text-decoration: none;
+}
+
+.right_side {
+	float:left;
+	height: 100%;
+}
+
+
+.right_side .image_info {
+	padding: 40px;
+	width: 600px;
+}
+
+.shadow {
+	-moz-box-shadow: 3px 3px 10px #000 inset;
+	-webkit-box-shadow: 3px 3px 10px #000 inset;
+	box-shadow: 3px 3px 10px #000 inset;
+}
+
+.image_info table {
+	width: 300px;
+}
+.image_info table.info1 {
+	float: left;
+}
+.image_info table.info2 {
+	float: right;
+	text-align: right;
+}
+.right_side .comments{
+clear: both;
+margin-top: 15px;
+}
+.image_info h2 {
+	font-size: 14px;
+	padding: 5px 2px;
+}
+.comments h1 {
+font-size: 18px;
+padding: 10px 0;
+}
+.comment_entry {
+	padding: 5px 0;
+	width: 600px;
+	border-bottom: 1px dashed #ccc;
+}
+.comment_entry .topline {
+	float: left;
+}
+.comment_entry .topline a {
+	color: #444fd0;
+	text-decoration: none;
+}
+
+.comment_entry .body {
+clear: both;
+}
+
+.add_comment {
+padding-top: 10px;
+}
+
+.add_comment h2 {
+font-size: 14px;
+}
+
+.add_comment form textarea {
+width: 600px;
+height: 30px;
+}
+
+.add_comment form input {
+float: right;
+}

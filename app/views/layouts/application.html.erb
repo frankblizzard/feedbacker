@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <%= stylesheet_link_tag "application", "feedbacker" %>
+    <%= javascript_include_tag 'jquery', 'application' %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+	<div class="wrapper">
+	<div class="header">
+	
+	<div class="user_navigation">
+		<% if logged_in? %>
+	          Welcome <%=h current_user.username %>! Not you?
+	          <%= link_to "Log out", logout_path %>
+	        <% else %>
+	          <%= link_to "Sign up", signup_path %> or
+	          <%= link_to "log in", login_path %>.
+	        <% end %>
+	</div>
+	
+	
+	<div id="logo"></div>
+	</div> <!--  end header -->
+	<div class="main">
+		<div class="left_side">
+			<ul class="main_navi">
+			<li><a href="#">Your Profile</a></li>
+			<li><a href="#">Projects</a>
+				<ul class="level2">
+					<li><a href="#">Bukkespranget</a>
+						<ul class="level3">
+							<li><a href="#">Image 1</a></li>
+							<li><a href="#">Image 2</a></li>
+							<li><a href="#">Image 3</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Mallorca Klaus</a></li>
+				</ul>
+			</li>
+			</ul>
+		</div>
+		<div class="right_side shadow">
+			<div id="container">
+		      <% flash.each do |name, msg| %>
+		        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+		      <% end %>
+		      <%= content_tag :h1, yield(:title) if show_title? %>
+		      <%= yield %>
+		    </div>
+		</div>
+
+	</div> <!--  end main -->
+
+	</div> <!--  end wrapper -->
+  </body>
+</html>
