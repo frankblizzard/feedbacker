@@ -1,0 +1,11 @@
+one:
+  name: MyString
+  started_at: 2011-01-27 21:42:48
+  ends_at: 2011-01-27 21:42:48
+  description: MyText
+
+two:
+  name: MyString
+  started_at: 2011-01-27 21:42:48
+  ends_at: 2011-01-27 21:42:48
+  description: MyText

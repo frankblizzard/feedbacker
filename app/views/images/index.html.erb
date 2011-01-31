@@ -1,0 +1,20 @@
+<% title "Images" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Project</th>
+    <th>Uploaded At</th>
+  </tr>
+  <% for image in @images %>
+    <tr>
+      <td><%= image.name %></td>
+      <td><%= image.project_id %></td>
+      <td><%= image.uploaded_at %></td>
+      <td><%= link_to "Edit", images_path %></td>
+      <td><%= link_to "Destroy", images_path, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Image", images_path %></p>

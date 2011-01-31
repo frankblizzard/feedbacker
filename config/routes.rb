@@ -1,4 +1,10 @@
 Feedbacker::Application.routes.draw do
+  resources :images
+
+  resources :assignments
+
+  resources :projects
+
   get "home/index"
 
   match 'user/edit' => 'users#edit', :as => :edit_current_user

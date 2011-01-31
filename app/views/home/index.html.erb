@@ -1,2 +1,19 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Welcome <%= current_user.username %> </h1>
+<h2>Your projects</h2>
+<br/>
+
+<table class="projects">
+	<tr>
+		<th>Project Name</th>
+		<th>Started at</th>
+		<th>Ends at</th>
+		<th>Details</th>
+	</tr>
+<% @projects.each do |p| %>
+	<tr>
+			<td><%= "#{p.name}" %></td>
+			<td><%= "#{p.started_at.to_formatted_s(:short)}" %></td>
+			<td><%= "#{p.ends_at.to_formatted_s(:short)}" %></td>			
+			<td><%= link_to "view", p %></td>
+	<tr>
+<% end -%>
