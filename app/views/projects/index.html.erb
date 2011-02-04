@@ -8,7 +8,7 @@
     <th>Description</th>
   </tr>
   <% for project in @projects %>
-    <tr>
+    <tr class="<%= cycle('white','grey')-%>">
       <td><%= project.name %></td>
       <td><%= project.started_at.to_date()  %></td>
       <td><%= project.ends_at.to_date()  %></td>

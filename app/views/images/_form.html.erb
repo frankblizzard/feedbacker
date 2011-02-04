@@ -16,7 +16,8 @@
   </div>
   <p>
     <%= f.label :uploaded_at %><br />
-    <%= f.datetime_select :uploaded_at %>
+    <%= f.datetime_select :uploaded_at %>    
+	<%= f.hidden_field :user_id, :value => current_user.id %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

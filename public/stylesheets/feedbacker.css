@@ -12,14 +12,18 @@
 	width: 100%;
 	height:100%;
 	background-color: #ffffff;
-	color: #1d1d1d;
+	color: #1d1d1d;  
+
 }
 
 .header {
-	height: 80px;
+	height: 70px;
 	width: 100%;
-	position: relative;
-	background-color: #424242;
+	position: fixed;
+	top:0;
+	left:0;
+	background-color: #424242;  
+	z-index: 10;
 }
 
 .header .user_navigation {
@@ -80,7 +84,9 @@
 height: 100%;
 width:180px;
 background-color: #424242;
-float:left;
+position:fixed;
+left:0;
+top: 70px; 
 }
 
 .left_side .main_navi {
@@ -109,9 +115,12 @@ text-decoration: none;
 }
 
 .right_side {
-	float:left;
-	height: 100%;
+	position: absolute;
+	left: 180px;
+	top: 80px;    
+	height:90%;    
 }
+
 
 
 .right_side .image_info {
@@ -136,10 +145,10 @@ text-decoration: none;
 	text-align: right;
 }
 .right_side .comments{
-position: absolute;
-top: 150px;
+position: fixed;
+top: 130px;
 right: 10px;
-width: 400px;
+width: 270px;
 }
 .image_info h2 {
 	font-size: 14px;
@@ -178,7 +187,9 @@ font-size: 14px;
 width: 600px;
 height: 30px;
 }
-
+.add_comment label {
+	font-weight: bold;
+}
 .add_comment form input {
 float: right;
 } 
@@ -186,4 +197,18 @@ float: right;
 .comment form textarea {
 	width: 300px;
 	height: 200px;
+}  
+
+.newest_images {
+	width: 600px; 
+	margin-left: -5px;
+}  
+.newest_images a{
+	padding: 0 5px; 
+} 
+tr.grey td {
+ background-color: #eee;   
+}         
+th {
+ background-color: #ccc;   
 }

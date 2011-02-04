@@ -1,4 +1,25 @@
 <% title "Edit Image" %>
 
-<%= render 'form' %>
+<% form_for @image,  :html=>{:multipart=>true} do |f| %> 
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :project_id %><br />
+    <%= collection_select(:image, :project_id, Project.all, :id, :name, :prompt => true) %>
+  </p>
+  <div class="field">
+	<p>
+	<%= f.label :rendering %><br />
+  	<%= f.file_field :rendering%>
+	</p>
+  </div>
+  <p>
+    <%= f.label :uploaded_at %><br />
+    <%= f.datetime_select :uploaded_at %>    
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
 

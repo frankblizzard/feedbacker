@@ -8,7 +8,7 @@
     <th>Current Projects</th>
   </tr>
   <% for user in @users %>
-    <tr>
+    <tr class="<%= cycle('white','grey')-%>">
       <td><%= user.username %></td>
       <td><%= user.company %></td>
       <td><%= user.email %></td>

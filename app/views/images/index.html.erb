@@ -5,13 +5,14 @@
 	<th>Preview</th>
     <th><%=sortable "Name" %></th>
     <th><%=sortable "Project" %></th>
-    <th><%=sortable "uploaded_at", "Uploaded" %></th>
+    <th><%=sortable "created_at", "Uploaded" %></th> 
+    <th><%=sortable "comments.count", "Comments" %></th> 
   </tr>
   <% for image in @images %>
-    <tr>           
+    <tr class="<%= cycle('white','grey')-%>">           
 	  <td> 
 	   	<% if image.rendering.exists? then %>
-	       	<%= image_tag image.rendering.url(:thumb) %>
+	       	<%= link_to image_tag(image.rendering.url(:thumb), :border => 0 ), image, :title => image.name %>
 		<% else %> 
 			not available
 	   	<% end %>
@@ -19,7 +20,8 @@
 	   </td>
       <td><%= image.name %></td>
       <td><%= image.project.name %></td>
-      <td><%= image.uploaded_at.to_formatted_s(:long) %></td>                     
+      <td><%= image.created_at.to_formatted_s(:long) %></td>
+	  <td><%= pluralize(image.comments.count, "comment") %></td>                                          
 	  <td><%= link_to "View", image %></td>
       <td><%= link_to "Edit", edit_image_path(image) %></td>
       <td><%= link_to "Delete", image, :confirm => 'Delete this image?', :method => :destroy %></td>

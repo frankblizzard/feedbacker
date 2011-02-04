@@ -9,6 +9,6 @@ $(document).ready(function () {
 });
 
 calculateSizes = function () {
-	 $(".main").height($(window).height()-$('.header').height());
-	 //$(".right_side").width($(window).width()-$('.left_side').width());
+	 //$(".main").height($(window).height()-$('.header').height());
+	 $(".right_side").width($(window).width()-$('.left_side').width());
 }

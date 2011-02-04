@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     
     @projects = user.projects
     
-    
+    @latest_images = Image.find(:all, :order => "created_at desc", :limit => 5)
     
     
     # connect users & projects through assignments table

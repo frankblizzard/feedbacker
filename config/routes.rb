@@ -18,7 +18,8 @@ Feedbacker::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
-  match 'images' => 'images#show', :as => :images  
+  match 'images' => 'images#show', :as => :images    
+  
 
   resources :sessions
 

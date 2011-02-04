@@ -3,18 +3,35 @@
  <div class="basic_image">
 <br/> 
  	<% if @image.rendering.exists? then %>
-     	<%= image_tag @image.rendering.url %>
+     	<%= image_tag @image.rendering.url, :width => "850" %>
 	<% else %> 
 		not available
  	<% end %>
-
- <br/>                 
+ <br/>       
+<table class="pretty">
+	<tr>
+	<th>Uploaded</th>
+	<th>Uploader</th>
+	<th>Project</th>
+	<th>Status</th> 
+	<th>Revision</th> 
+ 	<th>HQ</th> 
+	 </tr>
+	<tr>
+	 <td><%= @image.created_at.to_formatted_s(:long) %></td>
+	 <td><%= link_to @image.user.username, @image.user %></td>
+	 <td><%= link_to @image.project.name, @image.project %></td>
+	 <td>to do</td>
+	<td>to do</td> 
+	<td><%= link_to "Show / Download", @image.rendering.url %></td>
+	</tr>		
+ </table>          
 </div>
 <div class="comments">
-<h2><%= pluralize(@image.comments.count, "comment") %> for <%= @image.name %></h2>
-<% for comment in @image.comments do  %>
+<h2><%= pluralize(@image.comments.count, "comment") %></h2>
+<% for comment in @image.comments.order("created_at desc") do  %>
   <p>
-    <b><%= comment.user.username %> (<%= comment.user.company %>) </b>wrote 
+    <b><%= link_to comment.user.username, comment.user %> </b>wrote 
     <%= time_ago_in_words(comment.created_at) %> ago:
   </p>
 
@@ -41,7 +58,7 @@
 <p>
   <%= link_to "Edit", edit_image_path(@image) %> |
   <%= link_to "Delete Image", @image, :confirm => 'Are you sure?', :method => :destroy %> |
-  <%= link_to "All Projects", images_path %>
+  <%= link_to "All Images", images_path %>
 </p>
                          
 <br/>

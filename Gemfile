@@ -10,7 +10,8 @@ gem "nifty-generators", :group => :development
 gem 'haml'
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 gem 'cucumber'
-gem 'mocha'
+gem 'mocha'  
+gem 'yaml_db'
 
 # Use unicorn as the web server
 # gem 'unicorn'

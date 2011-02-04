@@ -31,7 +31,8 @@ a {
 
 #flash_notice, #flash_error, #flash_alert {
   padding: 5px 8px;
-  margin: 10px 0;
+  margin: 10px 0;  
+  width: 89%;
 }
 
 #flash_notice {
@@ -97,7 +98,12 @@ table tr, table td, table th, table li {
 }
 table th, table td{
 	border: 1px solid #ccc;
-}   
+}     
+
+table th, td {
+  	white-space:nowrap;
+	max-width: 500px; 
+  }
 
 a.icon {
 	padding: 0 2px;

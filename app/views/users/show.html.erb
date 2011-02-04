@@ -3,6 +3,9 @@
 <p>
   <strong>Name:</strong>  <%= @user.username %> <br/>
   <strong>Works at:</strong>  <%= @user.company %> <br/>  
-  <strong>Email:  </strong><%= link_to @user.email %> <br/>  
+  <strong>Email:  </strong><%= link_to @user.email %> <br/>   
+  <br/>
+<%= @user.username %> uploaded <%= pluralize(@user.images.count, "image") %>  <br/>
+and posted <%= pluralize(@user.comments.count, "comment") %>
 </p>
 
