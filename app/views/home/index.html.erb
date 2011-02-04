@@ -1,5 +1,6 @@
-<h1>Welcome <%= current_user.username %> </h1>
-<h2>Your projects</h2>
+<% title "Image Feedbacker - Home" %> 
+
+<h2>Your projects, <%= current_user.username %> </h2>
 <br/>
 
 <table class="projects">
@@ -16,4 +17,8 @@
 			<td><%= "#{p.ends_at.to_formatted_s(:short)}" %></td>			
 			<td><%= link_to "view", p %></td>
 	<tr>
-<% end -%>
+<% end -%>      
+</table>
+
+<br/>
+<h2>Newest Images</h2>

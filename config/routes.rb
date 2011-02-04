@@ -1,9 +1,12 @@
 Feedbacker::Application.routes.draw do
-  resources :images
+  resources :images do
+    resources :comments
+  end
+
 
   resources :assignments
 
-  resources :projects
+  resources :projects  
 
   get "home/index"
 
@@ -14,6 +17,8 @@ Feedbacker::Application.routes.draw do
   match 'logout' => 'sessions#destroy', :as => :logout
 
   match 'login' => 'sessions#new', :as => :login
+
+  match 'images' => 'images#show', :as => :images  
 
   resources :sessions
 

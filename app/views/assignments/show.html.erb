@@ -1,16 +1,11 @@
 <% title "Assignment" %>
-
+<b/>
 <p>
-  <strong>User:</strong>
-  <%= @assignment.user_id %>
+  <strong><%= @assignment.user.username %> assigned to <%= @assignment.project.name  %></strong>
 </p>
-<p>
-  <strong>Project:</strong>
-  <%= @assignment.project_id %>
-</p>
-
+<b/> <b/>
 <p>
   <%= link_to "Edit", edit_assignment_path(@assignment) %> |
-  <%= link_to "Destroy", @assignment, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "Undo", @assignment, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", assignments_path %>
 </p>

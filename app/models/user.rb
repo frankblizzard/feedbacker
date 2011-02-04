@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # new columns need to be added here to be writable through mass assignment
-  attr_accessible :username, :email, :password, :password_confirmation
+  attr_accessible :username, :company, :email, :password, :password_confirmation
 
   attr_accessor :password
   # dont save password as plain text to the db. nstead add salt and hash it
@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   # active record associations
   has_many :assignments
   has_many :projects, :through => :assignments
+  has_many :comments
+
 
   # login can be either username or email address
   def self.authenticate(login, pass)

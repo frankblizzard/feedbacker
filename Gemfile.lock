@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: fc792c89072f5679e98f91cee58a9078466def17
+  specs:
+    paperclip (2.3.8)
+      activerecord
+      activesupport
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -55,9 +63,6 @@ GEM
       rake
     mysql (2.8.1)
     nifty-generators (0.4.4)
-    paperclip (2.3.8)
-      activerecord
-      activesupport
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -94,5 +99,5 @@ DEPENDENCIES
   mocha
   mysql
   nifty-generators
-  paperclip
+  paperclip!
   rails (= 3.0.3)

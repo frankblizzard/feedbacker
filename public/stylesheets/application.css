@@ -76,7 +76,56 @@ a {
   margin: 0;
 }
 
-table tr, table td {
+form select {
+	padding: 2px 5px;
+}
+
+h2 {
+	font-style: italic;
+	font-size: 14px;
+	padding: 10px 0 5px 0;
+}
+
+table {
+	
+	padding: 10px 0;
+}
+
+table tr, table td, table th, table li {
 	text-align: left;
-	padding: 4px 15px 4px 0;
+	padding: 4px 10px 4px 10px !important;
+}
+table th, table td{
+	border: 1px solid #ccc;
+}   
+
+a.icon {
+	padding: 0 2px;
+}                  
+a.icon img {
+	width: 12px;
+}
+
+table ul {
+	list-style:none;
+}
+table ul li{
+	padding-left: 0px;
+	margin-left: -10px;
+} 
+ .pretty th .current {  
+   padding-right: 12px;  
+   background-repeat: no-repeat;  
+   background-position: right center;  
+  }  
+  .pretty th .asc {   
+    background-image: url(/images/up_arrow.gif);   
+  }  
+    
+ .pretty th .desc {   
+   background-image: url(/images/down_arrow.gif);   
+ } 
+.project_image_table img{
+float: left;
+padding: 5px;
 }

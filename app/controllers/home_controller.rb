@@ -6,7 +6,7 @@ class HomeController < ApplicationController
     
     user = current_user
     
-    @projects = Project.order("created_at")
+    @projects = user.projects
     
     
     

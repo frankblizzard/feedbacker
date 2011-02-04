@@ -2,16 +2,16 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Started At</th>
-    <th>Ends At</th>
+    <th><%= sortable  "Name"%></th>
+    <th><%= sortable  "started_at", "Started"%></th>
+    <th><%= sortable  "ends_at", "Deadline"%></th>
     <th>Description</th>
   </tr>
   <% for project in @projects %>
     <tr>
       <td><%= project.name %></td>
-      <td><%= project.started_at %></td>
-      <td><%= project.ends_at %></td>
+      <td><%= project.started_at.to_date()  %></td>
+      <td><%= project.ends_at.to_date()  %></td>
       <td><%= project.description %></td>
       <td><%= link_to "Show", project %></td>
       <td><%= link_to "Edit", edit_project_path(project) %></td>

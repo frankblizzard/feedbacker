@@ -1,12 +1,17 @@
 <%= form_for @assignment do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
-  <p>
-    <%= f.label :project_id %><br />
-    <%= f.text_field :project_id %>
-  </p>
+
+<h2>Assigning Users to Projects</h2>
+
+<table>
+	<tr>
+		<th>User</th>
+		<th>Project</th>
+	</tr>
+	<tr>
+		<td><%= collection_select(:assignment, :user_id, User.all, :id, :username, :prompt => true) %></td>
+		<td><%= collection_select(:assignment, :project_id, Project.all, :id, :name, :prompt => true) %></td>
+	</tr>
+</table>
   <p><%= f.submit %></p>
 <% end %>

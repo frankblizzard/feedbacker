@@ -1,19 +1,32 @@
-<% title "Assignments" %>
+<% title "Current Assignments" %>
 
-<table>
+<table class="pretty">
   <tr>
     <th>User</th>
-    <th>Project</th>
-  </tr>
-  <% for assignment in @assignments %>
+    <th>Projects</th>
+  </tr>  
+<% for user in @users %>
     <tr>
-      <td><%= assignment.user_id %></td>
-      <td><%= assignment.project_id %></td>
-      <td><%= link_to "Show", assignment %></td>
-      <td><%= link_to "Edit", edit_assignment_path(assignment) %></td>
-      <td><%= link_to "Destroy", assignment, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
+  		<td><%= user.username %></td>
+
+         <td> <ul>
+  <% for assignment in user.assignments %>
+    
+    <li>
+		<%= link_to assignment.project.name, assignment.project %>
+	    <%= link_to image_tag("settings.png", :border => 0), edit_assignment_path(assignment), :title => "edit", :class => "icon" %>
+    	  <%= link_to image_tag("delete.png", :border => 0), assignment, 
+			:confirm => 'Are you sure that you want to delete this assignment?',
+			 :method => :delete, :title => "delete", :class => "icon"%>
+	
+	</li>
+
+  <% end %> 
+
+	</ul>
+	
+<% end %>                                 
+      
 </table>
 
 <p><%= link_to "New Assignment", new_assignment_path(assignment) %></p>

@@ -8,9 +8,8 @@ gem 'rails', '3.0.3'
 gem 'mysql'
 gem "nifty-generators", :group => :development
 gem 'haml'
-gem 'paperclip'
+gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 gem 'cucumber'
-gem 'bcrypt-ruby'
 gem 'mocha'
 
 # Use unicorn as the web server

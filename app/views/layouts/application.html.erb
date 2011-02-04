@@ -3,7 +3,7 @@
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
     <%= stylesheet_link_tag "application", "feedbacker" %>
-    <%= javascript_include_tag 'jquery', 'application' %>
+    <%= javascript_include_tag 'jquery', 'rails', 'application' %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
@@ -28,10 +28,13 @@
 		<div class="left_side">
 			<ul class="main_navi">
 			<li><%= link_to "Home", root_path %></li>
-			<li><%= link_to "Projects", root_path %></li>
+			<li><%= link_to "Projects", projects_path %></li>      
+			<li><%= link_to "Images", images_path %></li>
+			<li><%= link_to "Assignments", assignments_path %></li>
+			<li><%= link_to "Users", users_path %></li>
 			</ul>
 		</div>
-		<div class="right_side shadow">
+		<div class="right_side">
 			<div id="container">
 		      <% flash.each do |name, msg| %>
 		        <%= content_tag :div, msg, :id => "flash_#{name}" %>

@@ -1,10 +1,14 @@
 class ImagesController < ApplicationController
   def index
-    @images = Image.all
+    @images = Image.order(sort_column + " " + sort_direction) 
   end
 
   def new
     @image = Image.new
+  end        
+  
+  def show
+    @image = Image.find(params[:id] )
   end
 
   def create
@@ -25,7 +29,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     if @image.update_attributes(params[:image])
       flash[:notice] = "Successfully updated image."
-      redirect_to images_url
+      render :action => :show
     else
       render :action => 'edit'
     end
@@ -36,5 +40,16 @@ class ImagesController < ApplicationController
     @image.destroy
     flash[:notice] = "Successfully destroyed image."
     redirect_to images_url
+  end 
+  
+  private
+                                                     
+  def sort_column
+    Image.column_names.include?(params[:sort]) ? params[:sort] : "name"
   end
+     
+  def sort_direction
+    %w["asc", "desc"].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+  
 end

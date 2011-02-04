@@ -1,24 +1,51 @@
-<% title "Project" %>
+<% title "Projekt: #{@project.name}" %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
-<p>
-  <strong>Started At:</strong>
-  <%= @project.started_at %>
-</p>
-<p>
-  <strong>Ends At:</strong>
-  <%= @project.ends_at %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
 
+<table>
+	<tr>
+		<th>Project start</th>
+		<th>Deadline (Project End)</th>
+	</tr>
+	<tr>
+		<td><%= @project.started_at.to_formatted_s(:long) %></td>
+		<td><%= @project.ends_at.to_formatted_s(:long) %></td>
+	</tr>
+</table>
+<br/>  
+<table>
+	<tr>
+		<th>Currently involved users</th>
+	</tr>
+	<tr>
+		<td><ul>
+		<% for user in @project.users do %>
+			<li><%= link_to "#{user.username}", user %></li>			
+		<% end %>
+		</ul></td>
+	</tr>
+</table>
+<br/> 
+<table class="project_image_table">
+	<tr>
+		<th>Project Images</th>
+	</tr>
+	<tr>
+		<td>
+		<% for image in @project.images do %>
+			<%= link_to image_tag(image.rendering.url(:thumb), :border => 0), image %>
+		<% end %>
+		</td>
+	</tr>
+</table>
+<br/>
 <p>
   <%= link_to "Edit", edit_project_path(@project) %> |
-  <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", projects_path %>
+  <%= link_to "Delete Project", @project, :confirm => 'Are you sure?', :method => :destroy %> |
+  <%= link_to "All Projects", projects_path %>
+</p>
+                         
+<br/>
+<br/>
+<p>
+	<%= link_to "go back", :back %>
 </p>

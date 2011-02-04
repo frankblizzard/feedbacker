@@ -1,4 +1,4 @@
-<%= form_for images_path do |f| %>
+<% form_for @image,  :html=>{:multipart=>true} do |f| %> 
   <%= f.error_messages %>
   <p>
     <%= f.label :name %><br />
@@ -6,8 +6,14 @@
   </p>
   <p>
     <%= f.label :project_id %><br />
-    <%= f.text_field :project_id %>
+    <%= collection_select(:image, :project_id, Project.all, :id, :name, :prompt => true) %>
   </p>
+  <div class="field">
+	<p>
+	<%= f.label :rendering %><br />
+  	<%= f.file_field :rendering%>
+	</p>
+  </div>
   <p>
     <%= f.label :uploaded_at %><br />
     <%= f.datetime_select :uploaded_at %>

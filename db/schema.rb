@@ -10,13 +10,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110127204425) do
+ActiveRecord::Schema.define(:version => 20110204002332) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "image_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "internal"
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "name"
+    t.integer  "project_id"
+    t.datetime "uploaded_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "rendering_file_name"
+    t.string   "rendering_content_type"
+    t.integer  "rendering_file_size"
+    t.datetime "rendering_updated_at"
+    t.integer  "user_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -35,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20110127204425) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "company"
   end
 
 end
