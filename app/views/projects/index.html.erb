@@ -10,12 +10,14 @@
   <% for project in @projects %>
     <tr class="<%= cycle('white','grey')-%>">
       <td><%= project.name %></td>
-      <td><%= project.started_at.to_date()  %></td>
-      <td><%= project.ends_at.to_date()  %></td>
-      <td><%= project.description %></td>
+      <td><%= project.started_at  %></td>
+      <td><%= project.ends_at  %></td>
+      <td><%= sanitize project.description %></td>
       <td><%= link_to "Show", project %></td>
-      <td><%= link_to "Edit", edit_project_path(project) %></td>
+      <td><%= link_to "Edit", edit_project_path(project) %></td>     
+	  <% if current_user.admin? %>
       <td><%= link_to "Destroy", project, :confirm => 'Are you sure?', :method => :delete %></td>
+	  <% end %>
     </tr>
   <% end %>
 </table>

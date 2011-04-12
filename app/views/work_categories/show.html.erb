@@ -1,0 +1,16 @@
+<% title "Work Category" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @work_category.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @work_category.description %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_work_category_path(@work_category) %> |
+  <%= link_to "Destroy", @work_category, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", work_categories_path %>
+</p>

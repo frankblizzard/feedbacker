@@ -4,9 +4,9 @@
   <tr>
 	<th>Preview</th>
     <th><%=sortable "Name" %></th>
-    <th><%=sortable "Project" %></th>
+    <th><%=sortable "project_id", "Project" %></th>
     <th><%=sortable "created_at", "Uploaded" %></th> 
-    <th><%=sortable "comments.count", "Comments" %></th> 
+    <th>Comments</th> 
   </tr>
   <% for image in @images %>
     <tr class="<%= cycle('white','grey')-%>">           
@@ -22,11 +22,16 @@
       <td><%= image.project.name %></td>
       <td><%= image.created_at.to_formatted_s(:long) %></td>
 	  <td><%= pluralize(image.comments.count, "comment") %></td>                                          
-	  <td><%= link_to "View", image %></td>
-      <td><%= link_to "Edit", edit_image_path(image) %></td>
+	  <td><%= link_to "View", image %></td>     
+	  <% if image.user == current_user || current_user.admin? %>
+      <td><%= link_to "Edit", edit_image_path(image) %></td>  
       <td><%= link_to "Delete", image, :confirm => 'Delete this image?', :method => :destroy %></td>
+	   
+	<% end %>
     </tr>
   <% end %>
 </table>
-
+ <%= will_paginate @images %> 
+<%= page_entries_info @images %>
+ 
 <p><%= link_to "New Image", new_image_path(image) %></p>

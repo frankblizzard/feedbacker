@@ -1,0 +1,36 @@
+<% title "Working Times" %>
+
+<p>
+  <strong>Date:</strong>
+  <%= @hour.date %>
+</p>
+<p>
+  <strong>Hours:</strong>
+  <%= @hour.amount %>
+</p>
+<p>
+  <strong>Task:</strong>
+  <%= @hour.task %>
+</p>
+<p>
+  <strong>Extra:</strong>
+  <%= @hour.extra %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @hour.user_id %>
+</p>
+<p>
+  <strong>Project:</strong>
+  <%= @hour.project_id %>
+</p>
+<p>
+  <strong>Work Category:</strong>
+  <%= @hour.work_category_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_hour_path(@hour) %> |
+  <%= link_to "Destroy", @hour, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", hours_path %>
+</p>

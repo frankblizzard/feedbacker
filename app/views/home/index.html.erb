@@ -2,24 +2,25 @@
 <br/>
 
 <h2>Your projects, <%= current_user.username %> </h2>
-
+<% if current_user.projects.count > 0 %>
 <table class="projects">
 	<tr>
 		<th>Project Name</th>
 		<th>Started at</th>
 		<th>Ends at</th>
-		<th>Details</th>
 	</tr>
 <% @projects.each do |p| %>
 	<tr>
 			<td><%= "#{p.name}" %></td>
 			<td><%= "#{p.started_at.to_formatted_s(:short)}" %></td>
 			<td><%= "#{p.ends_at.to_formatted_s(:short)}" %></td>			
-			<td><%= link_to "view", p %></td>
+			<td><%= link_to "details", p %></td>
 	<tr>
 <% end -%>      
 </table>
-
+<% else %>
+	no projects yet
+<% end %>
 <br/>
 <h2>Newest Images</h2> 
 

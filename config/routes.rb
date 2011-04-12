@@ -1,4 +1,8 @@
 Feedbacker::Application.routes.draw do
+  resources :hours
+
+  resources :work_categories
+
   resources :images do
     resources :comments
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110204002332) do
+ActiveRecord::Schema.define(:version => 20110412082028) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -28,10 +28,21 @@ ActiveRecord::Schema.define(:version => 20110204002332) do
     t.boolean  "internal"
   end
 
+  create_table "hours", :force => true do |t|
+    t.date     "date"
+    t.float    "amount"
+    t.text     "task"
+    t.boolean  "extra"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.integer  "work_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "images", :force => true do |t|
     t.string   "name"
     t.integer  "project_id"
-    t.datetime "uploaded_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "rendering_file_name"
@@ -58,6 +69,14 @@ ActiveRecord::Schema.define(:version => 20110204002332) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "company"
+    t.boolean  "admin"
+  end
+
+  create_table "work_categories", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

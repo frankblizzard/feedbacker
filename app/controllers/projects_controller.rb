@@ -1,5 +1,9 @@
 class ProjectsController < ApplicationController    
-  helper_method :sort_column, :sort_direction
+  before_filter :login_required
+  
+  helper_method :sort_column, :sort_direction  
+   
+  uses_tiny_mce
   
   def index
     @projects = Project.order(sort_column + " " + sort_direction)

@@ -1,0 +1,19 @@
+<% title "Work Categories" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <% for work_category in @work_categories %>
+    <tr>
+      <td><%= work_category.name %></td>
+      <td><%= work_category.description %></td>
+      <td><%= link_to "Show", work_category %></td>
+      <td><%= link_to "Edit", edit_work_category_path(work_category) %></td>
+      <td><%= link_to "Destroy", work_category, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Work Category", new_work_category_path(work_category) %></p>

@@ -1,4 +1,6 @@
 class AssignmentsController < ApplicationController
+  before_filter :login_required
+  
   def index
     @users = User.all  
     

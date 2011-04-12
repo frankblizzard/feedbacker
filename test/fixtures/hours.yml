@@ -1,0 +1,17 @@
+one:
+  date: 2011-04-12
+  amount: 1.5
+  task: MyText
+  extra: false
+  user: 
+  project: 
+  work_category: 
+
+two:
+  date: 2011-04-12
+  amount: 1.5
+  task: MyText
+  extra: false
+  user: 
+  project: 
+  work_category: 

@@ -15,12 +15,16 @@
       <td><ul><% for project in user.projects %>
 		<li><%= link_to "#{project.name}", project %>
 		<% end %></td>
-		</ul>
+		</ul>    
       <td><%= link_to "Show", user %></td>
-      <td><%= link_to "Edit", edit_user_path(user) %></td>
+	  <% if current_user.admin? || current_user == @user %>
+      <td><%= link_to "Edit", edit_user_path(user) %></td> 
+	  <% end %>
+	  <% if current_user.admin?%>
       <td><%= link_to "Destroy", user, :confirm => 'Are you sure?', :method => :delete %></td>
+	  <% end %>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New User", new_user_path(user) %></p>
+

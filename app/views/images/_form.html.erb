@@ -14,9 +14,7 @@
   	<%= f.file_field :rendering%>
 	</p>
   </div>
-  <p>
-    <%= f.label :uploaded_at %><br />
-    <%= f.datetime_select :uploaded_at %>    
+  <p> 
 	<%= f.hidden_field :user_id, :value => current_user.id %>
   </p>
   <p><%= f.submit %></p>

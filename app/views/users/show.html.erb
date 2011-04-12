@@ -1,11 +1,21 @@
-<% title "User" %>
+<% title @user.username %> 
 
-<p>
-  <strong>Name:</strong>  <%= @user.username %> <br/>
-  <strong>Works at:</strong>  <%= @user.company %> <br/>  
-  <strong>Email:  </strong><%= link_to @user.email %> <br/>   
+<table class="pretty">
+	<tr>
+		<th>Name</th> 
+		<th>Works at</th> 
+		<th>E-Mail</th> 
+		<th>Member since</th> 						
+	</tr>
+	<tr>
+		<td><%= @user.username %></td>
+		<td><%= @user.company %> </td>
+		<td><%= link_to @user.email %></td>
+		<td><%= @user.created_at.to_date() %> </td>						
+	 </tr>
+</table>
   <br/>
-<%= @user.username %> uploaded <%= pluralize(@user.images.count, "image") %>  <br/>
-and posted <%= pluralize(@user.comments.count, "comment") %>
+<%= @user.username %> uploaded <i><%= pluralize(@user.images.count, "image") %>  </i>
+and posted <i><%= pluralize(@user.comments.count, "comment") %></i>
 </p>
 

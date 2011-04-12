@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :projects, :through => :assignments
   has_many :comments
   has_many :images
+  has_many :hours
 
 
   # login can be either username or email address

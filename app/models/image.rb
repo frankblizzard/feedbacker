@@ -1,14 +1,16 @@
 class Image < ActiveRecord::Base
-    attr_accessible :id, :project_id, :uploaded_at, :name, :rendering, :user_id
+    attr_accessible :id, :project_id, :name, :rendering, :user_id
     belongs_to :project                             
     belongs_to :user
     
     validates_presence_of :name
     validates_presence_of :project_id      
     
+    has_many :comments     
     
+    cattr_reader :per_page
+    @@per_page = 5
     
-    has_many :comments
     
     
     #paperclip

@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_filter :login_required
+  
   def index
     @comments = Comment.all
   end

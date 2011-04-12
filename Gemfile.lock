@@ -63,6 +63,7 @@ GEM
       rake
     mysql (2.8.1)
     nifty-generators (0.4.4)
+    nokogiri (1.4.4)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -85,9 +86,15 @@ GEM
     rake (0.8.7)
     term-ansicolor (1.0.5)
     thor (0.14.6)
+    tiny_mce (0.1.4)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    webrat (0.7.3)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
+    will_paginate (3.0.pre2)
     yaml_db (0.2.0)
 
 PLATFORMS
@@ -102,4 +109,7 @@ DEPENDENCIES
   nifty-generators
   paperclip!
   rails (= 3.0.3)
+  tiny_mce
+  webrat
+  will_paginate (~> 3.0.pre2)
   yaml_db
