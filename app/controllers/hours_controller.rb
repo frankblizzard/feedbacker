@@ -9,12 +9,9 @@ class HoursController < ApplicationController
     @hour = Hour.find(params[:id])
   end
   
-  def show_by_user
-    @hours = Hour.find(params[:user_id])
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @hours }
-    end
+  def show_xml
+    @hours = Hour.all
+    render :xml => @hours
   end
   
 

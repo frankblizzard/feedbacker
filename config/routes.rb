@@ -24,6 +24,7 @@ Feedbacker::Application.routes.draw do
 
   match 'images' => 'images#show', :as => :images    
   
+  match 'get_user_hours' =>  'hours#show_xml', :as => :get_user_hours
 
   resources :sessions
 
