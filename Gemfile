@@ -11,7 +11,10 @@ gem 'haml'
 
 # file uploads
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
-  
+
+#authorization
+gem 'cancan'
+
 # pagination
 gem "will_paginate", "~> 3.0.pre2"
 

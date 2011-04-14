@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110412082028) do
+ActiveRecord::Schema.define(:version => 20110414120030) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20110412082028) do
     t.integer  "work_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "holiday"
   end
 
   create_table "images", :force => true do |t|

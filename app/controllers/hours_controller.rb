@@ -1,8 +1,14 @@
 class HoursController < ApplicationController
   before_filter :login_required
+  skip_before_filter :verify_authenticity_token, :only => [:create]
+#  skip_before_filter :login_required, :only => [:create]
   
   def index
-    @hours = Hour.all
+    if current_user.admin?
+      @hours = Hour.all
+    else
+      @hours = Hour.where(:user_id => current_user.id)
+    end
   end
 
   def show
@@ -22,8 +28,8 @@ class HoursController < ApplicationController
   def create
     @hour = Hour.new(params[:hour])
     if @hour.save
-      flash[:notice] = "Successfully created hour."
-      redirect_to @hour
+      flash[:notice] = "New Time record created."
+      redirect_to hours_url
     else
       render :action => 'new'
     end
@@ -36,7 +42,7 @@ class HoursController < ApplicationController
   def update
     @hour = Hour.find(params[:id])
     if @hour.update_attributes(params[:hour])
-      flash[:notice] = "Successfully updated hour."
+      flash[:notice] = "Successfully updated time record."
       redirect_to hour_url
     else
       render :action => 'edit'
@@ -46,7 +52,7 @@ class HoursController < ApplicationController
   def destroy
     @hour = Hour.find(params[:id])
     @hour.destroy
-    flash[:notice] = "Successfully destroyed hour."
+    flash[:notice] = "Successfully deleted time record."
     redirect_to hours_url
   end
 end

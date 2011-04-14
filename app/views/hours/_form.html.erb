@@ -13,8 +13,11 @@
     <%= f.text_area :task %>
   </p>
   <p>
-    <%= f.label :extra %><br />
-    <%= f.check_box :extra %>
+
+    <%= f.check_box :extra %>    <%= f.label :extra %>
+  </p>
+  <p>
+    <%= f.check_box :holiday %>    <%= f.label :holiday %>
   </p>
   <p> 
 	<%= f.hidden_field :user_id, :value => current_user.id %>

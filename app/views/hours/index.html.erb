@@ -13,15 +13,21 @@
   <% for hour in @hours %>
     <tr>
       <td><%= hour.date %></td>
-      <td><%= hour.amount %></td>
+      <td><%= hour.amount %> hours</td>
       <td><%= hour.task %></td>
-      <td><%= hour.extra %></td>
-      <td><%= hour.user_id %></td>
-      <td><%= hour.project_id %></td>
-      <td><%= hour.work_category_id %></td>
-      <td><%= link_to "Show", hour %></td>
+      <td><% if hour.extra? %>
+			yes
+		<% else %>
+			no
+		<% end %>
+	 </td>
+      <td><%= hour.user.username %></td>
+      <td><%= hour.project.name %></td>
+      <td><%= hour.work_category.name %></td>
+	 <% if hour.user == current_user || current_user.admin? %>
       <td><%= link_to "Edit", edit_hour_path(hour) %></td>
-      <td><%= link_to "Destroy", hour, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Delete", hour, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
     </tr>
   <% end %>
 </table>

@@ -1,5 +1,5 @@
 class Hour < ActiveRecord::Base
-    attr_accessible :date, :amount, :task, :extra, :user_id, :project_id, :work_category_id
+    attr_accessible :date, :amount, :task, :extra, :user_id, :project_id, :work_category_id, :holiday
     
     validates_presence_of :date
     validates_presence_of :amount
