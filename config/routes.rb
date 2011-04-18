@@ -1,4 +1,6 @@
 Feedbacker::Application.routes.draw do
+  resources :clients
+
   resources :hours
 
   resources :work_categories

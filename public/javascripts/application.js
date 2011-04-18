@@ -6,6 +6,8 @@ $(document).ready(function () {
 	 $(window).resize(function () {
 		 calculateSizes();
 	 });
+	
+     $('#book_author_tokens').tokenInput('/users.json', { crossDomain: false });  	
 });
 
 calculateSizes = function () {
