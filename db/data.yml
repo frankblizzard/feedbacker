@@ -33,6 +33,31 @@ assignments:
     - "4"
     - 2011-02-04 12:04:15
     - 2011-02-04 12:04:15
+  - - "6"
+    - "1"
+    - "5"
+    - 2011-02-21 15:33:57
+    - 2011-02-21 15:33:57
+  - - "7"
+    - "1"
+    - "7"
+    - 2011-04-18 16:56:43
+    - 2011-04-18 16:56:43
+  - - "8"
+    - "2"
+    - "7"
+    - 2011-04-18 16:56:43
+    - 2011-04-18 16:56:43
+  - - "9"
+    - "1"
+    - "6"
+    - 2011-04-19 19:46:22
+    - 2011-04-19 19:46:22
+  - - "10"
+    - "2"
+    - "6"
+    - 2011-04-19 19:46:22
+    - 2011-04-19 19:46:22
 
 --- 
 comments: 
@@ -45,69 +70,6 @@ comments:
   - updated_at
   - internal
   records: 
-  - - "1"
-    - 
-    - 
-    - blabblablab
-    - 2011-02-03 15:47:50
-    - 2011-02-03 15:47:50
-    - false
-  - - "2"
-    - 
-    - 
-    - hadouken
-    - 2011-02-03 15:52:52
-    - 2011-02-03 15:52:52
-    - false
-  - - "3"
-    - 
-    - 
-    - hadouken
-    - 2011-02-03 16:00:56
-    - 2011-02-03 16:00:56
-    - false
-  - - "4"
-    - 
-    - 
-    - hadouken
-    - 2011-02-03 16:02:25
-    - 2011-02-03 16:02:25
-    - false
-  - - "5"
-    - 
-    - 
-    - hadouken
-    - 2011-02-03 16:03:01
-    - 2011-02-03 16:03:01
-    - false
-  - - "6"
-    - 
-    - 
-    - hadouken
-    - 2011-02-03 16:03:20
-    - 2011-02-03 16:03:20
-    - false
-  - - "7"
-    - 
-    - 
-    - hadouken
-    - 2011-02-03 16:04:31
-    - 2011-02-03 16:04:31
-    - false
-  - - "8"
-    - 
-    - 
-    - hadouken
-    - 2011-02-03 16:04:43
-    - 2011-02-03 16:04:43
-    - false
-  - - "9"
-    - 
-    - 
-    - test
-    - 2011-02-03 16:05:24
-    - 2011-02-03 16:05:24
-    - false
   - - "10"
     - "1"
     - "1"
@@ -143,6 +105,83 @@ comments:
     - 2011-02-04 12:19:34
     - 2011-02-04 12:19:34
     - false
+  - - "15"
+    - "8"
+    - "1"
+    - "sieht aus als w\xC3\xA4re der balkon nass / dreckig ?!"
+    - 2011-02-04 14:37:54
+    - 2011-02-04 14:37:54
+    - false
+  - - "16"
+    - "4"
+    - "1"
+    - tolles bild
+    - 2011-02-21 19:06:15
+    - 2011-02-21 19:06:15
+    - false
+  - - "17"
+    - "3"
+    - "1"
+    - fettes teil
+    - 2011-02-22 13:39:30
+    - 2011-02-22 13:39:30
+    - false
+  - - "18"
+    - "11"
+    - "1"
+    - sieht gut aus
+    - 2011-03-01 13:22:42
+    - 2011-03-01 13:22:42
+    - false
+
+--- 
+hours: 
+  columns: 
+  - id
+  - date
+  - amount
+  - task
+  - extra
+  - user_id
+  - project_id
+  - work_category_id
+  - created_at
+  - updated_at
+  - holiday
+  records: 
+  - - "1"
+    - "2011-04-12"
+    - "3"
+    - Saga Senter Web
+    - false
+    - "1"
+    - "3"
+    - "5"
+    - 2011-04-12 10:16:19
+    - 2011-04-12 10:16:19
+    - false
+  - - "2"
+    - "2011-04-14"
+    - "3"
+    - testing hours
+    - false
+    - "2"
+    - "1"
+    - "7"
+    - 2011-04-14 11:25:28
+    - 2011-04-14 11:25:28
+    - false
+  - - "3"
+    - "2011-04-14"
+    - "2"
+    - Typo3
+    - true
+    - "4"
+    - "6"
+    - "5"
+    - 2011-04-14 12:08:05
+    - 2011-04-14 12:08:05
+    - false
 
 --- 
 images: 
@@ -150,7 +189,6 @@ images:
   - id
   - name
   - project_id
-  - uploaded_at
   - created_at
   - updated_at
   - rendering_file_name
@@ -160,11 +198,10 @@ images:
   - user_id
   records: 
   - - "1"
-    - Bukkespranget A - 005
+    - Saga Senter Exterior 006
     - "3"
-    - 2011-02-03 15:25:00
     - 2011-02-03 15:26:01
-    - 2011-02-03 23:30:48
+    - 2011-02-04 14:40:09
     - Perspektiv fasade E2.jpg
     - image/jpeg
     - "121211"
@@ -173,7 +210,6 @@ images:
   - - "2"
     - Saga Senter Interior - 2
     - "3"
-    - 2011-02-03 23:35:00
     - 2011-02-03 23:36:21
     - 2011-02-03 23:36:21
     - exterior_day3B.jpg
@@ -184,7 +220,6 @@ images:
   - - "3"
     - Bukkespranget Area - 001
     - "1"
-    - 2011-02-03 23:39:00
     - 2011-02-03 23:39:54
     - 2011-02-03 23:39:54
     - 1.jpg
@@ -195,7 +230,6 @@ images:
   - - "4"
     - Bukkespranget Area - 002
     - "1"
-    - 2011-02-04 00:17:00
     - 2011-02-04 00:18:11
     - 2011-02-04 00:18:11
     - webside3_big.jpg
@@ -206,7 +240,6 @@ images:
   - - "8"
     - hu
     - "2"
-    - 2011-02-04 11:34:00
     - 2011-02-04 11:34:22
     - 2011-02-04 11:34:22
     - HU1001-a.jpg
@@ -217,7 +250,6 @@ images:
   - - "9"
     - test
     - "3"
-    - 2011-02-04 11:36:00
     - 2011-02-04 11:37:38
     - 2011-02-04 11:37:38
     - front.jpg
@@ -226,11 +258,10 @@ images:
     - 2011-02-04 11:37:36
     - "1"
   - - "10"
-    - test 2
+    - hu 3
     - "2"
-    - 2011-02-04 11:38:00
     - 2011-02-04 11:41:12
-    - 2011-02-04 11:41:12
+    - 2011-02-04 15:39:35
     - HU05-a.jpg
     - image/jpeg
     - "251729"
@@ -239,7 +270,6 @@ images:
   - - "11"
     - gardenview01
     - "4"
-    - 2011-02-04 12:04:00
     - 2011-02-04 12:05:26
     - 2011-02-04 12:05:26
     - test08_gardenview 1-1.jpg
@@ -247,6 +277,16 @@ images:
     - "2177465"
     - 2011-02-04 12:05:18
     - "3"
+  - - "12"
+    - Lilleborg C1 main
+    - "5"
+    - 2011-02-21 16:16:19
+    - 2011-02-21 16:16:47
+    - lilleborg1.jpg
+    - image/jpeg
+    - "121104"
+    - 2011-02-21 16:16:16
+    - "1"
 
 --- 
 projects: 
@@ -261,61 +301,91 @@ projects:
   records: 
   - - "1"
     - Bukkespranget
-    - 2010-09-09 14:30:00
-    - 2011-04-03 14:30:00
+    - "2010-09-09"
+    - "2011-04-03"
     - 2023 leiligheter
     - 2011-02-03 14:31:15
     - 2011-02-03 14:31:15
   - - "2"
     - Fornebue
-    - 2010-06-03 15:25:00
-    - 2011-02-03 15:25:00
+    - "2010-06-03"
+    - "2011-02-03"
     - fornebue description
     - 2011-02-03 15:25:23
     - 2011-02-03 15:25:23
   - - "3"
     - Saga Senter
-    - 2011-02-03 17:25:00
-    - 2011-03-01 17:25:00
+    - "2011-02-03"
+    - "2011-03-01"
     - 102 leiligheter
     - 2011-02-03 17:25:42
     - 2011-02-03 17:26:08
   - - "4"
     - KonfektfabrikkenII
-    - 2011-01-17 09:00:00
-    - 2011-02-03 18:00:00
-    - Teil 2 des total tollen Projektes
+    - "2011-01-17"
+    - "2011-03-03"
+    - |-
+      <h2><strong>Test1</strong></h2>
+      <p>bis 4.6.2011 m&uuml;ssen noch 6534 renderings fertig werden.</p>
+      <p>&nbsp;</p>
+      <p><strong>UPDATE 46.11</strong></p>
+      <p>&nbsp;</p>
+      <p>wichtig!! tragt eure stunden ein..</p>
     - 2011-02-04 12:03:57
-    - 2011-02-04 12:03:57
+    - 2011-02-22 17:01:02
+  - - "5"
+    - Lilleborg C1
+    - "2011-01-20"
+    - "2011-03-21"
+    - 12 Leiligheter
+    - 2011-02-21 15:33:08
+    - 2011-02-21 15:33:30
+  - - "6"
+    - Voice
+    - "2011-04-12"
+    - "2011-04-19"
+    - <p>new website</p>
+    - 2011-04-12 07:58:06
+    - 2011-04-19 19:46:22
+  - - "7"
+    - test token
+    - "2011-04-18"
+    - "2011-04-18"
+    - <p>yo</p>
+    - 2011-04-18 16:56:43
+    - 2011-04-18 16:56:43
 
 --- 
 users: 
   columns: 
   - id
-  - username
+  - name
   - email
   - password_hash
   - password_salt
   - created_at
   - updated_at
   - company
+  - admin
   records: 
   - - "1"
-    - Thomas
+    - thomas
     - thomas@eve-images.com
     - $2a$10$fqhw/Tw6UBYkNRqK.g/wquBDeTqqY4hClDNZnaya3cllci512D88K
     - $2a$10$fqhw/Tw6UBYkNRqK.g/wqu
     - 2011-02-03 14:30:43
-    - 2011-02-03 14:30:43
-    - Eve Images
+    - 2011-02-04 22:17:40
+    - eve-images
+    - true
   - - "2"
-    - Ivo
+    - ivo
     - ivo@eve-images.com
     - $2a$10$XexVVhSOB5CFukpOgDBWBudZlxlK36eCSqoPkuGT3YCnRs5DLYX02
     - $2a$10$XexVVhSOB5CFukpOgDBWBu
     - 2011-02-04 00:14:08
-    - 2011-02-04 00:14:33
-    - Eve Images
+    - 2011-02-04 22:19:00
+    - eve-images
+    - false
   - - "3"
     - daniel
     - daniel@eve-images.com
@@ -324,3 +394,53 @@ users:
     - 2011-02-04 12:02:04
     - 2011-02-04 12:02:04
     - eve-images
+    - false
+  - - "4"
+    - admin
+    - admin@eve-images.com
+    - $2a$10$omLXpM5HKWgG9UTgnm9cgumrnBFA1WgEVJQGbnt9Kb1cgGG29Qdmu
+    - $2a$10$omLXpM5HKWgG9UTgnm9cgu
+    - 2011-04-14 11:30:10
+    - 2011-04-14 11:30:10
+    - eve-images
+    - true
+
+--- 
+work_categories: 
+  columns: 
+  - id
+  - name
+  - description
+  - created_at
+  - updated_at
+  records: 
+  - - "1"
+    - Pre-Production
+    - Any work done before the actual modeling starts
+    - 2011-04-12 08:24:36
+    - 2011-04-12 08:24:36
+  - - "2"
+    - Modeling
+    - 3D Modeling
+    - 2011-04-12 08:25:04
+    - 2011-04-12 08:25:04
+  - - "3"
+    - Post-Production
+    - Improving the renderings after the modeling process
+    - 2011-04-12 08:25:45
+    - 2011-04-12 08:25:45
+  - - "5"
+    - Web
+    - Creating Web Content for the associated project
+    - 2011-04-12 08:26:15
+    - 2011-04-12 08:26:15
+  - - "6"
+    - Other
+    - please give detailed information what your task was about
+    - 2011-04-12 08:26:52
+    - 2011-04-12 08:26:52
+  - - "7"
+    - Project Management
+    - Administration and Coordination of the project
+    - 2011-04-12 08:27:27
+    - 2011-04-12 08:27:27
