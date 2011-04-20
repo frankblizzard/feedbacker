@@ -1,37 +1,8 @@
 <% title "Projekt: #{@project.name}" %>
 
 
-<table>
-	<tr>
-		<th>Project start</th>
-		<th>Deadline (Project End)</th>
-	</tr>
-	<tr>
-		<td>
-			<%= @project.started_at.to_formatted_s(:long) %>  
-			<br/>
-			<i>
-			<%if Time.now > @project.started_at %>
-				<%= time_ago_in_words(@project.started_at) %> ago   
-			<% else %>
-			   in <%= time_ago_in_words(@project.started_at) %>   
-			<% end %>
-			</i>
-		</td>
-		<td> 
-			<%= @project.ends_at.to_formatted_s(:long) %>  
-			<br/>
-			<i>
-			<%if Time.now > @project.ends_at %>
-				<%= time_ago_in_words(@project.ends_at) %> ago   
-			<% else %>
-			   in <%= time_ago_in_words(@project.ends_at) %>   
-			<% end %> 
-			</i>
-		</td>
-	</tr>  
-</table>
-<br/>  
+
+
 <table>
 	<tr width="600">
 		<th>Project Infos</th>
@@ -49,7 +20,7 @@
 	<tr>
 		<td><ul>
 		<% for user in @project.users do %>
-			<li><%= link_to "#{user.username}", user %></li>			
+			<li><%= link_to "#{user.name}", user %></li>			
 		<% end %>
 		</ul></td>
 	</tr>

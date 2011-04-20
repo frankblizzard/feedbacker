@@ -7,7 +7,7 @@
   </tr>  
 <% for user in @users %>
     <tr class="<%= cycle('white','grey')-%>">
-  		<td><%= user.username %></td>
+  		<td><%= user.name %></td>
 
          <td> <ul>
   <% for assignment in user.assignments %>

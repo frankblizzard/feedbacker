@@ -9,7 +9,7 @@
 		<th>Project</th>
 	</tr>
 	<tr>
-		<td><%= collection_select(:assignment, :user_id, User.all, :id, :username, :prompt => true) %></td>
+		<td><%= collection_select(:assignment, :user_id, User.all, :id, :name, :prompt => true) %></td>
 		<td><%= collection_select(:assignment, :project_id, Project.all, :id, :name, :prompt => true) %></td>
 	</tr>
 </table>

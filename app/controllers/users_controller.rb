@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :login_required, :except => [:new, :create]
   
   def index
-    @users = User.all
+    @users = User.where("name like ?", "%#{params[:q]}%")
     respond_to do |format|
       format.html
       format.json { render :json => @users.map(&:attributes) }

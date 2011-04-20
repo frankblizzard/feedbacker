@@ -21,7 +21,7 @@
 			no
 		<% end %>
 	 </td>
-      <td><%= hour.user.username %></td>
+      <td><%= hour.user.name %></td>
       <td><%= hour.project.name %></td>
       <td><%= hour.work_category.name %></td>
 	 <% if hour.user == current_user || current_user.admin? %>

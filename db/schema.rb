@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418134955) do
+ActiveRecord::Schema.define(:version => 20110418144558) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20110418134955) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username"
+    t.string   "name"
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"

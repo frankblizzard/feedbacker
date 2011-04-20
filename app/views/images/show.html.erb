@@ -19,7 +19,7 @@
 	 </tr>
 	<tr>
 	 <td><%= @image.created_at.to_formatted_s(:long) %></td>
-	 <td><%= link_to @image.user.username, @image.user %></td>
+	 <td><%= link_to @image.user.name, @image.user %></td>
 	 <td><%= link_to @image.project.name, @image.project %></td>
 	 <td>to do</td>
 	<td>to do</td> 
@@ -47,7 +47,7 @@
 <h2><%= pluralize(@image.comments.count, "comment") %></h2>
 <% for comment in @image.comments.order("created_at desc") do  %>
   <p>
-    <b><%= link_to comment.user.username, comment.user %> </b>wrote 
+    <b><%= link_to comment.user.name, comment.user %> </b>wrote 
     <%= time_ago_in_words(comment.created_at) %> ago:
   </p>
 

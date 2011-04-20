@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
-    <%= stylesheet_link_tag "application", "feedbacker", 'token-input' %>   
+    <%= stylesheet_link_tag "application", "feedbacker", 'token-input-facebook' %>   
 	<%= include_tiny_mce_if_needed %>
 	    <%= javascript_include_tag 'jquery', 'rails', 'application', 'jquery.tokeninput' %>
     <%= csrf_meta_tag %>
@@ -14,7 +14,7 @@
 	
 	<div class="user_navigation">
 		<% if logged_in? %>
-	          Welcome <%=h current_user.username %>! Not you?
+	          Welcome <%=h current_user.name %>! Not you?
 	          <%= link_to "Log out", logout_path %>
 	        <% else %>
 	          <%= link_to "Sign up", signup_path %> or
