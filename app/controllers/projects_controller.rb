@@ -7,6 +7,11 @@ class ProjectsController < ApplicationController
   
   def index
     @projects = Project.order(sort_column + " " + sort_direction)
+    
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @projects }
+    end
   end
 
   def show
