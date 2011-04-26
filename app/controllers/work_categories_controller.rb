@@ -1,6 +1,10 @@
 class WorkCategoriesController < ApplicationController
   def index
     @work_categories = WorkCategory.all
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @work_categories }
+    end
   end
 
   def show
