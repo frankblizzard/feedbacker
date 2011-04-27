@@ -19,6 +19,8 @@ gem 'cancan'
 # pagination
 gem "will_paginate", "~> 3.0.pre2"
 
+# table builder for calendar
+gem 'table_builder', '0.0.3', :git => 'git://github.com/jchunky/table_builder.git'
 
 # db backup 
 gem 'yaml_db'

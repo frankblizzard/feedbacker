@@ -1,35 +1,20 @@
-<% title "Hours" %>
+<% title "Time Tracking" %>
 
-<table>
-  <tr>
-    <th>Date</th>
-    <th>Amount</th>
-    <th>Task</th>
-    <th>Extra</th>
-    <th>User</th>
-    <th>Project</th>
-    <th>Part</th>
-  </tr>
-  <% for hour in @hours %>
-    <tr>
-      <td><%= hour.date %></td>
-      <td><%= hour.amount %> hours</td>
-      <td><%= hour.task %></td>
-      <td><% if hour.extra? %>
-			yes
-		<% else %>
-			no
-		<% end %>
-	 </td>
-      <td><%= hour.user.name %></td>
-      <td><%= hour.project.name %></td>
-      <td><%= hour.work_category.name %></td>
-	 <% if hour.user == current_user || current_user.admin? %>
-      <td><%= link_to "Edit", edit_hour_path(hour) %></td>
-      <td><%= link_to "Delete", hour, :confirm => 'Are you sure?', :method => :delete %></td>
-	<% end %>
-    </tr>
+<div id="calendar">
+  <h2 id="month">
+    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d") %>
+    <%=h @date.strftime("%B %Y") %>
+    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d") %>
+  </h2>
+  <% calendar_for @hours, :year => @date.year, :month => @date.month do |calendar| %>
+    <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
+    <% calendar.day(:day_method => :date) do |date, hours| %>
+      <%= date.day %>
+      <ul>
+        <% for hour in hours %>
+          <li><%= link_to "#{h(hour.amount)}h #{h(hour.project.name)}", hour %></li>
+        <% end %>
+      </ul>
+    <% end %>
   <% end %>
-</table>
-
-<p><%= link_to "New Hour", new_hour_path(hour) %></p>
+</div>

@@ -9,6 +9,7 @@ class HoursController < ApplicationController
     else
       @hours = Hour.where(:user_id => current_user.id)
     end
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
     respond_to do |format|
       format.html
       format.xml { render :xml => @hours}

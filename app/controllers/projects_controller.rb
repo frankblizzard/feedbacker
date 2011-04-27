@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   
   helper_method :sort_column, :sort_direction  
    
-  uses_tiny_mce
+  uses_tiny_mce :options => {  :theme => 'simple', :editor_selector => 'mceEditor'}
   
   def index
     @projects = Project.order(sort_column + " " + sort_direction)

@@ -2,8 +2,6 @@
 * {
 	padding:0;
 	margin: 0;
-	line-height: 15px;
-	font-size: 12px;
 	font-family: helvetica, arial, sans-serif;
 }
 
@@ -91,6 +89,7 @@ top: 70px;
 
 .left_side .main_navi {
 padding:20px 0 20px 30px;
+font-size: 12px;
 }
 
 .left_side ul {

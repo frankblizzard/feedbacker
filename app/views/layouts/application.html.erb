@@ -28,11 +28,11 @@
 	<div class="main">
 		<div class="left_side">
 			<ul class="main_navi">
-			<li class="<%= "activ" if params[:controller] == "home"%>"><%= link_to "Home", root_path %></li>
-			<li class="<%= "activ" if params[:controller] == "projects" %>"><%= link_to "Projects", projects_path %></li>      
-			<li class="<%= "activ" if params[:controller] == "images" %>"><%= link_to "Images", images_path %></li>
-			<li class="<%= "activ" if params[:controller] == "users" %>"><%= link_to "Users", users_path %></li>
-			<li class="<%= "activ" if params[:controller] == "hours" %>"><%= link_to "Time Tracking", hours_path %></li>
+			<li class="<%= "active" if params[:controller] == "home"%>"><%= link_to "Home", root_path %></li>
+			<li class="<%= "active" if params[:controller] == "projects" %>"><%= link_to "Projects", projects_path %></li>      
+			<li class="<%= "active" if params[:controller] == "images" %>"><%= link_to "Images", images_path %></li>
+			<li class="<%= "active" if params[:controller] == "users" %>"><%= link_to "Users", users_path %></li>
+			<li class="<%= "active" if params[:controller] == "hours" %>"><%= link_to "Time Tracking", hours_path %></li>
 			</ul>
 		</div>
 		<div class="right_side">
