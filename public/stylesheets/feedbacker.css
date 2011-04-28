@@ -15,26 +15,42 @@
 }
 
 .header {
-	height: 70px;
+	height: 35px;
 	width: 100%;
 	position: fixed;
 	top:0;
 	left:0;
 	background-color: #424242;  
 	z-index: 10;
+	border-top: 10px solid #3ebde6;
 }
 
 .header .user_navigation {
 	position: absolute;
-	top:15px;
-	left:30px;
+	top:0px;
+	left:227px;
+	height:25px;
+	padding: 5px 10px;
 	font-size: 12px;
+	width: 345px;
+	border: 2px solid #fff;
+	color: #999994;
+}
+.header .news{
+	position: absolute;
+	top:0px;
+	left:594px;
+	height:25px;
+	padding: 5px;
+	font-size: 12px;
+	width: 400px;
+	border: 2px solid #fff;
 	color: #999994;
 }
 
 .header .user_navigation a {
 	font-size: 12px;
-	color: #007bc5;
+	color: #3ebde6;
 	text-decoration: underline;
 }
 
@@ -69,49 +85,59 @@
 }
 
 #logo {
-	width: 400px;
-	height: 54px;
+	width: 225px;
+	height: 35px;
 	position: absolute;
-	right: 20px;
-	bottom: 2px;
+	left: 0px;
+	top: 0px;
 	display: block;
-	background: url("../images/logo.jpg") no-repeat;
+	border: 2px solid #fff;
 }
+#logo img {
+	width: 170px;
+	padding: 4px 10px;
 
+}
 .left_side {
 height: 100%;
-width:180px;
-background-color: #424242;
+width:182px;
 position:fixed;
 left:0;
-top: 70px; 
+top: 40px; 
+
 }
 
 .left_side .main_navi {
-padding:20px 0 20px 30px;
+padding:20px 0;
 font-size: 12px;
 }
 
 .left_side ul {
 list-style: none;
 list-style-type: none;
-padding-left: 15px;
 }
 
 .left_side ul li{
-padding: 2px 0;
+padding: 2px 20px;
+
 }
 .left_side ul li a{
-color: #999994;
+color: #424242;
 text-decoration: none;
-}
-.left_side ul li a:hover, .header ul li a:hover{
-color: #ffffff;
 }
 .left_side ul li.active a{
-color: #fff;
-text-decoration: none;
+color: #000;
+background: url('../images/active.png') no-repeat;
+padding-left: 17px;
+font-style: italic;
+font-weight: bold;
 }
+
+.left_side ul li:hover a {
+font-style: italic;	
+}
+
+
 
 .right_side {
 	position: absolute;

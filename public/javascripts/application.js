@@ -17,4 +17,5 @@ $(document).ready(function () {
 calculateSizes = function () {
 	 //$(".main").height($(window).height()-$('.header').height());
 	 $(".right_side").width($(window).width()-$('.left_side').width());
+	 $(".header .news").width($(window).width()-607);
 }

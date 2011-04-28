@@ -1,4 +1,4 @@
-<% title @user.username %> 
+<% title @user.name %> 
 
 <table class="pretty">
 	<tr>
@@ -8,14 +8,14 @@
 		<th>Member since</th> 						
 	</tr>
 	<tr>
-		<td><%= @user.username %></td>
+		<td><%= @user.name %></td>
 		<td><%= @user.company %> </td>
 		<td><%= link_to @user.email %></td>
 		<td><%= @user.created_at.to_date() %> </td>						
 	 </tr>
 </table>
   <br/>
-<%= @user.username %> uploaded <i><%= pluralize(@user.images.count, "image") %>  </i>
+<%= @user.name %> uploaded <i><%= pluralize(@user.images.count, "image") %>  </i>
 and posted <i><%= pluralize(@user.comments.count, "comment") %></i>
 </p>
 

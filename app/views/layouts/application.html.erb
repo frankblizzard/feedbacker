@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? "eve logR - #{yield(:title)}" : "Untitled" %></title>
     <%= stylesheet_link_tag "application", "feedbacker", 'token-input-facebook' %>   
 	<%= include_tiny_mce_if_needed %>
 	    <%= javascript_include_tag 'jquery', 'rails', 'application', 'jquery.tokeninput' %>
@@ -10,23 +10,25 @@
   </head>
   <body>
 	<div class="wrapper">
-	<div class="header">
+		<div class="header">
 	
-	<div class="user_navigation">
-		<% if logged_in? %>
-	          Welcome <%=h current_user.name %>! Not you?
-	          <%= link_to "Log out", logout_path %>
-	        <% else %>
-	          <%= link_to "Sign up", signup_path %> or
-	          <%= link_to "log in", login_path %>.
-	        <% end %>
-	</div>
+				<div class="user_navigation">
+		   			<% if logged_in? %>
+	       			  Welcome <%= link_to current_user.name, current_user %>! Not you?
+	       			  <%= link_to "Log out", logout_path %>
+	       			<% else %>
+	       			  <%= link_to "Sign up", signup_path %> or
+	       			  <%= link_to "log in", login_path %>.
+	       			<% end %>
+				</div>
 	
-	
-	<div id="logo"></div>
-	</div> <!--  end header -->
+				<div id="logo"><%= image_tag ('logo.jpg') %></div>
+				<div class="news"></div>
+		
+		</div> <!--  end header -->
 	<div class="main">
 		<div class="left_side">
+		<div id="logr"><%= image_tag('logr.jpg') %></div>
 			<ul class="main_navi">
 			<li class="<%= "active" if params[:controller] == "home"%>"><%= link_to "Home", root_path %></li>
 			<li class="<%= "active" if params[:controller] == "projects" %>"><%= link_to "Projects", projects_path %></li>      
