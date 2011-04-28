@@ -14,14 +14,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(params[:comment])
-    if @comment.save
-      flash[:notice] = "Successfully created comment."
-      @image = Image.find(params[:image_id])
-      redirect_to @image
-    else
-      render :action => 'new'
-    end
+    @comment = Comment.create!(params[:comment])  
   end
 
   def edit

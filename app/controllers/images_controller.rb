@@ -11,6 +11,7 @@ class ImagesController < ApplicationController
   
   def show
     @image = Image.find(params[:id] )
+    @comments = @image.comments.order("created_at desc")
   end
 
   def create

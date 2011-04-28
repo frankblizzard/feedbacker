@@ -16,7 +16,7 @@ class Image < ActiveRecord::Base
     #paperclip
      has_attached_file :rendering,
         :styles => {
-          :thumb=> "100x100#",
-          :small  => "400x400#",
-          :big => "850x850#" }
+          :thumb=> "100x100>",
+          :small  => "400x400>",
+          :big => "850x850>" }
 end

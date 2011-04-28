@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :images
   has_many :hours
-
+  has_many :chat_messages
 
   # login can be either username or email address
   def self.authenticate(login, pass)

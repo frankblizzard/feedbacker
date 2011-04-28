@@ -144,6 +144,7 @@ font-style: italic;
 	left: 180px;
 	top: 80px;    
 	height:90%;    
+	overflow: auto;
 }
 
 
@@ -208,6 +209,10 @@ padding-top: 10px;
 font-size: 14px;
 }
 
+.comment_time {
+	font-size: 10px;
+	color: #777777;
+}
 .add_comment form textarea {
 width: 600px;
 height: 30px;
@@ -225,8 +230,7 @@ float: right;
 }  
 
 .newest_images {
-	width: 600px; 
-	margin-left: -5px;
+	margin-top: 20px;
 }  
 .newest_images a{
 	padding: 0 5px; 
