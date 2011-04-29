@@ -4,7 +4,7 @@
     <title><%= content_for?(:title) ? "eve logR - #{yield(:title)}" : "Untitled" %></title>
     <%= stylesheet_link_tag "application", "feedbacker", 'token-input-facebook' %>   
 	<%= include_tiny_mce_if_needed %>
-	    <%= javascript_include_tag 'jquery', 'rails', 'jrumble.js', 'application', 'http://localhost:9292/faye.js', 'jquery.tokeninput' %>
+	    <%= javascript_include_tag 'jquery', 'rails', 'jrumble.js', 'application', 'http://192.168.2.200:9292/faye.js', 'jquery.tokeninput' %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
