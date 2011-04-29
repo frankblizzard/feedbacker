@@ -1,5 +1,6 @@
 <li>
-  <span class="created_at"><%= 2.hours.from_now.strftime("%H:%M") %></span>
+<% post_time = chat_message.created_at + 2.hours %>
+  <span class="created_at"><%= post_time.strftime("%H:%M") %></span>
   <span class="username"><%= chat_message.user.name %>:</span>
   <%= chat_message.content %>
 </li>
