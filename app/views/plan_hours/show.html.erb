@@ -1,0 +1,20 @@
+<% title "Plan Hour" %>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @plan_hour.amount %>
+</p>
+<p>
+  <strong>Project:</strong>
+  <%= @plan_hour.project_id %>
+</p>
+<p>
+  <strong>Work Category:</strong>
+  <%= @plan_hour.work_category_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_plan_hour_path(@plan_hour) %> |
+  <%= link_to "Destroy", @plan_hour, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", plan_hours_path %>
+</p>

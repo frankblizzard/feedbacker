@@ -4,7 +4,7 @@
     <title><%= content_for?(:title) ? "eve logR - #{yield(:title)}" : "Untitled" %></title>
     <%= stylesheet_link_tag "application", "feedbacker", 'token-input-facebook' %>   
 	<%= include_tiny_mce_if_needed %>
-	    <%= javascript_include_tag 'jquery', 'rails', 'application', 'http://localhost:9292/faye.js', 'jquery.tokeninput' %>
+	    <%= javascript_include_tag 'jquery', 'rails', 'jrumble.js', 'application', 'http://localhost:9292/faye.js', 'jquery.tokeninput' %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
@@ -28,7 +28,7 @@
 		</div> <!--  end header -->
 	<div class="main">
 		<div class="left_side">
-		<div id="logr"><%= image_tag('logr.jpg') %></div>
+		<div id="logr"><%= link_to image_tag('logr_beta.png'), root_path %></div>
 			<ul class="main_navi">
 			<li class="<%= "active" if params[:controller] == "home"%>"><%= link_to "Home", root_path %></li>
 			<li class="<%= "active" if params[:controller] == "projects" %>"><%= link_to "Projects", projects_path %></li>      
@@ -51,5 +51,6 @@
 	</div> <!--  end main -->
 
 	</div> <!--  end wrapper -->
+	<div id="bg_fix"><%= image_tag "ullrich.jpg", :width => "150" %></div>
   </body>
 </html>

@@ -27,12 +27,14 @@
 	  <% total = 0.0 %>
       <ul class="task_list">
         <% for hour in hours %>
-          <li><%= link_to "#{h(hour.amount)}h #{h(hour.project.name)}", hour %></li>
-          <% total += hour.amount %>
+		  <% if hour.user.id == current_user.id || current_user.admin? %>
+          	<li><%= link_to "#{h(hour.amount)}h #{h(hour.project.name)}", edit_hour_path(hour),:title => "edit" %></li>
+          	<% total += hour.amount %>
+		  <% end %>
         <% end %>
       </ul>
 	  <span class="total"><%= total %>h</span>
-	  <span class="add"><%= link_to image_tag("new_el.gif", :border => 0 ), :controller => :hours, :action => :new, :date => date %> </span>
+	  <span class="add" title="add hours"><%= link_to image_tag("new_el.gif", :border => 0 ), :controller => :hours, :action => :new, :date => date %> </span>
 	<% end %>
 	</div>
     <% end %>

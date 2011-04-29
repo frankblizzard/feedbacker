@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110428190624) do
+ActiveRecord::Schema.define(:version => 20110428231115) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20110428190624) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "client_nr"
   end
 
   create_table "comments", :force => true do |t|
@@ -67,6 +68,14 @@ ActiveRecord::Schema.define(:version => 20110428190624) do
     t.integer  "rendering_file_size"
     t.datetime "rendering_updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "plan_hours", :force => true do |t|
+    t.float    "amount"
+    t.integer  "project_id"
+    t.integer  "work_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "projects", :force => true do |t|

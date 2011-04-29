@@ -2,7 +2,7 @@
   <%= f.error_messages %>
   <p>
     <%= f.label :date %><br />
-    <%= f.date_select :date %>
+    <%= f.date_select :date, :default => @date, :order => [:day, :month, :year] %>
   </p>
   <p>
     <%= f.label :amount %><br />
@@ -14,21 +14,21 @@
   </p>
   <p>
 
-    <%= f.check_box :extra %>    <%= f.label :extra %>
+    <%= f.check_box :extra %>    <%= f.label :extra %>&nbsp;&nbsp;&nbsp;
+   <%= f.check_box :holiday %>    <%= f.label :holiday %>
   </p>
-  <p>
-    <%= f.check_box :holiday %>    <%= f.label :holiday %>
-  </p>
+
   <p> 
 	<%= f.hidden_field :user_id, :value => current_user.id %>
   </p>
   <p>
     <%= f.label :project %><br />
-    <%= collection_select(:hour, :project_id, Project.all, :id, :name, :prompt => true) %>
+    <%= collection_select(:hour, :project_id, Project.all, :id, :name, :prompt => "choose..") %>
   </p>
   <p>
     <%= f.label :work_category %><br />
-<%= collection_select(:hour, :work_category_id, WorkCategory.all, :id, :name, :prompt => true) %>
+<%= collection_select(:hour, :work_category_id, WorkCategory.all, :id, :name, :prompt => "choose..") %>
   </p>
   <p><%= f.submit %></p>
+<br/>
 <% end %>

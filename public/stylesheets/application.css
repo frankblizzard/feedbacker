@@ -141,6 +141,22 @@ float: left;
 padding: 5px;
 }
 
+.new_hour p, .edit_hour p {
+	padding-top: 5px;
+}
+.new_hour p, .edit_hour p {
+	padding-top: 5px;
+}
+#hour_amount {
+	width: 40px;
+	margin: 2px 0 10px 0;
+}
+
+#hour_task {
+	width: 240px;
+	height: 130px;
+}
+
 #calendar {
 	margin-top: -21px;
 }
@@ -203,9 +219,14 @@ padding: 5px;
 #calendar .today {
   background-color: #D7F2FF;
 }
-.comments textarea {
-	font-size: 11px;
+
+textarea {
+	font-size: 12px;
 	color: #424242;
+}
+.comments textarea {
+	width: 200px;
+	margin-bottom: 5px;
 }
 
 #calendar ul {
@@ -245,7 +266,7 @@ padding: 5px;
 ul#chat {
   list-style: none;
   padding: 0;
-  width: 300px;
+  width: 363px;
   height: 150px;
   border: solid 1px #777;
   margin: 5px 0;
@@ -275,7 +296,18 @@ input#message_content {
 }
 
 #comments {
-	height: 250px;
+	max-height: 250px;
 	overflow: auto;
 	width: 200px;
+}
+
+table.pretty {
+	margin-top: 10px;
+	
+}
+#bg_fix {
+	position: absolute;
+	right: 0;
+	bottom:0;
+	padding: 5px;
 }

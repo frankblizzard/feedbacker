@@ -1,0 +1,9 @@
+one:
+  amount: 1.5
+  project_id: 1
+  work_category_id: 1
+
+two:
+  amount: 1.5
+  project_id: 1
+  work_category_id: 1

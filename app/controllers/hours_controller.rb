@@ -4,11 +4,7 @@ class HoursController < ApplicationController
 #  skip_before_filter :login_required, :only => [:create]
   
   def index
-    if current_user.admin?
-      @hours = Hour.all
-    else
-      @hours = Hour.where(:user_id => current_user.id)
-    end
+    @hours = Hour.all
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
     respond_to do |format|
       format.html
@@ -28,6 +24,7 @@ class HoursController < ApplicationController
 
   def new
     @hour = Hour.new
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
 
   def create

@@ -1,4 +1,6 @@
 Feedbacker::Application.routes.draw do
+  
+
   resource :chat_messages
 
   resources :clients
@@ -11,15 +13,19 @@ Feedbacker::Application.routes.draw do
     resources :comments
   end
 
-  resources :comments
+
 
   resources :assignments
 
-  resources :projects  
+  resources :projects do
+    resources :plan_hours
+  end
 
   get "home/index"
   
-#  match 'comments' => 'comments#new', :as => :comments
+  match 'add_plan_hour' => 'plan_hours#new', :as => :add_plan_hour
+  
+  match 'comments' => 'comments#new', :as => :comments
   
   match 'chat'  =>  'chat_messages#index', :as => :chat
 

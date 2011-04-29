@@ -1,0 +1,21 @@
+<% title "Plan Hours" %>
+
+<table>
+  <tr>
+    <th>Amount</th>
+    <th>Project</th>
+    <th>Work Category</th>
+  </tr>
+  <% for plan_hour in @plan_hours %>
+    <tr>
+      <td><%= plan_hour.amount %></td>
+      <td><%= plan_hour.project_id %></td>
+      <td><%= plan_hour.work_category_id %></td>
+      <td><%= link_to "Show", plan_hour %></td>
+      <td><%= link_to "Edit", edit_plan_hour_path(plan_hour) %></td>
+      <td><%= link_to "Destroy", plan_hour, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Plan Hour", new_plan_hour_path(plan_hour) %></p>

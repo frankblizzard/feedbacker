@@ -11,7 +11,11 @@ $(document).ready(function () {
 															crossDomain: false,
 															prePopulate: $('#project_user_tokens').data('pre'),
 															theme: 'facebook'  
-														});  	
+															});  
+  $('#bg_fix').jrumble({
+	rumbleEvent: 'hover',
+	rumbleSpeed: 90
+  });	
 });
 
 calculateSizes = function () {
