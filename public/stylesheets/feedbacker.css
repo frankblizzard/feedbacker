@@ -126,7 +126,7 @@ color: #424242;
 text-decoration: none;
 }
 .left_side ul li.active a{
-color: #000;
+color: #424242;
 background: url('../images/active.png') no-repeat;
 padding-left: 17px;
 font-style: italic;

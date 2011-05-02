@@ -31,6 +31,7 @@ a {
 #container h1 {
 	font-size: 20px;
 	padding: 5px 0;
+	color: #424242;
 }
 
 #flash_notice, #flash_error, #flash_alert {
@@ -295,6 +296,17 @@ input#message_content {
   width: 240px;
 }
 
+.filled_out .green {
+	font-weight: bold;
+	color: #366f3d !important;
+}
+
+#calendar_stats {
+	list-style: none;
+	color: #424242;
+	padding: 10px 0px;
+}
+
 #comments {
 	max-height: 250px;
 	overflow: auto;
@@ -307,7 +319,7 @@ table.pretty {
 }
 #bg_fix {
 	position: absolute;
-	right: 0;
-	bottom:0;
+	right: 15px;
+	bottom:2px;
 	padding: 5px;
 }

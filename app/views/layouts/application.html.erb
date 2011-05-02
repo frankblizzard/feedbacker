@@ -4,7 +4,7 @@
     <title><%= content_for?(:title) ? "eve logR - #{yield(:title)}" : "Untitled" %></title>
     <%= stylesheet_link_tag "application", "feedbacker", 'token-input-facebook' %>   
 	<%= include_tiny_mce_if_needed %>
-	    <%= javascript_include_tag 'jquery', 'rails', 'jrumble.js', 'application', 'http://192.168.2.200:9292/faye.js', 'jquery.tokeninput' %>
+	    <%= javascript_include_tag 'jquery', 'rails', 'jrumble.js', 'application', 'jquery.tokeninput' %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
@@ -30,12 +30,14 @@
 		<div class="left_side">
 		<div id="logr"><%= link_to image_tag('logr_beta.png'), root_path %></div>
 			<ul class="main_navi">
-			<li class="<%= "active" if params[:controller] == "home"%>"><%= link_to "Home", root_path %></li>
-			<li class="<%= "active" if params[:controller] == "projects" %>"><%= link_to "Projects", projects_path %></li>      
-			<li class="<%= "active" if params[:controller] == "images" %>"><%= link_to "Images", images_path %></li>
-			<li class="<%= "active" if params[:controller] == "users" %>"><%= link_to "Users", users_path %></li>
-			<li class="<%= "active" if params[:controller] == "hours" %>"><%= link_to "Time Tracking", hours_path %></li>
-			<li class="<%= "active" if params[:controller] == "chat_messages" %>"><%= link_to "Chat", chat_path %></li>
+			<li class="<%= "active" if params[:controller] == "home"%>"><%= link_to "Home", root_path, :title => "home" %></li>
+			<li class="<%= "active" if params[:controller] == "projects" %>"><%= link_to "Projects", projects_path, :title => "Projects" %></li>
+			<li class="<%= "active" if params[:controller] == "clients" %>"><%= link_to "Clients", clients_path, :title => "Clients" %></li>
+			
+			<li class="<%= "active" if params[:controller] == "images" %>"><%= link_to "Images", images_path, :title => "Images" %></li>
+			<li class="<%= "active" if params[:controller] == "users" %>"><%= link_to "Users", users_path, :title => "Users"  %></li>
+			<li class="<%= "active" if params[:controller] == "hours" %>"><%= link_to "Time Tracking", hours_path, :title => "Time tracking" %></li>
+			<li class="<%= "active" if params[:controller] == "chat_messages" %>"><%= link_to "Lounge", chat_path %></li>
 			</ul>
 		</div>
 		<div class="right_side">
@@ -51,6 +53,6 @@
 	</div> <!--  end main -->
 
 	</div> <!--  end wrapper -->
-	<div id="bg_fix"><%= image_tag "ullrich.jpg", :width => "150" %></div>
+	
   </body>
 </html>
