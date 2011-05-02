@@ -12,13 +12,7 @@ class PlanHoursController < ApplicationController
   end
 
   def create
-    @plan_hour = PlanHour.new(params[:plan_hour])
-    if @plan_hour.save
-      flash[:notice] = "Successfully created plan hour."
-      redirect_to @plan_hour
-    else
-      render :action => 'new'
-    end
+    @plan_hour = PlanHour.create!(params[:plan_hour])  
   end
 
   def edit

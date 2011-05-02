@@ -9,6 +9,8 @@ gem 'mysql'
 gem "nifty-generators", :group => :development
 gem 'haml' 
 gem 'jquery-rails'
+gem 'simple_form'
+
 
 # file uploads
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'

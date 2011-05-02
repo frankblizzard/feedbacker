@@ -1,0 +1,3 @@
+$("#plan_hours").prepend("<%= escape_javascript render(@plan_hour) %>");  
+$('#plan_hours_count').html('<%= pluralize(@plan_hour.project.plan_hours.count, "Position") %>');  
+$("#comment_body").val("");

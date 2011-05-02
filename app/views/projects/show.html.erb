@@ -1,8 +1,4 @@
-<% title "#{@project.project_nr}-#{@project.name}" %>
-
-
-
-
+<% title "#{@project.project_nr} #{@project.name}" %>
 <table>
 	<tr width="600">
 		<th>Project Infos</th>
@@ -26,6 +22,34 @@
 	</tr>
 </table>
 <br/> 
+<div class="plan_hours">
+  <h2>Plan Hours</h2>
+  <h4 id="plan_hours_count"><%= pluralize(@project.plan_hours.count, "position") %></h4>
+  <div id="plan_hours">
+	<% for ph in  @project.plan_hours %>
+	 <div class="plan_hour">
+		<span class="hours_amout"><%= ph.amount %> hours <span>
+		<span class="hours_category"><%= ph.work_category.name %><span>
+	 </div>
+	<% end%>
+  </div>
+
+<br/>
+<% form_for [@project, PlanHour.new], :remote => true  do |f| %>
+  <p class="add_plan_hours">
+
+    <%= f.hidden_field :project_id, :value => @project.id %>
+    <%= f.label :amount, "hours (plan)" %><br />
+    <%= f.text_field :amount, :size => 5 %>
+	<%= f.collection_select :work_category_id, WorkCategory.all, :id, :name %>  
+  </p>
+
+  <p>
+    <%= f.submit "Add plan hours" %>
+  </p>
+<% end %>
+</div>
+<br/>
 <table class="project_image_table">
 	<tr>
 		<th>Project Images</th>
