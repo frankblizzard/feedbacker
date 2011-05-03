@@ -1,6 +1,19 @@
+<% content_for(:head) do %>
+ <%= javascript_include_tag 'jquery.tokeninput', :cache => true %>
+ <script type="text/javascript" charset="utf-8">
+  $(function () {
+ 	$('#project_user_tokens').tokenInput('/users.json', { 
+															crossDomain: false,
+															prePopulate: $('#project_user_tokens').data('pre'),
+															theme: 'facebook'  
+															});
+	});
+ </script>
+<% end %>
+
 <%= simple_form_for @project do |f| %>  
   <%= f.error_messages %>  
-  <%= f.association :client, :order => "name",  :selected => @project.client %>
+  <%= f.association :client,  :selected => @project.client %>
   <%= f.input :project_nr %> 
   <%= f.input :name %>  
   <div class="input string optional">
@@ -13,4 +26,5 @@
   </div>
   <%= f.button :submit %>  
 <% end %>
+
 

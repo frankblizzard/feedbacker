@@ -10,7 +10,7 @@ gem "nifty-generators", :group => :development
 gem 'haml' 
 gem 'jquery-rails'
 gem 'simple_form'
-
+gem 'client_side_validations'
 
 # file uploads
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'

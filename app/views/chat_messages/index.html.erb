@@ -2,6 +2,7 @@
 
 <% content_for(:head) do %>
  <%= javascript_include_tag "localhost:3000/faye.js", :cache => false %>
+ <%= javascript_include_tag 'jrumble', :cache => true %>
 <% end %>
 <script type="text/javascript" charset="utf-8">
 $(function() {  

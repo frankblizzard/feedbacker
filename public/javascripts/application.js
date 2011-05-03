@@ -7,12 +7,6 @@ $(document).ready(function () {
 		 calculateSizes();
 	 });
 	
-     $('#project_user_tokens').tokenInput('/users.json', { 
-															crossDomain: false,
-															prePopulate: $('#project_user_tokens').data('pre'),
-															theme: 'facebook'  
-															});  
-	
 });
 
 calculateSizes = function () {

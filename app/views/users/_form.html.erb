@@ -1,24 +1,9 @@
-<%= form_for @user do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :company %><br />
-    <%= f.text_field :company %>
-  </p>
-  <p>
-    <%= f.label :email, "Email Address" %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label :password_confirmation, "Confirm Password" %><br />
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p><%= f.submit (@user.new_record? ? "Sign up" : "Update") %></p>
+<br/><br/>
+<%= simple_form_for @user do |f| %>
+	<%= f.input :name %>
+	<%= f.input :company %>
+	<%= f.input :email %>
+	<%= f.input :password %>
+	<%= f.input :password_confirmation %>	
+    <%= f.submit (@user.new_record? ? "Sign up" : "Update") %>
 <% end %>
