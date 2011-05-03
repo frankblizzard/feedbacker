@@ -20,7 +20,7 @@
 	<tr>
 	 <td><%= @image.created_at.to_formatted_s(:long) %></td>
 	 <td><%= link_to @image.user.name, @image.user %></td>
-	 <td><%= link_to @image.project.name, @image.project %></td>
+	 <td><%= link_to @image.project.name.to_s, @image.project %></td>
 	 <td>to do</td>
 	<td>to do</td> 
 	<td><%= link_to "Show / Download", @image.rendering.url %></td>

@@ -6,7 +6,7 @@ class Image < ActiveRecord::Base
     validates_presence_of :name
     validates_presence_of :project_id      
     
-    has_many :comments     
+    has_many :comments, :dependant => :destroy   
     
     cattr_reader :per_page
     @@per_page = 5
