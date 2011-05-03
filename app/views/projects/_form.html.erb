@@ -1,6 +1,6 @@
 <%= simple_form_for @project do |f| %>  
   <%= f.error_messages %>  
-  <%= f.association :client, :selected => @project.client %>
+  <%= f.association :client, :order => "name",  :selected => @project.client %>
   <%= f.input :project_nr %> 
   <%= f.input :name %>  
   <div class="input string optional">

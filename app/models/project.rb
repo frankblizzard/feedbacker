@@ -3,6 +3,8 @@ class Project < ActiveRecord::Base
     
     validates_presence_of :name, :project_nr
     
+    validates_uniqueness_of :project_nr
+    
     belongs_to :client
     
     has_many :assignments
