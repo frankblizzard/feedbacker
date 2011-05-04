@@ -1,8 +1,19 @@
+<% content_for(:head) do %>
+ <%= stylesheet_link_tag 'jquery-ui-1.8.12.custom', :cache => true %>
+ <%= javascript_include_tag 'jquery-ui-1.8.12.custom.min', :cache => true %>
+ <%= javascript_include_tag 'autocomplete-rails', :cache => true %>
+ <script type="text/javascript" charset="utf-8">
+ 	$(function (){  
+        $('#hour_date').datepicker();  
+    });
+ </script>
+<% end %>
+
 <%= form_for @hour do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :date %><br />
-    <%= f.date_select :date, :default => @date, :order => [:day, :month, :year] %>
+    <%= f.text_field :date, :value => @date.to_s %>
   </p>
   <p>
     <%= f.label :amount %><br />
@@ -22,8 +33,10 @@
 	<%= f.hidden_field :user_id, :value => current_user.id %>
   </p>
   <p>
-    <%= f.label :project %><br />
-    <%= collection_select(:hour, :project_id, Project.all, :id, :name, :prompt => "choose..") %>
+    <%= f.label :project_name %><br />
+    <%= f.hidden_field :project_id, :id => "real_project_id" %>
+    <%= autocomplete_field_tag 'fake_project', '',
+    autocomplete_project_name_hours_path, :update_elements => {:id => '#real_project_id' } %><br />
   </p>
   <p>
     <%= f.label :work_category %><br />

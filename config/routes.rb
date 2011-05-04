@@ -5,7 +5,9 @@ Feedbacker::Application.routes.draw do
 
   resources :clients
 
-  resources :hours
+  resources :hours do
+     get :autocomplete_project_name, :on => :collection
+  end
 
   resources :work_categories
 

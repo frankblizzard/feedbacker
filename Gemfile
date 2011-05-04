@@ -11,6 +11,8 @@ gem 'haml'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'client_side_validations'
+gem 'rails3-jquery-autocomplete'
+
 
 # file uploads
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
