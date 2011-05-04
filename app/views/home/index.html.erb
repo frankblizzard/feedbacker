@@ -16,13 +16,16 @@
 <div class="newest_images">
   
 <% for image in @latest_images  do %> 
- <div class="image">
+ <div class="image_container">
     <%= link_to image_tag(image.rendering.url(:thumb), :border => 0 ), image, :title => image.name %>
      <% if image.comments.count > 0 %>
      <% last_c = image.comments.first(:order => "created_at desc") %>
-	<span class="last_comment_header"><%= link_to "#{last_c.user.name}", last_c.user %> | <%= last_c.created_at.strftime('%d.%m.%y %I:%M') %></span><br/>
+     <div class="comment">
+	 <span class="last_comment_header"><%= link_to "#{last_c.user.name}", last_c.user %><%= last_c.created_at.strftime('%d.%m.%y %I:%M') %></span><br/>
 	<span class="last_comment"><%= last_c.body %></span>
+	</div>
 	<% end %>  
-  <div>
-<% end %>  
+  </div> 
+<% end %> 
 </div>
+<br class="clear"/>

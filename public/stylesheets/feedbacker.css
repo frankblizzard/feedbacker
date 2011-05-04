@@ -251,3 +251,27 @@ tr.grey td {
 th {
  background-color: #ccc;   
 }
+
+.newest_images .image_container {
+	padding: 5px;
+	position: relative;
+	float:left;
+}
+.newest_images .image_container {
+	padding: 5px;
+	position: relative;
+	float:left;
+}
+
+.newest_images .image_container .comment {
+	font-size: 10px;
+	color: #777;
+	max-width: 130px;
+}
+.newest_images .image_container .comment {
+	font-size: 10px;
+	color: #777;
+}
+.newest_images .image_container .last_comment {
+	padding-left: 5px;
+}
