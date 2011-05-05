@@ -261,6 +261,7 @@ th {
 	padding: 5px;
 	position: relative;
 	float:left;
+	min-height: 150px
 }
 
 .newest_images .image_container .comment {

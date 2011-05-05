@@ -45,3 +45,6 @@
   <p><%= f.submit %></p>
 <br/>
 <% end %>
+<br/>
+<%= link_to "delete record", @hour, :confirm => 'Are you sure?', :method => :delete %>
+<br/>

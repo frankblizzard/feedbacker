@@ -6,5 +6,8 @@ ActionMailer::Base.smtp_settings = {
   :user_name            => "wp10556962-noreply",  
   :password             => "renderrender",  
   :authentication       => "plain", 
-  :tls                  => true  
+  :enable_starttls_auto => false,
+  :openssl_verify_mode => 'none'
 }
+
+ActionMailer::Base.default_url_options[:host] = "192.168.2.200:3000"  
