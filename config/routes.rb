@@ -15,7 +15,7 @@ Feedbacker::Application.routes.draw do
     resources :comments
   end
 
-
+  resources :images
 
   resources :assignments
 
