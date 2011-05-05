@@ -1,7 +1,7 @@
 <% title "Chat" %> 
 
 <% content_for(:head) do %>
- <%= javascript_include_tag "192.168.2.200:3000/faye.js", :cache => false %>
+ <%= javascript_include_tag "http://192.168.2.200:3000/faye.js", :cache => false %>
  <%= javascript_include_tag 'jrumble', :cache => true %>
 <% end %>
 <script type="text/javascript" charset="utf-8">
