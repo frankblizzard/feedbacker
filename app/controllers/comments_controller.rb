@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :get_image
   
   def index
     @comments = Comment.all
@@ -35,6 +35,14 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
     flash[:notice] = "Successfully destroyed comment."
-    redirect_to comments_url
+    redirect_to image_path(@image)
+    
   end
+  
+  
+  def get_image
+      @image = Image.find(params[:image_id]) if params[:image_id]
+  end
+  
+  
 end

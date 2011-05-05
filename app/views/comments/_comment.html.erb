@@ -1,6 +1,12 @@
 <p class="comment_header">
   <b><%= link_to comment.user.name, comment.user %> </b>
-  <span class="comment_time"><%= time_ago_in_words(comment.created_at) %> ago:</span>
+  <span class="comment_time"><%= time_ago_in_words(comment.created_at) %> ago: 
+
+<% if current_user.admin? || comment.user == current_user %>
+   <%= link_to "x", image_comment_path(comment.image, comment), :confirm => "delete this comment?", :method => :delete, :title => "delete comment" %>
+<% end %>
+
+</span>
 </p>
 
 <p class="comment_body">

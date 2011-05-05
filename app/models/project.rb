@@ -7,6 +7,8 @@ class Project < ActiveRecord::Base
     
     belongs_to :client
     
+    before_destroy :ensure_no_hours
+    
     has_many :assignments
     has_many :images
     has_many :users, :through => :assignments 
@@ -19,5 +21,10 @@ class Project < ActiveRecord::Base
       self.user_ids = ids.split(',')
     end
     
-    
+    private
+
+      def ensure_no_hours
+        return false if self.hours.count > 0
+      end
+
 end

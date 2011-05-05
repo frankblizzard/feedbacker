@@ -15,7 +15,6 @@ Feedbacker::Application.routes.draw do
     resources :comments
   end
 
-  resources :images
 
   resources :assignments
 
@@ -37,9 +36,7 @@ Feedbacker::Application.routes.draw do
 
   match 'logout' => 'sessions#destroy', :as => :logout
 
-  match 'login' => 'sessions#new', :as => :login
-
-  match 'images' => 'images#show', :as => :images    
+  match 'login' => 'sessions#new', :as => :login  
   
   match 'get_user_hours' =>  'hours#show_xml', :as => :get_user_hours
 

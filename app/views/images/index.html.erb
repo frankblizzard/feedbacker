@@ -19,13 +19,13 @@
 
 	   </td>
       <td><%= image.name %></td>
-      <td><%= image.project.name %></td>
+      <td><%= image.project.name if image.project %></td>
       <td><%= image.created_at.to_formatted_s(:long) %></td>
 	  <td><%= pluralize(image.comments.count, "comment") %></td>                                          
 	  <td><%= link_to "View", image %></td>     
 	  <% if image.user == current_user || current_user.admin? %>
       <td><%= link_to "Edit", edit_image_path(image) %></td>  
-      <td><%= link_to "Delete", image, :confirm => 'Delete this image?', :method => :destroy %></td>
+      <td><%= link_to "Delete", image, :confirm => 'Delete this image?', :method => :delete %></td>
 	   
 	<% end %>
     </tr>
