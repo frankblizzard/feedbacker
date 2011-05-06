@@ -22,6 +22,14 @@ class Project < ActiveRecord::Base
       self.user_ids = ids.split(',')
     end
     
+    def number_name
+      "#{self.project_nr} - #{self.name}"
+    end
+    
+    scope :search_by_name_or_number , lambda { |q|
+       (q ? where(["project_nr LIKE ? or name LIKE ? or concat(project_nr, ' ', name) like ?", '%'+ q + '%', '%'+ q + '%','%'+ q + '%' ])  : {})
+     }
+    
     
     private
 

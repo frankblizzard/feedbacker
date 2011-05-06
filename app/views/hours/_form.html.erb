@@ -35,8 +35,14 @@
   <p>
     <%= f.label :project_name %><br />
     <%= f.hidden_field :project_id, :id => "real_project_id" %>
-    <%= autocomplete_field_tag 'fake_project', '',
-    autocomplete_project_name_hours_path, :update_elements => {:id => '#real_project_id' } %><br />
+   <% if @hour.new_record? %>
+     <%= autocomplete_field_tag 'fake_project', '',
+     autocomplete_project_name_hours_path, :update_elements => {:id => '#real_project_id' } %>
+   <% else %>
+		<%= "#{@hour.project.name}"%>
+   <% end %>
+
+  <br />
   </p>
   <p>
     <%= f.label :work_category %><br />

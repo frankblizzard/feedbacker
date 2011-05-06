@@ -3,7 +3,7 @@ class HoursController < ApplicationController
 #  skip_before_filter :verify_authenticity_token, :only => [:create]
 #  skip_before_filter :login_required, :only => [:create]
   
-  autocomplete :project, :name, :full => true
+  autocomplete :project, :name
   
   def index
     @hours = Hour.all
