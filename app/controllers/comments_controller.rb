@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    flash[:notice] = "Successfully destroyed comment."
+    flash[:notice] = "comment deleted."
     redirect_to image_path(@image)
     
   end
