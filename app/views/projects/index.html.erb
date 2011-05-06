@@ -3,7 +3,7 @@
 <div class="searchform">
 <%= form_for @search do |f| %>  
   <p>   
-   <%= f.text_field :name_contains, :size => 20 %>  <%= f.submit "Search" %>
+   <%= f.text_field :name_or_project_nr_contains, :size => 20 %>  <%= f.submit "Search" %>
   </p>  
 <% end %>
 </div>
