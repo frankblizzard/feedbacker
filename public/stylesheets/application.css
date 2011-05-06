@@ -353,3 +353,9 @@ table.pretty {
   padding-left: 5px;  
   font-size: 12px;  
 }
+
+.searchform {
+	position: absolute;
+	left: 350px;
+	top: 10px;
+}

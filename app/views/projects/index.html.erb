@@ -1,5 +1,13 @@
 <% title "Projects" %>
 
+<div class="searchform">
+<%= form_for @search do |f| %>  
+  <p>   
+   <%= f.text_field :name_contains, :size => 20 %>  <%= f.submit "Search" %>
+  </p>  
+<% end %>
+</div>
+
 <table>
   <tr>
 	<th><%= sortable  "Project_Nr"%></th>
@@ -19,5 +27,7 @@
     </tr>
   <% end %>
 </table>
+
+
 
 <p><%= link_to "New Project", new_project_path(project) %></p>

@@ -7,4 +7,8 @@ class Client < ActiveRecord::Base
     
     has_many :projects
     
+    cattr_reader :per_page
+    @@per_page = 10
+    
+    
 end

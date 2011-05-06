@@ -6,8 +6,8 @@ class ProjectsController < ApplicationController
   uses_tiny_mce :options => {  :theme => 'simple', :editor_selector => 'mceEditor'}
   
   def index
-    @projects = Project.order(sort_column + " " + sort_direction)
-    
+    @search = Project.search(params[:search])  
+    @projects = @search.all.order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
     respond_to do |format|
       format.html
       format.xml { render :xml => @projects }

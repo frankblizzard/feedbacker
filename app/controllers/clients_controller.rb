@@ -1,6 +1,11 @@
 class ClientsController < ApplicationController
   def index
-    @clients = Client.order(:name)
+    @search = Client.search(params[:search])  
+    if @search
+      @clients = @search.all
+    else
+      @clients = Client.all
+    end
   end
 
   def show

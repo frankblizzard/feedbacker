@@ -15,10 +15,21 @@ class Project < ActiveRecord::Base
     has_many :hours
     has_many :plan_hours
     
+    cattr_reader :per_page
+    @@per_page = 10
+    
     attr_reader :user_tokens
     
     def user_tokens=(ids)
       self.user_ids = ids.split(',')
+    end
+    
+    def self.search(search)
+      if search
+        where('name LIKE ?', "%#{search}%")
+      else
+        scoped
+      end
     end
     
     private

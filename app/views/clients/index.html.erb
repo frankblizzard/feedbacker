@@ -1,5 +1,11 @@
 <% title "Clients" %>
-
+<div class="searchform">
+<%= form_for @search do |f| %>  
+  <p>   
+   <%= f.text_field :name_contains, :size => 20 %>  <%= f.submit "Search" %>
+  </p>  
+<% end %>
+</div>
 <table>
   <tr>
     <th>Name</th>
@@ -19,5 +25,6 @@
     </tr>
   <% end %>
 </table>
+
 
 <p><%= link_to "New Client", new_client_path(client) %></p>

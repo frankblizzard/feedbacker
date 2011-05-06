@@ -12,7 +12,8 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'client_side_validations'
 gem 'rails3-jquery-autocomplete'
-
+gem 'meta_where'
+gem 'meta_search'
 
 # file uploads
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
