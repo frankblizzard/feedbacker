@@ -16,7 +16,7 @@ class Project < ActiveRecord::Base
     has_many :plan_hours
     
     
-    attr_reader :user_tokens, :name_number
+    attr_reader :user_tokens, :name_number 
     
     def user_tokens=(ids)
       self.user_ids = ids.split(',')
