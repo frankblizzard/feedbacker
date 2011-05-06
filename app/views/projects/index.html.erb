@@ -20,8 +20,8 @@
       <td><%= project.client.name if project.client %></td>
       <td><%= project.name %></td>
       <td><%= link_to "Show", project %></td>
-      <td><%= link_to "Edit", edit_project_path(project) %></td>     
 	  <% if current_user.admin? %>
+	  <td><%= link_to "Edit", edit_project_path(project) %></td>     
       <td><%= link_to "Delete", project, :confirm => 'Are you sure?', :method => :delete %></td>
 	  <% end %>
     </tr>
