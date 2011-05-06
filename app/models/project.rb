@@ -16,19 +16,15 @@ class Project < ActiveRecord::Base
     has_many :plan_hours
     
     
-    attr_reader :user_tokens
+    attr_reader :user_tokens, :name_number
     
     def user_tokens=(ids)
       self.user_ids = ids.split(',')
     end
     
-    def number_name
+    def name_number
       "#{self.project_nr} - #{self.name}"
     end
-    
-    scope :search_by_name_or_number , lambda { |q|
-       (q ? where(["project_nr LIKE ? or name LIKE ? or concat(project_nr, ' ', name) like ?", '%'+ q + '%', '%'+ q + '%','%'+ q + '%' ])  : {})
-     }
     
     
     private
