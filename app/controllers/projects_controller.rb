@@ -7,7 +7,12 @@ class ProjectsController < ApplicationController
   
   def index
     @search = Project.search(params[:search])  
-    @projects = @search.all.order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    if @search
+      @projects = @search.all
+    else
+      @projects = Project.all
+    end
+    
     respond_to do |format|
       format.html
       format.xml { render :xml => @projects }

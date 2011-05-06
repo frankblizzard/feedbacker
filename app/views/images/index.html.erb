@@ -3,9 +3,9 @@
 <table>
   <tr>
 	<th>Preview</th>
-    <th><%=sortable "Name" %></th>
-    <th><%=sortable "project_id", "Project" %></th>
-    <th><%=sortable "created_at", "Uploaded" %></th> 
+    <th><%= "Name" %></th>
+    <th><%= "Project" %></th>
+    <th><%= "Uploaded" %></th> 
     <th>Comments</th> 
   </tr>
   <% for image in @images %>
