@@ -8,12 +8,12 @@
     });
  </script>
 <% end %>
-
+<p>User: <%= @hour.new_record? ? "#{current_user.name}" : "#{@hour.user.name}" %>
 <%= form_for @hour do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :date %><br />
-    <%= f.text_field :date, :value => @date.to_s %>
+    <%= f.text_field :date, :value => (@hour.new_record? ? @date : @hour.date.to_s ) %>
   </p>
   <p>
     <%= f.label :amount %><br />
@@ -30,7 +30,7 @@
   </p>
 
   <p> 
-	<%= f.hidden_field :user_id, :value => current_user.id %>
+	<%= f.hidden_field :user_id, :value => (@hour.new_record? ? current_user.id : @hour.user_id ) %>
   </p>
   <p>
     <%= f.label :project_name %><br />
