@@ -2,12 +2,12 @@ class HoursController < ApplicationController
   before_filter :login_required
 #  skip_before_filter :verify_authenticity_token, :only => [:create]
 #  skip_before_filter :login_required, :only => [:create]
+
+  autocomplete :project, :name, :display_value => :name_number
   
-  autocomplete :project, :name #, :display_value => :name_number
-  
-#  def get_autocomplete_items(parameters)
-#    items = Project.select("DISTINCT CONCAT_WS(' ', project_nr, name) AS full_name, project_nr, name").where(["CONCAT_WS(' ', project_nr, name) LIKE ?", "%#{parameters[:term]}%"])
-#  end
+  def get_autocomplete_items(parameters)
+    items = Project.select("DISTINCT CONCAT_WS(' ', project_nr, name, id) AS full_name, project_nr, name, id").where(["CONCAT_WS(' ', project_nr, name) LIKE ?", "%#{parameters[:term]}%"])
+  end
 
   
   
