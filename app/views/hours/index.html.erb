@@ -18,19 +18,23 @@
     <%=h @date.strftime("%B %Y") %>
     <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d") %>
   </h2>
+<% hours_needed = 0 %>
   <% calendar_for @hours, :year => @date.year, :month => @date.month, :first_day_of_week => 1 do |calendar| %>
     <%= calendar.head('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') %>
     <% calendar.day(:day_method => :date) do |date, hours| %>
 	
       <div>
       <%= date.day %>
+      <% if (date.strftime("%m") == @date.strftime("%m")) && (["Mon", "Tue", "Wed", "Thu", "Fri"].include? date.strftime("%a"))%>
+      	<% hours_needed += 8 %>
+	  <% end %>
 	  <span class="total"></span>
 	  <% if hours %>
 	  <% total = 0.0 %>
       <ul class="task_list">
         <% for hour in hours %>
 		  <% if hour.user.id == current_user.id || current_user.admin? %>
-          	<li><%= link_to "#{h(hour.amount)}h #{h(hour.project.name)}", edit_hour_path(hour),:title => "edit" %></li>
+          	<li><%= link_to "#{h(hour.amount)}h #{h(hour.project.name.to_s)}", edit_hour_path(hour),:title => "edit" %></li>
           	<% total += hour.amount %>
 			<% hours_month += hour.amount %>
 		  <% end %>
@@ -45,6 +49,6 @@
 </div>
 
 <ul id="calendar_stats">
-		<li><%= hours_month %> hours total in <%=h @date.strftime("%B %Y") %></li>
+		<li><%= hours_month %> / <%= hours_needed %> hours total in <%=h @date.strftime("%B %Y") %></li>
 	</ul>
 </div>

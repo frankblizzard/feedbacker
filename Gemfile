@@ -15,6 +15,9 @@ gem 'rails3-jquery-autocomplete'
 gem 'meta_where'
 gem 'meta_search'
 
+# cron jobs
+gem 'whenever', :require => false
+
 # file uploads
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 
