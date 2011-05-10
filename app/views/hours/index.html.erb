@@ -34,7 +34,11 @@
       <ul class="task_list">
         <% for hour in hours %>
 		  <% if hour.user.id == current_user.id || current_user.admin? %>
-          	<li><%= link_to "#{h(hour.amount)}h #{h(hour.project.name.to_s)}", edit_hour_path(hour),:title => "edit" %></li>
+          		<% if hour.project %>
+				<li><%= link_to "#{h(hour.amount)}h #{h(hour.project.name.to_s)}", edit_hour_path(hour),:title => "edit" %></li>
+				<% else %>
+				<li><%= "#{h(hour.amount)}h deleted project" %></li>
+				<% end %>
           	<% total += hour.amount %>
 			<% hours_month += hour.amount %>
 		  <% end %>
