@@ -16,7 +16,6 @@
   <%= f.association :client,  :selected => @project.client_id %>
   <%= f.input :project_nr %> 
   <%= f.input :name %>  
-  <%= f.hidden :created_by, :value => current_user.id %>
   <div class="input string optional">
     <%= f.label :description, "Description" %>
     <%= f.text_area :description,  :class => "mceEditor" %>
