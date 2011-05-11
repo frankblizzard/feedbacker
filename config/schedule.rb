@@ -7,13 +7,13 @@
 #
 set :output, "/log/cron_log.log"
 
-every 1.day, :at => "11am" do
+every 5.minutes  do
   dump_path = "/User/eveadmin/rails/db_backups/dump#{Date.today.to_s}"
   command "sudo mysqldump -uroot -prootz feedbacker_development > #{dump_path}.sql"
   command "tar -zcvf #{dump_path}.tar.gz #{dump_path}.sql"
   command "rm #{dump_path}.sql"
 
-  runner "Storage.store_dump '#{dump_path}.tar.gz'"
+  runner "Storage.store_dump '#{dump_path}.tar.gz'", :environment => :development
 end
 
 
