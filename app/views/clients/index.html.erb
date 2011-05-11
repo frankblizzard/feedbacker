@@ -20,8 +20,10 @@
       <td><%= client.phone %></td>
       <td><%= client.email %></td>
       <td><%= link_to "Show", client %></td>
-	  <% if current_user.admin? %>
+	  <% if current_user.admin? || current_user.project_manager? %>
       <td><%= link_to "Edit", edit_client_path(client) %></td>
+	<% end %>
+	<% if current_user.admin? %>
       <td><%= link_to "Destroy", client, :confirm => 'Are you sure?', :method => :delete %></td>
       <% end %>
     </tr>

@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-    attr_accessible :project_nr, :name, :started_at, :ends_at, :description, :user_tokens, :client_id
+    attr_accessible :project_nr, :name, :started_at, :ends_at, :description, :user_tokens, :client_id, :created_by
     
     validates_presence_of :name, :project_nr
     
