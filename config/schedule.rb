@@ -5,6 +5,7 @@
 
 # Example:
 #
+set :environment, ENV['RAILS_ENV']
 set :output, "/log/cron_log.log"
 
 every 5.minutes  do
@@ -13,7 +14,7 @@ every 5.minutes  do
   command "tar -zcvf #{dump_path}.tar.gz #{dump_path}.sql"
   command "rm #{dump_path}.sql"
 
-  runner "Storage.store_dump '#{dump_path}.tar.gz'", :environment => :development
+  runner "Storage.store_dump '#{dump_path}.tar.gz'"
 end
 
 
