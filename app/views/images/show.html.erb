@@ -1,5 +1,17 @@
 <% title "#{@image.project.name} | #{@image.name}" %>
 
+<% content_for(:head) do %>
+<script type="text/javascript"charset="UTF-8">  
+ var comments = 1;
+      $(function () {  
+        $('#showhide').click(function () {  
+          commentsShowHide();
+		});
+      });  
+    </script>
+<% end %>
+
+
  <div class="basic_image">
 <br/> 
  	<% if @image.rendering.exists? then %>
@@ -44,15 +56,14 @@
    </table>
 </div>
 <div class="comments">
-  <h2 id="comments_count"><%= pluralize(@image.comments.count, "comment") %></h2>
+  <h2 id="comments_count"><%= pluralize(@image.comments.count, "comment") %><span class="showhide"><a id="showhide" href="#">hide</a></h2>
   <div id="comments">
 	<%= render @comments %>
 </div>
 
 
 <% form_for [@image, Comment.new], :remote => true  do |f| %>
-  <p class="add_comment">
-
+  <p id="new_comment" class="add_comment">
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :image_id, :value => @image.id %>
     <%= f.label :body, "leave a comment" %><br />

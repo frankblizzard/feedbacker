@@ -18,3 +18,19 @@ calculateSizes = function () {
 //   rumbleSpeed: 90
 // });
 }
+
+commentsShowHide = function () {
+	if (comments == 1) {
+		$('#comments').slideUp();
+		$('#new_comment').hide();
+		$('#showhide').text('show');
+		comments = 0;
+	} else{
+		$('#comments').slideDown();
+		$('#new_comment').show();
+		$('#showhide').text('hide');
+		comments = 1;
+	};
+	
+	
+}
