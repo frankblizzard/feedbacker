@@ -248,9 +248,10 @@ float: right;
 tr.grey td {
  background-color: #eee;   
 }         
+
+
 th {
  background-color: #d3ecf4;
-
 }
 
 .newest_images .image_container {
@@ -283,4 +284,12 @@ th {
 	font-size: 12px;
 	text-decoration: underline;
 	font-style: normal;
+}
+#last_active_projects th, #last_active_projects td {
+	border: 0;
+}
+#last_active_projects td.activity {
+	color: #ccc;
+	font-size: 11px;
+	font-style: italic;
 }

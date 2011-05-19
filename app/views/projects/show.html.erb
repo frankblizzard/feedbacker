@@ -52,37 +52,24 @@
 <% end %>
 </div>
 <br/>
-<table class="project_image_table">
-	<tr>
-		<th>Project Images</th>
-	</tr>
-	<tr>
-		<td>
+  <h2>Images</h2>
+<br/>
+	<div>
+		<% if @project.images.count > 0 %>
 		<% for image in @project.images do %>
 			<%= link_to image_tag(image.rendering.url(:thumb), :border => 0), image %>
 		<% end %>
-		</td>
-	</tr>
-</table>
+		<% else %>
+		 <p>No images have been uploaded yet</p>
+		<% end %>
+	</div>
 <br/>
-<br/>
-<table class="project_hours_table">
-	<tr>
-		<th>Total Hours</th>
-	</tr>
-	<tr>
-		<td>
-			total hours
-		</td>
-		<td>
-			<%= @project.total_hours %>
-		</td>
-	</tr>
-</table>
+
+  <h2>Real Hours</h2>
 <br/>
 <table class="project_hours_table">
 	<tr>
-		<th>User Hours</th>
+		<th>User</th><th>Hours</th>
 	</tr>
 
 		<% for user in @users do %>
@@ -98,11 +85,19 @@
 	   	    </tr>
 	   	   <% end %>
 		<% end %>
+		<tr>
+			<td>
+				<b><i>total</i></b> 
+			</td>
+			<td>
+				<b><i><%= @project.total_hours %></i></b> 
+			</td>
+		</tr>
 </table>
 <br/>
 <table class="project_hours_table">
 	<tr>
-		<th>Category Hours</th>
+		<th>Category</th><th>Hours</th>
 	</tr>
 			<% for cat in @categories do %>
 		     <% cat_hours = @project.category_hours(cat) %>
@@ -117,6 +112,14 @@
 		   	    </tr>
 		   	   <% end %>
 			<% end %>
+			<tr>
+				<td>
+					<b><i>total</i></b> 
+				</td>
+				<td>
+					<b><i><%= @project.total_hours %></i></b> 
+				</td>
+			</tr>
 </table>
 <br/>
 <p>

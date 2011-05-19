@@ -154,7 +154,6 @@ padding: 5px;
 }
 #hour_amount {
 	width: 40px;
-	margin: 2px 0 10px 0;
 }
 
 #hour_task {
@@ -352,6 +351,24 @@ table.pretty {
   color: #D00;  
   padding-left: 5px;  
   font-size: 12px;  
+}
+
+.simple_form .error {
+  clear: left;
+  margin-left: 120px;
+  font-size: 12px;
+  color: #D00;
+  display: block;
+}
+
+.simple_form .hint {
+  clear: left;
+  margin-top: 3px;
+  margin-left: 120px;
+  font-size: 11px;
+  color: #ccc;
+  display: block;
+  font-style: italic;
 }
 
 .searchform {

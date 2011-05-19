@@ -1,5 +1,5 @@
 <p class="comment_header">
-  <b><%= link_to comment.user.name, comment.user %> </b>
+    <span class="comment_time">#<%="#{comment_counter+1} "%></span> <b><%= link_to comment.user.name, comment.user %> </b>
   <span class="comment_time"><%= time_ago_in_words(comment.created_at) %> ago: 
 
 <% if current_user.admin? || comment.user == current_user %>
