@@ -16,7 +16,26 @@ class Project < ActiveRecord::Base
     has_many :plan_hours
     
     
-    attr_reader :user_tokens, :name_number 
+    attr_reader :user_tokens, :name_number, :total_hours
+    
+    
+    def total_hours(user=nil)
+      if user
+        hours = self.hours.where(:user => user)
+      else
+        hours = self.hours
+      end
+      hours.to_a.sum { |hour| hour.amount }
+    end
+ 
+    def category_hours(category=nil)
+      if category
+        hours = self.hours.where(:work_category => category)
+      else
+        hours = self.hours
+      end
+      hours.to_a.sum { |hour| hour.amount }
+    end   
     
     def user_tokens=(ids)
       self.user_ids = ids.split(',')

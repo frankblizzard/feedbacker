@@ -65,6 +65,60 @@
 	</tr>
 </table>
 <br/>
+<br/>
+<table class="project_hours_table">
+	<tr>
+		<th>Total Hours</th>
+	</tr>
+	<tr>
+		<td>
+			total hours
+		</td>
+		<td>
+			<%= @project.total_hours %>
+		</td>
+	</tr>
+</table>
+<br/>
+<table class="project_hours_table">
+	<tr>
+		<th>User Hours</th>
+	</tr>
+
+		<% for user in @users do %>
+	     <% user_hours = @project.total_hours(user) %>
+	   	    <% if user_hours > 0 %>
+	   	    <tr>
+	   	    	<td>
+	   	    		<%= user.name %>
+	   	    	</td>
+	   	    	<td>
+	   	    		<%= user_hours %>
+	   	    	</td>
+	   	    </tr>
+	   	   <% end %>
+		<% end %>
+</table>
+<br/>
+<table class="project_hours_table">
+	<tr>
+		<th>Category Hours</th>
+	</tr>
+			<% for cat in @categories do %>
+		     <% cat_hours = @project.category_hours(cat) %>
+		   	    <% if cat_hours > 0 %>
+		   	    <tr>
+		   	    	<td>
+		   	    		<%= cat.name %>
+		   	    	</td>
+		   	    	<td>
+		   	    		<%= cat_hours %>
+		   	    	</td>
+		   	    </tr>
+		   	   <% end %>
+			<% end %>
+</table>
+<br/>
 <p>
   <%= link_to "Edit", edit_project_path(@project) %> |
   <%= link_to "Delete Project", @project, :confirm => 'Are you sure?', :method => :destroy %> |

@@ -21,6 +21,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @users = User.all
+    @categories = WorkCategory.all
   end
 
   def new

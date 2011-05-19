@@ -12,11 +12,16 @@ class HoursController < ApplicationController
   
   
   def index
-    @hours = Hour.all
+    if current_user.admin? 
+      params[:user_id] ? @hours = Hour.where(:user_id => params[:user_id]) : @hours = Hour.all
+    else
+       @hours = current_user.hours
+    end  
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
     respond_to do |format|
       format.html
-      format.xml { render :xml => @hours}
+      format.json { render :json => @hours.map(&:attributes) }
+      format.xml  { render :xml  => @hours}
     end
   end
 

@@ -359,3 +359,8 @@ table.pretty {
 	left: 415px;
 	top: 0px;
 }
+
+ul#calendar_stats li {
+	float: left;
+	margin-right: 25px;
+}
