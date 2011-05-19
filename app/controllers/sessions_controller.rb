@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:login], params[:password])
     if user
       session[:user_id] = user.id
+      session[:hour_user_id] = user.id
       flash[:notice] = "You are now logged in."
       redirect_to_target_or_default("/")
     else

@@ -37,7 +37,7 @@
 			<li class="<%= "active" if params[:controller] == "images" %>"><%= link_to "Images", images_path, :title => "Images" %></li>
 			<li class="<%= "active" if params[:controller] == "users" %>"><%= link_to "Users", users_path, :title => "Users"  %></li>
 			<li class="<%= "active" if params[:controller] == "hours" %>">
-			<%= link_to "Time Tracking", hours_path(:user_id => session[:hour_user_id] ? session[:hour_user_id] : current_user.id), :title => "Time tracking" %>
+			<%= link_to "Time Tracking", hours_path, :title => "Time tracking" %>
 			</li>
 			<li class="<%= "active" if params[:controller] == "chat_messages" %>"><%= link_to "Lounge", chat_path %></li>
 			</ul>
