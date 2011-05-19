@@ -3,13 +3,25 @@
 
 <h2>Active Projects</h2>
 
-
+<table id="last_active_projects" style="border: 0">
+	<tr>
+		<th>Project</th>
+		<th>Activity</th>
+	</tr>
 <% @projects.each do |p| %>
-		
-	<%= link_to "#{p.project_nr} - #{p.name}", p %><br/>
-	
-<% end -%>      
 
+	<tr>	
+		<td><%= link_to "#{p.project_nr} - #{p.name}", p %></td>
+		<td>
+			<% if p.hours.count > 0 %>
+			<% last_active_hour = p.hours.first(:order => "created_at desc") %>
+			<span class='time'><%= "#{last_active_hour.created_at.strftime('%d.%m.%y %I:%M')}:" %></span> 
+			<%="#{last_active_hour.user.name} booked #{last_active_hour.amount} h on #{p.project_nr}" %>
+			<% end %>
+		</td>
+	</tr>
+<% end -%>      
+</table>
 <br/>
 <h2>Newest Images</h2> 
 

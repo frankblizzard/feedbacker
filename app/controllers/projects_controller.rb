@@ -55,8 +55,13 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
-    @project.destroy
-    flash[:notice] = "Successfully destroyed project."
+    if @project.ensure_no_hours
+     flash[:notice] = "Successfully destroyed project." 
+     @project.destroy
+    else
+     flash[:error] = "Project can not be destroyed due to hours that have been booked on it." 
+    end
+     
     redirect_to projects_url
   end  
   

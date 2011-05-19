@@ -46,10 +46,14 @@ class Project < ActiveRecord::Base
     end
     
     
-    private
+    protected
 
       def ensure_no_hours
-        return false if self.hours.count > 0
+        if self.hours.count > 0
+          return false
+        else
+          return true
+        end 
       end
 
 end

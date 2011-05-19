@@ -32,7 +32,8 @@ class PlanHoursController < ApplicationController
   def destroy
     @plan_hour = PlanHour.find(params[:id])
     @plan_hour.destroy
-    flash[:notice] = "Successfully destroyed plan hour."
-    redirect_to plan_hours_url
+    flash[:notice] = "plan hour deleted."
+    redirect_to project_path(@project)
   end
+
 end

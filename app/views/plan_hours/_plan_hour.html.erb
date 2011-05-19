@@ -1,4 +1,5 @@
 <div class="plan_hour">
 	<span class="hours_amout"><%= plan_hour.amount %> hours <span>
 	<span class="hours_category"><%= plan_hour.work_category.name %><span>
+	 <span class="delete">  <%= link_to "x", project_plan_hour_path(plan_hour.project, plan_hour), :confirm => "delete this plan_hour?", :method => :delete, :title => "delete plan hour" %></span>
 </div>

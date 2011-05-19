@@ -355,9 +355,7 @@ table.pretty {
 }
 
 .searchform {
-	position: absolute;
-	left: 415px;
-	top: 0px;
+	margin: 10px 0 20px 250px;
 }
 
 ul#calendar_stats li {

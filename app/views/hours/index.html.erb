@@ -8,7 +8,11 @@
 				$(this).parent().parent().find('.total').addClass('green');
 			}
 			
-		})
+		});
+		$("#hour_user_id").change ( function () {
+		  window.location.replace('/hours?user_id='+$(this).val());
+		});
+		
 	})
 </script>
 <% hours_month = 0 %>
@@ -42,7 +46,6 @@
           	<% total += hour.amount %>
 			<% hours_month += hour.amount %>
 		  <% end %>
-       
       </ul>
 	  <span class="total"><%= total %>h</span>
 	  <span class="add" title="add hours"><%= link_to image_tag("new_el.gif", :border => 0 ), :controller => :hours, :action => :new, :date => date %> </span>
@@ -56,11 +59,12 @@
 		<li><%= hours_month %> / <%= hours_needed %> hours total in <%=h @date.strftime("%B %Y") %></li>
 		<% if current_user.admin? %>
 			<li> Show User: 
-			<%= collection_select(:hour, :user_id, User.all, :id, :name, {:prompt => "select user"}, {:onchange => "#{remote_function(:url => {:controller => 'hours', :action => "index"}, :with => "'user_id='+value")}"}) %>
+			<%= collection_select(:hour, :user_id, User.all, :id, :name, {:prompt => "select user", :selected => params[:user_id] }) %>
 			</li>
-			<li> Show Project: 
-			<%= select_tag(:project_id, options_for_select([['all', ''], ['Bukkespranget', '1'], ['Ivo', '2'], ['Horst', '3']])) %>
-			</li>
+			<% if params[:user_id] %>
+			<li> <%= link_to "show all hours", hours_path %></li>
+			<% end %>
 		<% end %>
-	</ul>
+</ul>
+<br/>
 </div>

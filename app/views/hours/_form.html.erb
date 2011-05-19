@@ -4,7 +4,7 @@
  <%= javascript_include_tag 'autocomplete-rails', :cache => true %>
  <script type="text/javascript" charset="utf-8">
  	$(function (){  
-        $('#hour_date').datepicker();  
+        $('#hour_date').datepicker({ dateFormat: 'yy-mm-dd' });  
     });
  </script>
 <% end %>

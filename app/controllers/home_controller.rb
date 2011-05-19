@@ -6,7 +6,7 @@ class HomeController < ApplicationController
     
     user = current_user
     
-    @projects = Project.find(:all, :order => "updated_at", :limit => 8 )
+    @projects = Project.find(:all, :include => [:hours], :order => "hours.created_at desc", :limit => 8 )
     
     @latest_images = Image.find(:all, :order => "created_at desc", :limit => 25)
     

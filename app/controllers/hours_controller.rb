@@ -13,7 +13,8 @@ class HoursController < ApplicationController
   
   def index
     if current_user.admin? 
-      params[:user_id] ? @hours = Hour.where(:user_id => params[:user_id]) : @hours = Hour.all
+      params[:user_id] ? @hours = Hour.where("user_id = ?", params[:user_id]).to_a : @hours = Hour.all
+      params[:project_id] ? @hours = @hours.where("project_id = ?", params[:project_id]).to_a : @hours
     else
        @hours = current_user.hours
     end  
