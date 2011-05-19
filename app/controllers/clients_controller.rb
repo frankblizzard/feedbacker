@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
     if @search
       @clients = @search.all
     else
-      @clients = Client.all
+      @clients = Client.order("name")
     end
   end
 

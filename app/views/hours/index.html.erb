@@ -59,7 +59,7 @@
 		<li><%= hours_month %> / <%= hours_needed %> hours total in <%=h @date.strftime("%B %Y") %></li>
 		<% if current_user.admin? %>
 			<li> Show User: 
-			<%= collection_select(:hour, :user_id, User.all, :id, :name, {:prompt => "select user", :selected => session[:hour_user_id] }) %>
+			<%= collection_select(:hour, :user_id, User.order("name"), :id, :name, {:prompt => "select user", :selected => session[:hour_user_id] }) %>
 			</li>
 			<% if params[:user_id] %>
 			<li> <%= link_to "show all hours", hours_path %></li>

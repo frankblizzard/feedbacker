@@ -14,13 +14,13 @@
   <%= f.error_messages %>
 <br/>  
     <%= f.label :date %>
-    <%= f.text_field :date, :value => (@hour.new_record? ? @date : @hour.date.to_s ) %>
+    <%= f.text_field :date, :value => (@hour.new_record? ? @date : @hour.date.to_s ), :size => 20 %>
   <br />
 <br/>
   
     <%= f.input :amount, :label => "Hours", :hint => "how many hours did you work?" %>
  
-    <%= f.input :task, :label => "Task(s)" %>
+    <%= f.input :task, :label => "Task(s)", :hint => "what did you do?" %>
 
     <%= f.input :extra %>   
    <%= f.input :holiday %>   
@@ -31,7 +31,7 @@
    <% if @hour.new_record? %>
      <%= autocomplete_field_tag 'fake_project', '',
      autocomplete_project_name_hours_path, :update_elements => {:id => '#real_project_id'} %>
-	 <span class="hint">Field will autocomplete</span>
+	 <span class="hint">Field will autocomplete, type project_nr. or name and choose</span>
    <% else %>
 		<%= "#{@hour.project.name}"%>
    <% end %>
@@ -39,11 +39,12 @@
  <br />
     <%= f.label "* Work Category" %>
 <%= collection_select(:hour, :work_category_id, WorkCategory.all, :id, :name, :prompt => "choose..") %>
+<span class="hint">What kind of work you were doing?</span>
    <br />
- <br />
   <p><%= f.submit %></p>
 <br/>
 <% end %>
 <br/>
+<% if @hour.new_record? %>
 <%= link_to "delete record", @hour, :confirm => 'Are you sure?', :method => :delete %>
-<br/>
+<% end %>

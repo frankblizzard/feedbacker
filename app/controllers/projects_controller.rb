@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
     if @search
       @projects = @search.all
     else
-      @projects = Project.all
+      @projects = Project.order("project_nr desc")
     end
     
     respond_to do |format|
