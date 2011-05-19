@@ -31,7 +31,7 @@
    <% if @hour.new_record? %>
      <%= autocomplete_field_tag 'fake_project', '',
      autocomplete_project_name_hours_path, :update_elements => {:id => '#real_project_id'} %>
-	 <span class="hint">the dude</span>
+	 <span class="hint">Field will autocomplete</span>
    <% else %>
 		<%= "#{@hour.project.name}"%>
    <% end %>
