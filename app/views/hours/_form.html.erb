@@ -45,6 +45,6 @@
 <br/>
 <% end %>
 <br/>
-<% if @hour.new_record? %>
+<% unless @hour.new_record? %>
 <%= link_to "delete record", @hour, :confirm => 'Are you sure?', :method => :delete %>
 <% end %>
