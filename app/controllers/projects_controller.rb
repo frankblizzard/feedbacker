@@ -65,6 +65,7 @@ class ProjectsController < ApplicationController
     redirect_to projects_url
   end  
   
+  
   private
                                                      
   def sort_column

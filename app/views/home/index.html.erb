@@ -1,6 +1,5 @@
 <% title "Image Feedbacker - Home" %> 
 <br/>
-
 <h2>Active Projects</h2>
 <br/>
 <table id="last_active_projects" style="border: 0">
@@ -14,9 +13,9 @@
 		<td><%= link_to "#{p.project_nr} - #{p.name}", p %></td>
 		<td class="activity">
 			<% if p.hours.count > 0 %>
-			<% last_active_hour = p.hours.first(:order => "created_at desc") %>
-			<span class='time'><%= "#{last_active_hour.created_at.strftime('%d.%m.%y %I:%M')}:" %></span> 
-			<%="#{last_active_hour.user.name} booked #{last_active_hour.amount} h on #{p.project_nr}" %>
+			<% last_active_hour = p.hours(:all, :include => [:work_categories]).first(:order => "created_at desc") %>
+			<span class='time'><%= "#{last_active_hour.created_at.strftime('%d.%m.%y %H:%M')}:" %></span> 
+			<%="#{last_active_hour.user.name} logged #{last_active_hour.amount} h #{last_active_hour.work_category.name }" %>
 			<% end %>
 		</td>
 	</tr>
@@ -34,7 +33,7 @@
      <% if image.comments.count > 0 %>
      <% last_c = image.comments.first(:order => "created_at desc") %>
      <div class="comment">
-	 <span class="last_comment_header"><%= link_to "#{last_c.user.name}", last_c.user %><%= last_c.created_at.strftime('%d.%m.%y %I:%M') %></span><br/>
+	 <span class="last_comment_header"><%= link_to "#{last_c.user.name}", last_c.user %><%= last_c.created_at.strftime('%d.%m.%y %H:%M') %></span><br/>
 	<span class="last_comment"><%= last_c.body %></span>
 	</div>
 	<% end %>  

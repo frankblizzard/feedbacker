@@ -16,7 +16,7 @@ class Project < ActiveRecord::Base
     has_many :plan_hours
     
     
-    attr_reader :user_tokens, :name_number, :total_hours
+    attr_reader :user_tokens, :name_number, :total_hours, :hours_on
     
     
     def total_hours(user=nil)
@@ -27,6 +27,12 @@ class Project < ActiveRecord::Base
       end
       hours.to_a.sum { |hour| hour.amount }
     end
+
+    def self.hours_on(id=1, date=Date.today)
+      hours = Project.hours.where("id = ? AND date <= ?",id, date)
+      hours.to_a.sum { |hour| hour.amount }
+    end
+ 
  
     def category_hours(category=nil)
       if category

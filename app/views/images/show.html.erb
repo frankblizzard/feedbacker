@@ -1,8 +1,9 @@
 <% title "#{@image.project.name} | #{@image.name}" %>
 
 <% content_for(:head) do %>
+<%= stylesheet_link_tag 'jquery-ui-1.8.12.custom', :cache => true %>
+<%= javascript_include_tag 'jquery-ui-1.8.12.custom.min', :cache => true %>
 <script type="text/javascript"charset="UTF-8">  
- var comments = 1;
       $(function () {  
         $('#showhide').click(function () {  
           commentsShowHide();
@@ -10,7 +11,6 @@
       });  
     </script>
 <% end %>
-
 
  <div class="basic_image">
 <br/> 

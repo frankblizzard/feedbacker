@@ -59,7 +59,7 @@ class HoursController < ApplicationController
     @hour = Hour.find(params[:id])
     if @hour.update_attributes(params[:hour])
       flash[:notice] = "Successfully updated time record."
-      redirect_to hour_url
+      redirect_to hours_url
     else
       render :action => 'edit'
     end

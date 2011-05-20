@@ -1,4 +1,33 @@
 <% title "#{@project.project_nr} #{@project.name}" %>
+
+<% content_for(:head) do %>
+<%= javascript_include_tag "highcharts", :cache => true %>
+
+<script type="text/javascript" charset="utf-8">  
+
+  $(function () {  
+    new Highcharts.Chart({  
+      chart: { renderTo: 'hours_chart' },  
+	    title: { text: 'Orders by Day' },  
+	    xAxis: { type: 'datetime' },  
+	    yAxis: {  
+	      title: { text: 'Hours acc.'}  
+	    },  
+	 series: [{ 
+	      pointInterval: <%= 1.day * 1000 %>,  
+	      pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,  
+	      data: [1, 10, 30, 60, 150]
+	    }
+    });  
+  });  
+</script>
+
+<% end %>
+
+<div id="hours_chart" style="float: right; width: 560px; height: 300px;">
+	
+	
+</div>  
 <table>
 	<tr width="600">
 		<th>Project Infos</th>
