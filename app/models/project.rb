@@ -10,10 +10,10 @@ class Project < ActiveRecord::Base
     before_destroy :ensure_no_hours
     
     has_many :assignments
-    has_many :images
+    has_many :images, :dependent => :destroy
     has_many :users, :through => :assignments 
     has_many :hours
-    has_many :plan_hours
+    has_many :plan_hours, :dependent => :destroy
     
     
     attr_reader :user_tokens, :name_number, :total_hours, :hours_on

@@ -153,7 +153,7 @@
 <br/>
 <p>
   <%= link_to "Edit", edit_project_path(@project) %> |
-  <%= link_to "Delete Project", @project, :confirm => 'Are you sure?', :method => :destroy %> |
+  <%= link_to "Delete Project", @project, :confirm => "Are you sure that you want to delete #{@project.name} with all its images?", :method => :destroy %> |
   <%= link_to "All Projects", projects_path %>
 </p>
                          

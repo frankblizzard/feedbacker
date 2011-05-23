@@ -15,7 +15,7 @@
 			<% if p.hours.count > 0 %>
 			<% last_active_hour = p.hours(:all, :include => [:work_categories]).first(:order => "created_at desc") %>
 			<span class='time'><%= "#{last_active_hour.created_at.strftime('%d.%m.%y %H:%M')}:" %></span> 
-			<%="#{last_active_hour.user.name} logged #{last_active_hour.amount} h #{last_active_hour.work_category.name }" %>
+			<%= debug last_active_hour %>
 			<% end %>
 		</td>
 	</tr>
