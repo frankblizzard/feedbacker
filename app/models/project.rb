@@ -18,6 +18,9 @@ class Project < ActiveRecord::Base
     
     attr_reader :user_tokens, :name_number, :total_hours, :hours_on
     
+    cattr_reader :per_page
+    @@per_page = 25
+    
     
     def total_hours(user=nil)
       if user
