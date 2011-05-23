@@ -4,27 +4,42 @@
 <%= javascript_include_tag "highcharts", :cache => true %>
 
 <script type="text/javascript" charset="utf-8">  
-
-  $(function () {  
+var planhrs = 0;
+  $(function () {
+	
+	$('#planhoursshowhide').click(function () {
+		planhrsShowHide();
+	})
+	  
     new Highcharts.Chart({  
       chart: { renderTo: 'hours_chart' },  
-	    title: { text: 'Orders by Day' },  
-	    xAxis: { type: 'datetime' },  
+	    title: { text: <%= "'Hours for #{@project.project_nr} #{@project.name}'" %> },  
+	    xAxis: { 
+			type: 'datetime' 
+		},  
 	    yAxis: {  
 	      title: { text: 'Hours acc.'}  
 	    },  
 	 series: [{ 
+		  name: "real hours",
 	      pointInterval: <%= 1.day * 1000 %>,  
 	      pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,  
-	      data: [1, 10, 30, 60, 150]
-	    }
+	      data: <%= (3.weeks.ago.to_date..Date.today).map { |date| @project.hours_on(date).to_f}.inspect %>
+	    },
+	 	{ 
+		  name: "plan hours left",
+		  pointInterval: <%= 1.day * 1000 %>,  
+		  pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,  
+		  data: <%= (3.weeks.ago.to_date..Date.today).map { |date| @project.plan_hours_left(date).to_f}.inspect %>
+		}
+	]
     });  
   });  
 </script>
 
 <% end %>
 
-<div id="hours_chart" style="float: right; width: 560px; height: 300px;">
+<div id="hours_chart" style="float: right; width: 660px; height: 380px;">
 	
 	
 </div>  
@@ -62,9 +77,10 @@
 	 </div>
 	<% end%>
   </div>
-
-<br/>
 <% if current_user.admin? %>
+<br/>
+<a id="planhoursshowhide" href="#">add plan hours</a>
+<div id="plan_hours_show_hide">
 <% form_for [@project, PlanHour.new], :remote => true  do |f| %>
   <p class="add_plan_hours">
 
@@ -78,6 +94,7 @@
     <%= f.submit "Add plan hours" %>
   </p>
 <% end %>
+</div>
 <% end %>
 </div>
 <br/>
@@ -86,7 +103,7 @@
 	<div>
 		<% if @project.images.count > 0 %>
 		<% for image in @project.images do %>
-			<%= link_to image_tag(image.rendering.url(:thumb), :border => 0), image %>
+			<%= link_to image_tag(image.rendering.url(:thumb), :border => 0, :alt => image.name), image, :title => image.name %>
 		<% end %>
 		<% else %>
 		 <p>No images have been uploaded yet</p>

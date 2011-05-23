@@ -30,7 +30,17 @@ commentsShowHide = function () {
 		$('#new_comment').show();
 		$('#showhide').text('hide');
 		comments = 1;
-	};
-	
-	
+	};	
+}
+
+planhrsShowHide = function () {
+	if (planhrs == 1) {
+		$('#plan_hours_show_hide').slideUp();
+		$('#planhoursshowhide').text('add plan hours');
+		planhrs = 0;
+	} else{
+		$('#plan_hours_show_hide').slideDown();
+		$('#planhoursshowhide').text('hide');
+		planhrs = 1;
+	};	
 }

@@ -22,6 +22,7 @@ class Project < ActiveRecord::Base
     @@per_page = 15
     
     
+    #  gives the total hours per user
     def total_hours(user=nil)
       if user
         hours = self.hours.where(:user => user)
@@ -31,12 +32,21 @@ class Project < ActiveRecord::Base
       hours.to_a.sum { |hour| hour.amount }
     end
 
-    def self.hours_on(id=1, date=Date.today)
-      hours = Project.hours.where("id = ? AND date <= ?",id, date)
+    # cumulates the real hours of booked on the project for a given date
+    def hours_on(date=Date.today)
+      hours = self.hours.where("date <= ?", date)
       hours.to_a.sum { |hour| hour.amount }
     end
- 
- 
+
+    # calculates the difference between plan hours and real hours on a given date
+    def plan_hours_left(date=Date.today)
+      hours = self.hours.where("date <= ?", date)
+      sum_hours = hours.to_a.sum { |hour| hour.amount }
+      sum_plan_hours = self.plan_hours.to_a.sum { |plan_hour| plan_hour.amount }
+      difference = sum_plan_hours - sum_hours
+    end
+
+    #  gives the total hours per category 
     def category_hours(category=nil)
       if category
         hours = self.hours.where(:work_category => category)
@@ -45,7 +55,8 @@ class Project < ActiveRecord::Base
       end
       hours.to_a.sum { |hour| hour.amount }
     end   
-    
+
+    # helper function for jQuery tokenized input
     def user_tokens=(ids)
       self.user_ids = ids.split(',')
     end

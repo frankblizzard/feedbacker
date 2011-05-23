@@ -379,3 +379,7 @@ ul#calendar_stats li {
 	float: left;
 	margin-right: 25px;
 }
+
+#plan_hours_show_hide {
+	display: none;
+}

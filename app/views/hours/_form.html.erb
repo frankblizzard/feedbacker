@@ -28,19 +28,24 @@
   
     <%= f.label "* Project Name" %>
     <%= f.hidden_field :project_id, :id => "real_project_id" %>
+
    <% if @hour.new_record? %>
-     <%= autocomplete_field_tag 'fake_project', '',
-     autocomplete_project_name_hours_path, :update_elements => {:id => '#real_project_id'} %>
-	 <span class="hint">Field will autocomplete, type project_nr. or name and choose</span>
+	 <div class="input text required">
+      <%= autocomplete_field_tag 'fake_project', '',
+      autocomplete_project_name_hours_path, :update_elements => {:id => '#real_project_id'}, :class => "required" %>
+	  <span class="hint">Field will autocomplete, type project_nr. or name and choose</span>
+	 </div>
    <% else %>
 		<%= f.text_field :fake_project, :disabled => true, :value => "#{@hour.project.name}" %>
 		<span class="hint">Project is locked in edit mode</span>
    <% end %>
 
  <br />
+<div class="select required">
     <%= f.label "* Work Category" %>
-<%= collection_select(:hour, :work_category_id, WorkCategory.all, :id, :name, :prompt => "choose..") %>
+<%= collection_select(:hour, :work_category_id, WorkCategory.all, :id, :name, :required => "required", :prompt => "choose..", :class => "select required") %>
 <span class="hint">What kind of work you were doing?</span>
+</div>
    <br />
   <p><%= f.submit %></p>
 <br/>
