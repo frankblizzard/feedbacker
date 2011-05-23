@@ -35,8 +35,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
     flash[:notice] = "comment deleted."
-    redirect_to image_path(@image)
-    
+    redirect_to image_path(@image)    
   end
   
   
