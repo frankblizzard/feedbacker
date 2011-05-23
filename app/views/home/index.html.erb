@@ -13,9 +13,9 @@
 		<td><%= link_to "#{p.project_nr} - #{p.name}", p %></td>
 		<td class="activity">
 			<% if p.hours.count > 0 %>
-			<% last_active_hour = p.hours(:all, :include => [:work_categories]).first(:order => "created_at desc") %>
+			<% last_active_hour = p.hours(:all, :include => [:work_categories]).first(:order => "created_at desc").limit(10) %>
 			<span class='time'><%= "#{last_active_hour.created_at.strftime('%d.%m.%y %H:%M')}:" %></span> 
-			<%="#{last_active_hour.user.name} logged #{last_active_hour.amount} h " %>
+			<%="#{last_active_hour.user.name} logged #{last_active_hour.amount} h #{last_active_hour.work_category.name.to_s}" %>
 			<% end %>
 		</td>
 	</tr>
