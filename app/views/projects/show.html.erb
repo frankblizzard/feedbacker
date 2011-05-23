@@ -70,12 +70,7 @@ var planhrs = 0;
   <h2>Plan Hours</h2>
   <h4 id="plan_hours_count"><%= pluralize(@project.plan_hours.count, "position") %></h4>
   <div id="plan_hours">
-	<% for ph in  @project.plan_hours %>
-	 <div class="plan_hour">
-		<span class="hours_amout"><%= ph.amount %> hours <span>
-		<span class="hours_category"><%= ph.work_category.name %><span>
-	 </div>
-	<% end%>
+	<%= render @project.plan_hours %>
   </div>
 <% if current_user.admin? %>
 <br/>
