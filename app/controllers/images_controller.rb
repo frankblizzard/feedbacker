@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
   before_filter :login_required
  
   def index
-    @images = Image.paginate :page => params[:page], :order => "created_at desc" 
+    @images = Image.paginate :page => params[:page], :order => "created_at desc", :per_page => 15
   end
 
   def new

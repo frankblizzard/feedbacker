@@ -8,9 +8,9 @@ class ProjectsController < ApplicationController
   def index
     @search = Project.search(params[:search])  
     if @search
-      @projects = @search.paginate :page => params[:page], :order => "project_nr asc"
+      @projects = @search.paginate :page => params[:page], :order => "project_nr asc", :per_page => 15
     else
-      @projects = Project.paginate :page => params[:page], :order => "project_nr asc"
+      @projects = Project.paginate :page => params[:page], :order => "project_nr asc", :per_page => 15
     end
     
     respond_to do |format|

@@ -18,7 +18,7 @@ class Project < ActiveRecord::Base
     
     attr_reader :user_tokens, :name_number, :total_hours, :hours_on
     
-    cattr_reader :per_page
+    attr_reader :per_page
     @@per_page = 15
     
     
