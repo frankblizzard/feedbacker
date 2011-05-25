@@ -1,6 +1,4 @@
 class PlanHoursController < ApplicationController
-  before_filter :login_required
-  
   def index
     @plan_hours = PlanHour.all
   end

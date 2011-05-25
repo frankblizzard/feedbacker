@@ -1,6 +1,4 @@
 class ClientsController < ApplicationController
-  before_filter :login_required
-  
   def index
     @search = Client.search(params[:search])  
     if @search
