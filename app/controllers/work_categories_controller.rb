@@ -1,4 +1,6 @@
 class WorkCategoriesController < ApplicationController
+  before_filter :login_required
+  
   def index
     @work_categories = WorkCategory.all
     respond_to do |format|

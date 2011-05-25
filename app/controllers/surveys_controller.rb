@@ -1,4 +1,6 @@
 class SurveysController < ApplicationController
+  before_filter :login_required
+  
   def index
     @surveys = Survey.all
   end
