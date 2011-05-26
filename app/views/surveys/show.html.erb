@@ -1,12 +1,18 @@
-<% title "Survey" %>
-
+<% title "Survey for #{@survey.image.name}" %>  
+  
 <p>
-  <strong>Name:</strong>
-  <%= @survey.name %>
-</p>
-
-<p>
-  <%= link_to "Edit", edit_survey_path(@survey) %> |
-  <%= link_to "Destroy", @survey, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", surveys_path %>
+	<%= link_to image_tag(@survey.image.rendering.url(:thumb), :border => 0 ), image, :title => image.name %>
+<p>  
+  <strong>  <%=h @survey.name %>  </strong>    
+</p>  
+<ol>  
+  <% for question in @survey.questions %>  
+  <li><%= h question.content %></li>  
+  <% end %>  
+</ol>  
+  
+<p>  
+  <%= link_to "Edit", edit_survey_path(@survey) %> |  
+  <%= link_to "Destroy", @survey, :confirm => 'Are you sure?', :method => :delete %> |  
+  <%= link_to "View All", surveys_path %>  
 </p>

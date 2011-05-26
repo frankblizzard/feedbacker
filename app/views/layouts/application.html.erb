@@ -6,6 +6,7 @@
 	<%= include_tiny_mce_if_needed %>
 	    <%= javascript_include_tag 'jquery', 'rails', 'rails.validations', 'application' %>
     <%= csrf_meta_tag %>
+	<%= favicon_link_tag %>
     <%= yield(:head) %>
   </head>
   <body>
