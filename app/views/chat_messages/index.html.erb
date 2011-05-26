@@ -19,10 +19,11 @@ $(function() {
   <%= render @messages %>  
 </ul>  
   
-<%= form_for ChatMessage.new, :remote => true do |f| %>  
-  <%= f.text_field :content, :size => "48" %>  
+<%= simple_form_for ChatMessage.new, :remote => true do |f| %>  
+  <%= f.text_field :content, :size => "52" %>  
   <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.submit "Send" %>  
+  <%= f.submit "Send", :class => "chat" %> 
+<span class="hint chat">Text messages are visible for 60 minutes</span> 
 
 <% end %>
 <div id="bg_fix"><%= image_tag "ullrich.jpg", :width => "150" %></div>
