@@ -1,9 +1,9 @@
 <% title "Survey for #{@survey.image.name}" %>  
-  
+
 <p>
-	<%= link_to image_tag(@survey.image.rendering.url(:thumb), :border => 0 ), image, :title => image.name %>
+	<%= image_tag(@survey.image.rendering.url(:thumb), :border => 0 ) %>
 <p>  
-  <strong>  <%=h @survey.name %>  </strong>    
+  <strong>  <%=h @survey.name %> </strong>    
 </p>  
 <ol>  
   <% for question in @survey.questions %>  

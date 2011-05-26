@@ -9,6 +9,13 @@ class SurveysController < ApplicationController
 
   def new
     @survey = Survey.new
+    if params[:image_id]
+      @image = Image.find(params[:image_id])
+      3.times { @survey.questions.build }  
+    else 
+      flash[:error] = "You can only create a survey from a image. Go to image/show and then use 'create new client survey'"
+      redirect_to root_url
+    end
   end
 
   def create

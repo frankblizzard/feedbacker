@@ -23,20 +23,20 @@ var comments = 1;
  <br/>       
 <table class="pretty">
 	<tr>
-	<th>Uploaded</th>
-	<th>Uploader</th>
-	<th>Project</th>
-	<th>Status</th> 
-	<th>Revision</th> 
- 	<th>HQ</th> 
-	 </tr>
+     <th>Uploaded</th>
+     <th>Uploader</th>
+     <th>Project</th> 
+     <th>HQ</th> 
+     <th>Status</th>  
+     <th>Client Survey</th>  
+	</tr>
 	<tr>
 	 <td><%= @image.created_at.to_formatted_s(:long) %></td>
 	 <td><%= link_to @image.user.name, @image.user %></td>
 	 <td><%= link_to @image.project.name.to_s, @image.project %></td>
+	 <td><%= link_to "Show / Download", @image.rendering.url %></td>
 	 <td>to do</td>
-	<td>to do</td> 
-	<td><%= link_to "Show / Download", @image.rendering.url %></td>
+	 <td><%= link_to "create new client survey", new_survey_path(:image_id => @image.id) %>
 	</tr>		
  </table>          
 </div> 
@@ -44,8 +44,7 @@ var comments = 1;
      <table>
 		<tr><th>Other Images of <%= @image.project.name %></th></tr>
 		<tr>
-		   <td> 
-			
+		   <td> 	
 	<% for img in @image.project.images do %> 
 		   <% if img!= @image %>
 	      	<%= link_to image_tag(img.rendering.url(:thumb), :border => 0 ), img, :title => img.name %>
@@ -64,16 +63,7 @@ var comments = 1;
 
 
 <% form_for [@image, Comment.new], :remote => true  do |f| %>
-  <p id="new_comment" class="add_comment">
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :image_id, :value => @image.id %>
-    <%= f.label :body, "leave a comment" %><br />
-    <%= f.text_area :body, :rows => 5, :cols => 25 %>
-  </p>
-
-  <p>
-    <%= f.submit "Add Comment" %>
-  </p>
+ <%= render 'comment_fields', :f => f %>
 <% end %>
 </div>
 <br/>

@@ -8,6 +8,10 @@ class Image < ActiveRecord::Base
     
     has_many :comments, :dependent => :destroy   
     
+    has_many :surveys,  :dependent => :destroy  
+    accepts_nested_attributes_for :surveys, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true  
+    
+    
     cattr_reader :per_page
     @@per_page = 5
     
