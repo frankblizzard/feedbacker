@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id]) || current_user
     if @user.update_attributes(params[:user])
       flash[:notice] = "Your profile has been updated."
       redirect_to "/"
