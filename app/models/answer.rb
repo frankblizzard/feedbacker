@@ -1,2 +1,7 @@
 class Answer < ActiveRecord::Base
+  attr_accessible :user_id, :survey_id, :content, :question_id
+  
+  belongs_to :question
+  belongs_to :user
+  
 end

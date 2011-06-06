@@ -1,4 +1,7 @@
 class SurveysController < ApplicationController
+  load_and_authorize_resource :image
+  load_and_authorize_resource :survey, :through => :image
+  
   def index
     @surveys = Survey.all
   end
@@ -30,6 +33,7 @@ class SurveysController < ApplicationController
 
   def edit
     @survey = Survey.find(params[:id])
+    @image = @survey.image
   end
 
   def update

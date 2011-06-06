@@ -13,6 +13,10 @@ a {
 	text-decoration: none;
 }
 
+a:hover {
+	color: #3EBDE6;
+}
+
 .clear {
   clear: both;
   height: 0;
@@ -360,8 +364,7 @@ table.pretty {
   color: #D00;
   display: block;
 }
-
-.simple_form .hint {
+ .hint, .myhint {
   clear: left;
   margin-top: 3px;
   margin-left: 120px;
@@ -369,6 +372,9 @@ table.pretty {
   color: #ccc;
   display: block;
   font-style: italic;
+}
+.myhint {
+	margin-left: 0;
 }
 
 .searchform {
@@ -386,4 +392,7 @@ ul#calendar_stats li {
 
 input.chat, span.chat {
 	margin-left: 0px !important;
+}
+span.add_question {
+	margin-top: 15px;
 }

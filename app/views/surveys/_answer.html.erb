@@ -1,0 +1,14 @@
+<p class="comment_header">
+<b><%= link_to answer.user.name, comment.user %> </b>
+  <span class="comment_time"><%= time_ago_in_words(answer.created_at) %> ago: 
+
+<% if current_user.admin? || answer.user == current_user %>
+   <%= link_to "x", image_survey_question_path(answer.image, answer.survey, answer.question, answer), :confirm => "delete this answer?", :method => :delete, :title => "delete answer" %>
+<% end %>
+
+</span>
+</p>
+
+<p class="comment_body">
+  <%=h answer.content %>
+</p>

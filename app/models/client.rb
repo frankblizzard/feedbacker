@@ -6,7 +6,7 @@ class Client < ActiveRecord::Base
     validates_uniqueness_of :name
     
     has_many :projects
-    
+    has_many :users
     
     
 end

@@ -9,6 +9,20 @@ $(document).ready(function () {
 	
 });
 
+
+initializeSurveyAnswers = function () {
+	$('.survey .answer_link').each(function () {
+		
+		$(this).click(function () {
+			
+			$(this).find('.give_answer').slideToggle();
+			
+		});
+		
+		
+	});
+}
+
 calculateSizes = function () {
 	 //$(".main").height($(window).height()-$('.header').height());
 	 $(".right_side").width($(window).width()-$('.left_side').width());

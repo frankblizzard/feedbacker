@@ -1,6 +1,5 @@
 Feedbacker::Application.routes.draw do
   
-
   resource :chat_messages
 
   resources :clients
@@ -21,6 +20,8 @@ Feedbacker::Application.routes.draw do
   end
 
   resources :surveys
+  
+  resources :answers
 
   resources :assignments
 

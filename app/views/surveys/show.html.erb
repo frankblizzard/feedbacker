@@ -1,18 +1,43 @@
+<% content_for(:head)  do %>
+ <script type="text/javascript" charset="utf-8">
+$(document).ready(function () {
+		$('.survey .answer_link').each(function () {
+			$(this).click(function () {
+				$(this).next().next().slideToggle();
+			});
+		});
+	});
+ </script>
+<% end %>
 <% title "Survey for #{@survey.image.name}" %>  
-
+<div class="survey">
 <p>
-	<%= image_tag(@survey.image.rendering.url(:thumb), :border => 0 ) %>
+	<%= link_to image_tag(@survey.image.rendering.url(:small), :border => 0 ), @survey.image.rendering.url, :target => "_blank", :title => "click for full size" %>
+	<span class="myhint">click image to view in full size</span>
 <p>  
-  <strong>  <%=h @survey.name %> </strong>    
+  <h2>  <%=h @survey.name %> </h2>  
 </p>  
 <ol>  
   <% for question in @survey.questions %>  
-  <li><%= h question.content %></li>  
+  <li><%= h question.content %> <a href="#" class="answer_link">answer</a>
+	<% qid = question.id %>
+	<ul class="answers">
+		<% for answer in question.answers %>
+		 <li> <%= answer.content %> -- <%= link_to answer.user.name, answer.user %> <span class="grey"><%= answer.created_at.strftime('%B %d at %H:%m')%></span> </li>
+		<% end %>  
+	</ul>
+	<div class="give_answer">
+		<% form_for [@survey.image, @survey, question, Answer.new] do |f, question| %>
+		 <%= render 'answer_fields', :f => f, :q => qid %>
+		<% end %>
+	</div>
+	</li>  
   <% end %>  
 </ol>  
   
 <p>  
   <%= link_to "Edit", edit_survey_path(@survey) %> |  
-  <%= link_to "Destroy", @survey, :confirm => 'Are you sure?', :method => :delete %> |  
+  <%= link_to "Delete Survey", @survey, :confirm => 'Are you sure?', :method => :delete %> |  
   <%= link_to "View All", surveys_path %>  
 </p>
+</div>

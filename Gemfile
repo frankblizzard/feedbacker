@@ -14,6 +14,7 @@ gem 'client_side_validations'
 gem 'rails3-jquery-autocomplete'
 gem 'meta_where'
 gem 'meta_search'
+gem 'nested_form'
 
 # cron jobs
 gem 'whenever', :require => false

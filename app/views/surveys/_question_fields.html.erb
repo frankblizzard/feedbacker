@@ -1,0 +1,6 @@
+<p>
+   <%= builder.hidden_field :survey_id, :value => @survey.id %><br />  
+	 <%= builder.label :content, "Question" %><br />  
+	 <%= builder.text_area :content, :rows => 3 %>  
+	 <%= builder.link_to_remove "remove question" %>
+</p>

@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController    
   before_filter :login_required
   
+  load_and_authorize_resource :project
+  
   helper_method :sort_column, :sort_direction  
    
   uses_tiny_mce :options => {  :theme => 'simple', :editor_selector => 'mceEditor'}

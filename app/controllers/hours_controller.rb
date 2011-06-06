@@ -1,4 +1,6 @@
 class HoursController < ApplicationController
+  load_and_authorize_resource :hour
+  
   before_filter :login_required
 #  skip_before_filter :verify_authenticity_token, :only => [:create]
 #  skip_before_filter :login_required, :only => [:create]

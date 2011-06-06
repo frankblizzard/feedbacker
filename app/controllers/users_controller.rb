@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :login_required
   
   def index
-    @users = User.where("name like ?", "%#{params[:q]}%")
+    @users = User.where("name like ?", "%#{params[:q]}%").order("name")
     respond_to do |format|
       format.html
       format.json { render :json => @users.map(&:attributes) }
@@ -30,7 +30,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    if current_user.admin?
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
   end
 
   def update

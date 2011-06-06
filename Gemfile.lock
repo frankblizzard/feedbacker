@@ -84,6 +84,7 @@ GEM
     mocha (0.9.10)
       rake
     mysql (2.8.1)
+    nested_form (0.0.0)
     nifty-generators (0.4.4)
     nokogiri (1.4.4)
     polyglot (0.3.1)
@@ -141,6 +142,7 @@ DEPENDENCIES
   meta_where
   mocha
   mysql
+  nested_form
   nifty-generators
   paperclip!
   rails (= 3.0.3)

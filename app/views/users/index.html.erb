@@ -13,7 +13,7 @@
       <td><%= user.company %></td>
       <td><%= user.email %></td>
       <td><ul><% for project in user.projects %>
-		<li><%= link_to "#{project.name}", project %>
+		<li><%= link_to "#{project.project_nr} - #{project.name}", project, :title => project.name %>
 		<% end %></td>
 		</ul>    
       <td><%= link_to "Show", user %></td>

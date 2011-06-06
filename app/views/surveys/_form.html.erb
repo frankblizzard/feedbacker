@@ -1,11 +1,17 @@
-
+<p>
+	<%= image_tag(@image.rendering.url(:small), :border => 0 ) %>
+	<span class="myhint">Survey is about this image</span><br/>
+	<%= "Image: #{@image.name}"%> <br/>
+	<%= "Project: #{@image.project.project_nr} - #{@image.project.name}"%>
+<p>
 <br/>
-<% form_for @survey do |f| %>  
+<%= nested_form_for @survey do |f| %>  
   <%= f.error_messages %>  
 <br/>
   <p>  
     <%= f.label :name %><br />  
     <%= f.text_field :name %>  
+<span class="myhint">Title of this survey</span>
 	<%= f.hidden_field :image_id, :value => (@survey.new_record? ? @image.id : @survey.image.id) %>
   </p>  
 <br/>
@@ -14,10 +20,12 @@
      <%= builder.hidden_field :survey_id, :value => @survey.id %><br />  
  	 <%= builder.label :content, "Question" %><br />  
  	 <%= builder.text_area :content, :rows => 3 %>  
- 	 <%= builder.check_box :_destroy %>  
- 	 <%= builder.label :_destroy, "Remove Question" %>
+ 	 <%= builder.link_to_remove "remove question" %>
   </p>  
   <% end %>  
+ <p><span class="add_question"><%= f.link_to_add "Add question", :questions %> </span></p>
+<span class="myhint">You can add as many questions as you want to the survey</span>
 <br/>
-  <p><%= f.submit "Submit" %></p>  
+  <p><%= f.submit "Save survey" %></p>  
 <% end %>
+<br/>

@@ -1,5 +1,8 @@
 class ImagesController < ApplicationController
   before_filter :login_required
+  
+  load_and_authorize_resource :image
+
  
   def index
     @images = Image.paginate :page => params[:page], :order => "created_at desc", :per_page => 15
