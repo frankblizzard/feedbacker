@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id]) || current_user
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Your profile has been updated."
+      flash[:notice] = "Profile has been updated."
       redirect_to "/"
     else
       render :action => 'edit'
