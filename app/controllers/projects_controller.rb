@@ -8,11 +8,11 @@ class ProjectsController < ApplicationController
   uses_tiny_mce :options => {  :theme => 'simple', :editor_selector => 'mceEditor'}
   
   def index
-    @search = Project.visible.search(params[:search])  
+    @search = Project.visible.search(params[:search])
     if @search
-      @projects = @search
+      @projects = @search.order("project_nr desc")  
     else
-      @projects = Project.visible
+      @projects = Project.visible.order("project_nr desc")  
     end
     
     respond_to do |format|
