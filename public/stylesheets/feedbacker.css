@@ -322,3 +322,13 @@ span.grey {
 	color: #aaa;
 	font-size: 11px;
 }
+
+.project_hours_table .red {
+	color: red;
+} 
+.project_hours_table .yellow {
+	color: #f2ea0a;
+}
+.project_hours_table .green {
+	color: green;
+}
