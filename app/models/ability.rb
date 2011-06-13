@@ -10,14 +10,15 @@ class Ability
      can :manage, :all
      can :read, :all
    elsif user.project_manager?
-     can :manage, [Project, Client, Hour]
+     can :manage, [Project, Client, Hour, PlanHour]
      cannot :destroy, :project
      can :read, :all
    elsif user.works_at_eve? || user.client_id == 17
      can :manage, [Hour]
      can :read, :all
    else
-     can :read, :projects, :client_id => user.client_id
+     can :read, [Project], :client_id => user.client_id
+     can :read, [User]
      cannot :read, :hours
    end   
    

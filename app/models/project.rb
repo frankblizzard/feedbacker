@@ -38,7 +38,8 @@ class Project < ActiveRecord::Base
     
     # sum of all plan hours in the project
     def total_plan_hours
-      plan_hours.to_a.sum { |plan_hour| plan_hour.amount }
+      sum = plan_hours.to_a.sum { |plan_hour| plan_hour.amount }
+      sum > 0 ? sum : 1
     end
 
     # cumulates the real hours of booked on the project for a given date

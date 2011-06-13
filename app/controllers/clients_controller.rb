@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+  load_and_authorize_resource :client
+  
   before_filter :login_required
   def index
     @search = Client.search(params[:search])  

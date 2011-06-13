@@ -5,7 +5,8 @@
 	<%= f.input :email %>
 	<%= f.input :password %>
 	<%= f.input :password_confirmation %>	
-	<%= f.input :admin %>
-	<%= f.input :project_manager %>
+	<%= f.input :works_at_eve, :label => "Works at eve?", :hint => "Can see all projects and book times on them." %>
+	<%= f.input :project_manager, :hint => "Can add new clients and projects and edit them." %>
+	<%= f.input :admin, :label => "Admin (!)", :hint => "Careful! Has full access to create and delete records!" %>
     <%= f.submit (@user.new_record? ? "Sign up" : "Update") %>
 <% end %>

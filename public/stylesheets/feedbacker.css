@@ -332,3 +332,6 @@ span.grey {
 .project_hours_table .green {
 	color: green;
 }
+#new_user .hint {
+	margin-left: 0;
+}

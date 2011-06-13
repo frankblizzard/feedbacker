@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource :user
+  
   before_filter :login_required
   
   def index

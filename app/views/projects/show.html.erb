@@ -73,7 +73,7 @@ var planhrs = 0;
   <div id="plan_hours">
 	<%= render @project.plan_hours %>
   </div>
-<% if current_user.admin? %>
+<% if current_user.admin? || current_user.project_manager? %>
 <br/>
 <a id="planhoursshowhide" href="#">add plan hours</a>
 <div id="plan_hours_show_hide">
