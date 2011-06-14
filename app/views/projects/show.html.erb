@@ -209,44 +209,62 @@ var planhrs = 0;
 					<b><i>total</i></b> 
 				</td>
 				<td>
-					<b><i><%= @project.total_plan_hours %></i></b> 
+					
+						<% if @project.total_plan_hours == 0 %>
+							no plan hours<br/> for this project
+						<% else %>
+						<b><i>
+							<%= @project.total_plan_hours %>
+						</i></b> 
+						<% end %>						
+					
 				</td>
 				<td>
 					<b><i><%= @project.total_hours %></i></b> 
 				</td>
 				<td>
 					<b><i>
-					<% diff = @project.total_plan_hours - @project.total_hours %>
-					<% if diff < 0 %>
-						<span class="red">
-							<%= diff %>
-						</span>
-					<% elsif diff < 10%>
-				     	<span class="yellow">
-					    	<%= diff %>
-					    </span>
+					<% # first check if there are plan hours, if not divided by zero or senseless calculation %>
+					<% if @project.total_plan_hours == 0 %>
+						---
 					<% else %>
-					 	<span class="green">
-					    	<%= diff %>
-					    </span>
+						<% diff = @project.total_plan_hours - @project.total_hours %>
+						<% if diff < 0 %>
+							<span class="red">
+								<%= diff %>
+							</span>
+						<% elsif diff < 10 %>
+					     	<span class="yellow">
+						    	<%= diff %>
+						    </span>
+						<% else %>
+						 	<span class="green">
+						    	<%= diff %>
+						    </span>
+						<% end %>
 					<% end %>
 					</i></b> 
 				</td>
 				<td>
 					<b><i>
-						<% diff_percent = (@project.total_plan_hours - @project.total_hours) / @project.total_plan_hours * 100 %>
-						<% if diff < 0 %>
-							<span class="red">
-								<%= number_to_percentage(diff_percent, :precision => 1) %>
-							</span>
-						<% elsif diff < 10%>
-					     	<span class="yellow">
-						    	<%= number_to_percentage(diff_percent, :precision => 1) %>
-						    </span>
+						<% # first check if there are plan hours, if not divided by zero or senseless calculation %>
+						<% if @project.total_plan_hours == 0 %>
+							---
 						<% else %>
-						 	<span class="green">
-						    	<%= number_to_percentage(diff_percent, :precision => 1) %>
-						    </span>
+							<% diff_percent = (@project.total_plan_hours - @project.total_hours) / @project.total_plan_hours * 100 %>
+							<% if diff < 0 %>
+								<span class="red">
+									<%= number_to_percentage(diff_percent, :precision => 1) %>
+								</span>
+							<% elsif diff < 10%>
+						     	<span class="yellow">
+							    	<%= number_to_percentage(diff_percent, :precision => 1) %>
+							    </span>
+							<% else %>
+							 	<span class="green">
+							    	<%= number_to_percentage(diff_percent, :precision => 1) %>
+							    </span>
+							<% end %>
 						<% end %>
 					</i></b> 
 				</td>
