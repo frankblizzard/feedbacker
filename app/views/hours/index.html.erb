@@ -15,58 +15,115 @@
 		
 	})
 </script>
-<% # hours_month counts the actual hours someone worked this month %>
-<% # hours_needed = workdays of the month * 8, no weekends %>
-<% hours_month = 0 %>
-<% hours_needed = 0 %>
-<div id="calendar">
-  <h2 id="month">
-    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d") %>
-    <%=h @date.strftime("%B %Y") %>
-    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d") %>
-  </h2>
-  <% calendar_for @hours, :year => @date.year, :month => @date.month, :first_day_of_week => 1 do |calendar| %>
-    <%= calendar.head('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') %>
-    <% calendar.day(:day_method => :date) do |date, hours| %>
-	
-      <div>
-      <%= date.day %>
-      <% if (date.strftime("%m") == @date.strftime("%m")) && (["Mon", "Tue", "Wed", "Thu", "Fri"].include? date.strftime("%a"))%>
-      	<% hours_needed += 8 %>
-	  <% end %>
-	  <span class="total"></span>
-	  <% if hours %>
-	  <% total = 0.0 %>
-      <ul class="task_list">
-        <% for hour in hours %>
-		  
-          		<% if hour.project %>
-				<li><%= link_to "#{h(hour.amount)}h #{h(hour.project.name.to_s)}", edit_hour_path(hour),:title => "edit" %></li>
-				<% else %>
-				<li><%= "#{h(hour.amount)}h deleted project" %></li>
-				<% end %>
-          	<% total += hour.amount %>
-			<% hours_month += hour.amount %>
-		  <% end %>
-      </ul>
-	  <span class="total"><%= total %>h</span>
-	  <span class="add" title="add hours"><%= link_to image_tag("new_el.gif", :border => 0 ), :controller => :hours, :action => :new, :date => date %> </span>
-	<% end %>
-	</div>
-    <% end %>
-  <% end %>
-</div>
-<% # display statistic overview and selector for user hours (if current_user == admin || current_user == controller ) %>
-<ul id="calendar_stats">
-		<li><%= hours_month %> / <%= hours_needed %> hours total in <%=h @date.strftime("%B %Y") %></li>
-		<% if current_user.admin? || current_user.controller? %>
-			<li> Show User: 
-			<%= collection_select(:hour, :user_id, User.order("name"), :id, :name, {:prompt => "select user", :selected => session[:hour_user_id] }) %>
-			</li>
-			<% if params[:user_id] %>
-			<li> <%= link_to "show all hours", hours_path %></li>
+
+<% # seperate between list and calendar view %>
+
+<% if params[:view_mode] == "list" %>
+
+	<div id="calendar" class="list_view">
+		<b>list view</b> &nbsp; <%= link_to "calendar view", :view_mode => "calendar" %>
+		<h2 id="month">
+	    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d"), :view_mode => "list" %>
+	    <%=h @date.strftime("%B %Y") %>
+	    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d"), :view_mode => "list" %>
+	  </h2>
+		
+		<table class="hours">
+			<tr>
+				<th> Date </th>
+				<th> Hours </th>
+				<th> Tasks </th>
+			</tr>
+		<% total_month_hours = 0 %>
+		<% for hour in @hours %>
+			<% if hour.date.strftime("%m") == @date.strftime("%m") %>
+			<tr>
+				<td> <%= hour.date.strftime("%Y-%m-%d") %></td>
+				<% total_month_hours += hour.amount %>
+				<td> <%= hour.amount %></td>
+				<td> <%= hour.task %></td>
+			</tr>
 			<% end %>
 		<% end %>
-</ul>
-<br/>
-</div>
+		<tr>
+			<td class="total">
+				Total hours for  <%=h @date.strftime("%B %Y") %>
+			</td>
+			<td class="total" colspan="2">
+				<%= total_month_hours %>
+			</td>
+		</table>
+		<br/>
+		<ul id="calendar_stats">
+				<% if current_user.admin? || current_user.controller? %>
+					<li> Show User: 
+					<%= collection_select(:hour, :user_id, User.order("name"), :id, :name, {:prompt => "select user", :selected => session[:hour_user_id] }) %>
+					</li>
+					<% if params[:user_id] %>
+					<% end %>
+				<% end %>
+		</ul>
+		<br/>		
+		
+	</div>	
+	
+<% else %>
+	
+	<% # hours_month counts the actual hours someone worked this month %>
+	<% # hours_needed = workdays of the month * 8, no weekends %>
+	<% hours_month = 0 %>
+	<% hours_needed = 0 %>
+	<div id="calendar">
+	<b>calendar view</b> &nbsp; <%= link_to "list view", :view_mode => "list" %>
+	  <h2 id="month">
+	    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d") %>
+	    <%=h @date.strftime("%B %Y") %>
+	    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d") %>
+	  </h2>
+	  <% calendar_for @hours, :year => @date.year, :month => @date.month, :first_day_of_week => 1 do |calendar| %>
+	    <%= calendar.head('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') %>
+	    <% calendar.day(:day_method => :date) do |date, hours| %>
+		
+	      <div>
+	      <%= date.day %>
+	      <% if (date.strftime("%m") == @date.strftime("%m")) && (["Mon", "Tue", "Wed", "Thu", "Fri"].include? date.strftime("%a"))%>
+	      	<% hours_needed += 8 %>
+		  <% end %>
+		  <span class="total"></span>
+		  <% if hours %>
+		  <% total = 0.0 %>
+	      <ul class="task_list">
+	        <% for hour in hours %>
+			  
+	          		<% if hour.project %>
+					<li><%= link_to "#{h(hour.amount)}h #{h(hour.project.name.to_s)}", edit_hour_path(hour),:title => "edit" %></li>
+					<% else %>
+					<li><%= "#{h(hour.amount)}h deleted project" %></li>
+					<% end %>
+	          	<% total += hour.amount %>
+				<% hours_month += hour.amount %>
+			  <% end %>
+	      </ul>
+		  <span class="total"><%= total %>h</span>
+		  <span class="add" title="add hours"><%= link_to image_tag("new_el.gif", :border => 0 ), :controller => :hours, :action => :new, :date => date %> </span>
+		<% end %>
+		</div>
+	    <% end %>
+	  <% end %>
+	</div>
+	<% # display statistic overview and selector for user hours (if current_user == admin || current_user == controller ) %>
+	<ul id="calendar_stats">
+			<li><%= hours_month %> / <%= hours_needed %> hours total in <%=h @date.strftime("%B %Y") %></li>
+			<% if current_user.admin? || current_user.controller? %>
+				<li> Show User: 
+				<%= collection_select(:hour, :user_id, User.order("name"), :id, :name, {:prompt => "select user", :selected => session[:hour_user_id] }) %>
+				</li>
+				<% if params[:user_id] %>
+
+				<% end %>
+			<% end %>
+	</ul>
+	<br/>
+	</div>
+	
+<% end%>

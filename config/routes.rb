@@ -37,8 +37,6 @@ Feedbacker::Application.routes.draw do
   
   match 'chat'  =>  'chat_messages#index', :as => :chat
 
-  match 'user/edit' => 'users#edit', :as => :edit_current_user
-
   match 'signup' => 'users#new', :as => :signup
 
   match 'logout' => 'sessions#destroy', :as => :logout
@@ -46,6 +44,8 @@ Feedbacker::Application.routes.draw do
   match 'login' => 'sessions#new', :as => :login  
   
   match 'get_user_hours' =>  'hours#show_xml', :as => :get_user_hours
+  
+  match 'hour_list' =>  'hours#list', :as => :hour_list
 
   resources :sessions
 
