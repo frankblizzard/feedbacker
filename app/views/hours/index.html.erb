@@ -10,7 +10,7 @@
 			
 		});
 		$("#hour_user_id").change ( function () {
-		  window.location.replace('/hours?user_id='+$(this).val());
+		  window.location.replace('/hours?user_id='+$(this).val()+'&view_mode=<%= params[:view_mode] %>');
 		});
 		
 	})
@@ -35,14 +35,29 @@
 				<th> Tasks </th>
 			</tr>
 		<% total_month_hours = 0 %>
+		<% dates = [] %>
 		<% for hour in @hours %>
 			<% if hour.date.strftime("%m") == @date.strftime("%m") %>
-			<tr>
-				<td> <%= hour.date.strftime("%Y-%m-%d") %></td>
-				<% total_month_hours += hour.amount %>
-				<td> <%= hour.amount %></td>
-				<td> <%= hour.task %></td>
-			</tr>
+		   	    <% day = hour.date %>
+				<% user = hour.user_id %>
+		   	    <% daily_hours = same_day_hours(day, user) %>
+		   	    
+		   	    <% unless dates.include?(hour.date.strftime("%Y-%m-%d")) %>		
+		   	    	<tr>
+		   	    		<td> <%= hour.date.strftime("%Y-%m-%d") %></td>
+		   	    		
+		   	    		<td> <%= daily_hours.to_a.sum { |hour| hour.amount } %></td>
+		   	    		<td> 
+		   	    			<% for dh in daily_hours %>
+		   	    			<%= link_to "#{dh.task} (#{dh.amount} hrs, #{dh.project.name})", edit_hour_path(dh) %>
+							<br/>
+							<% total_month_hours += dh.amount %>
+							<% end %>
+		   	    		</td>
+		   	    	</tr>
+		   	    
+		   	    	<% dates << hour.date.strftime("%Y-%m-%d") %>
+		   	    <% end %>
 			<% end %>
 		<% end %>
 		<tr>
@@ -89,7 +104,6 @@
 	      <% if (date.strftime("%m") == @date.strftime("%m")) && (["Mon", "Tue", "Wed", "Thu", "Fri"].include? date.strftime("%a"))%>
 	      	<% hours_needed += 8 %>
 		  <% end %>
-		  <span class="total"></span>
 		  <% if hours %>
 		  <% total = 0.0 %>
 	      <ul class="task_list">

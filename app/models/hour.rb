@@ -12,5 +12,7 @@ class Hour < ActiveRecord::Base
     belongs_to :project
     belongs_to :work_category
     
+    scope :day, lambda {|day| where(:date => day) }
+    
     
 end

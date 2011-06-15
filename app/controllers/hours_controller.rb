@@ -5,6 +5,8 @@ class HoursController < ApplicationController
 #  skip_before_filter :verify_authenticity_token, :only => [:create]
 #  skip_before_filter :login_required, :only => [:create]
 
+  helper_method :same_day_hours
+
   autocomplete :project, :name, :display_value => :name_number
   
   def get_autocomplete_items(parameters)
@@ -73,4 +75,12 @@ class HoursController < ApplicationController
     flash[:notice] = "Successfully deleted time record."
     redirect_to hours_url
   end
+  
+  private 
+  
+  def same_day_hours(day=Date.today, user=current_user)
+      hrs = Hour.where("date = ? and user_id = ?", day, user)
+      hrs
+  end
+  
 end
