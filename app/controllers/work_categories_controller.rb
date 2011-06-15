@@ -1,4 +1,5 @@
 class WorkCategoriesController < ApplicationController
+  
   def index
     @work_categories = WorkCategory.all
     respond_to do |format|

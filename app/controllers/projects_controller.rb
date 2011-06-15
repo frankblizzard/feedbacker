@@ -6,7 +6,9 @@ class ProjectsController < ApplicationController
   helper_method :sort_column, :sort_direction  
    
   uses_tiny_mce :options => {  :theme => 'simple', :editor_selector => 'mceEditor'}
+
   
+
   def index
     
     if current_user.works_at_eve

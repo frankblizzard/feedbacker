@@ -56,10 +56,10 @@
     <% end %>
   <% end %>
 </div>
-<% # display statistic overview and selector for user hours (if current_user = admin) %>
+<% # display statistic overview and selector for user hours (if current_user == admin || current_user == controller ) %>
 <ul id="calendar_stats">
 		<li><%= hours_month %> / <%= hours_needed %> hours total in <%=h @date.strftime("%B %Y") %></li>
-		<% if current_user.admin? %>
+		<% if current_user.admin? || current_user.controller? %>
 			<li> Show User: 
 			<%= collection_select(:hour, :user_id, User.order("name"), :id, :name, {:prompt => "select user", :selected => session[:hour_user_id] }) %>
 			</li>

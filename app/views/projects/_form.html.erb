@@ -11,9 +11,9 @@
  </script>
 <% end %>
 
-<%= simple_form_for @project do |f| %>  
+  <%= simple_form_for @project do |f| %>  
   <%= f.error_messages %>  
-  <%= f.association :client,  :selected => @project.client_id %>
+  <%= f.association :client, :collection => Client.all(:order => 'name'), :prompt => "Choose a Client..." %>
   <%= f.input :project_nr %> 
   <%= f.input :name %>  
   <div class="input string optional">
