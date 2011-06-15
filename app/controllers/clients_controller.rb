@@ -5,9 +5,9 @@ class ClientsController < ApplicationController
   def index
     @search = Client.search(params[:search])  
     if @search
-      @clients = @search.all
+      @clients = @search.order("name asc")
     else
-      @clients = Client.order("name")
+      @clients = Client.order("name asc")
     end
   end
 
@@ -37,7 +37,7 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
     if @client.update_attributes(params[:client])
       flash[:notice] = "Successfully updated client."
-      redirect_to client_url
+      redirect_to clients_url
     else
       render :action => 'edit'
     end
