@@ -49,7 +49,7 @@
 		   	    		<td> <%= daily_hours.to_a.sum { |hour| hour.amount } %></td>
 		   	    		<td> 
 		   	    			<% for dh in daily_hours %>
-		   	    			<%= link_to "#{dh.task} (#{dh.amount} hrs, #{dh.project.name})", edit_hour_path(dh) %>
+		   	    			<%= "#{dh.task} (#{dh.amount} hrs, #{dh.project.name})"%>
 							<br/>
 							<% total_month_hours += dh.amount %>
 							<% end %>

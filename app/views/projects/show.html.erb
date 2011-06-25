@@ -112,18 +112,31 @@ var planhrs = 0;
 <table class="project_hours_table">
 	<tr>
 		<th>User</th><th>Hours</th>
+		<% if current_user.accountant? %>
+		<th>hourly rate</th><th>Hours (monetary)</th>
+		<% end %>
 	</tr>
-
+		<% project_monetary_acc = 0 %>
 		<% for user in @users do %>
 	     <% user_hours = @project.total_hours(user) %>
 	   	    <% if user_hours > 0 %>
 	   	    <tr>
 	   	    	<td>
-	   	    		<%= user.name %>
+	   	    		<%= link_to user.name, user %>
 	   	    	</td>
 	   	    	<td>
 	   	    		<%= user_hours %>
 	   	    	</td>
+			<% if current_user.accountant? %>
+				<td>
+	   	    		<%= number_to_currency(user.hourly_rate, :unit => "€ ") %>
+	   	    	</td>
+				<td class="right_text">
+					<% monetary_user_hours = user_hours * user.hourly_rate %>
+	   	    		<%= number_to_currency(monetary_user_hours, :unit => "€ ") %>
+					<% project_monetary_acc += monetary_user_hours %>
+	   	    	</td>
+			<% end %>
 	   	    </tr>
 	   	   <% end %>
 		<% end %>
@@ -134,8 +147,16 @@ var planhrs = 0;
 			<td>
 				<b><i><%= @project.total_hours %></i></b> 
 			</td>
+		<% if current_user.accountant? %>
+			<td colspan="2" class="right_text">
+				<b><i><%= number_to_currency(project_monetary_acc, :unit => "€ ") %></i></b> 
+			</td>
+		<% end %>
 		</tr>
 </table>
+<% if current_user.accountant? %>
+<span class="myhint">Note: you can see monetary values because your user is accountant.</span>
+<% end %>
 <br/>
 <table class="project_hours_table">
 	<tr>

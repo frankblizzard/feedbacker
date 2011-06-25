@@ -14,16 +14,16 @@ class ProjectsController < ApplicationController
     if current_user.works_at_eve
       @search = Project.visible.search(params[:search])
       if @search
-        @projects = @search.order("project_nr desc")  
+        @projects = @search.order(sort_column + ' ' + sort_direction) 
       else
-        @projects = Project.visible.order("project_nr desc")  
+        @projects = Project.visible.order(sort_column + ' ' + sort_direction) 
       end
     else
       @search = Project.visible.where(:client_id => current_user.client_id).search(params[:search])
       if @search
-        @projects = @search.order("project_nr desc")  
+        @projects = @search.order(sort_column + ' ' + sort_direction) 
       else
-        @projects = Project.visible.where(:client_id => current_user.client_id).order("project_nr desc")  
+        @projects = Project.visible.where(:client_id => current_user.client_id).order(sort_column + ' ' + sort_direction) 
       end
     end
     
@@ -80,13 +80,13 @@ class ProjectsController < ApplicationController
   end  
   
   
-  private
+  private  
                                                      
   def sort_column
-    Project.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    params[:sort] ? params[:sort] : "project_nr"
   end
      
   def sort_direction
-    %w["asc", "desc"].include?(params[:direction]) ? params[:direction] : "asc"
+    params[:direction] ? params[:direction] : "desc"
   end
 end

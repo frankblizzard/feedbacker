@@ -133,18 +133,7 @@ table ul li{
 	padding-left: 0px;
 	margin-left: -10px;
 } 
- .pretty th .current {  
-   padding-right: 12px;  
-   background-repeat: no-repeat;  
-   background-position: right center;  
-  }  
-  .pretty th .asc {   
-    background-image: url(/images/up_arrow.gif);   
-  }  
-    
- .pretty th .desc {   
-   background-image: url(/images/down_arrow.gif);   
- } 
+
 .project_image_table img{
 float: left;
 padding: 5px;
@@ -409,4 +398,20 @@ input.chat, span.chat {
 }
 span.add_question {
 	margin-top: 15px;
+}
+
+td.right_text {
+	text-align: right;
+}
+.pretty th .current {  
+  padding-right: 12px;  
+  background-repeat: no-repeat;  
+  background-position: right center;  
+}  
+th .asc {   
+  background-image: url(/images/up_arrow.gif);   
+}  
+  
+th .desc {   
+  background-image: url(/images/down_arrow.gif);   
 }

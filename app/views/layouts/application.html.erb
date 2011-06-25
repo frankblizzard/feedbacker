@@ -29,6 +29,7 @@
 	<div class="main">
 		<div class="left_side">
 		<div id="logr"><%= link_to image_tag('logr_beta.png'), root_path %></div>
+		<% if session[:user_id] %>
 			<ul class="main_navi">
 			<li class="<%= "active" if params[:controller] == "home"%>"><%= link_to "Home", root_path, :title => "home" %></li>
 			<li class="<%= "active" if params[:controller] == "projects" %>"><%= link_to "Projects", projects_path, :title => "Projects" %></li>
@@ -40,7 +41,9 @@
 			<%= link_to "Time Tracking", hours_path, :title => "Time tracking" %>
 			</li>
 			<li class="<%= "active" if params[:controller] == "chat_messages" %>"><%= link_to "Lounge", chat_path %></li>
+
 			</ul>
+		<% end %>
 		</div>
 		<div class="right_side">
 			<div id="container">

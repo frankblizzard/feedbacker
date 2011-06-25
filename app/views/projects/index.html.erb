@@ -10,9 +10,9 @@
 
 <table>
   <tr>
-	<th><%= "Project_Nr"%></th>
-    <th><%= "Client"%></th>
-    <th><%= "Name"%></th>
+	<th><%= sortable "Project_Nr" %></th>
+    <th><%= sortable "client_id", "Client" %></th>
+    <th><%= sortable "Name" %></th>
   </tr>
   <% for project in @projects %>
     <tr class="<%= cycle('white','grey')-%>">

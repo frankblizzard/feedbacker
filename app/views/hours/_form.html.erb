@@ -5,6 +5,19 @@
  <script type="text/javascript" charset="utf-8">
  	$(function (){  
         $('#hour_date').datepicker({ dateFormat: 'yy-mm-dd' });  
+
+		$('#hour_holiday').click(function () {
+			if ($(this).is(':checked')) {
+				if(confirm("Make this day holiday (your input might be overwritten) ?")) {
+					$('#hour_amount').val("8");
+					$('#fake_project').val("000 - Urlaub");
+					$('#real_project_id').val("36");
+					$('#hour_task').val("Holiday");
+					$('#hour_work_category_id option').eq(7).attr('selected', 'selected');
+				}
+			}
+		})
+
     });
  </script>
 <% end %>

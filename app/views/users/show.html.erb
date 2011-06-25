@@ -19,3 +19,14 @@
 and posted <i><%= pluralize(@user.comments.count, "comment") %></i>
 </p>
 
+<% if current_user.accountant? %>
+	<h2>Accounting</h2>
+<p>	This User costs <%= number_to_currency(@user.hourly_rate, :unit => "€ ")%> per hour. <br/>
+	You can change this value here.<br/><br/>
+</p>
+	<% form_for @user do |f| %>
+	<%= f.label :hourly_rate, "hourly rate" %>
+    <%= f.text_field :hourly_rate, :size => 3 %>€ <br/>
+	<%= f.submit %>
+	<% end %>
+<% end %>
