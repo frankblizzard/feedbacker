@@ -22,11 +22,11 @@
 
 	<div id="calendar" class="list_view">
 		<b>list view</b> &nbsp; <%= link_to "calendar view", :view_mode => "calendar" %>
-		<h2 id="month">
+		<h3 id="month">
 	    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d"), :view_mode => "list" %>
 	    <%=h @date.strftime("%B %Y") %>
 	    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d"), :view_mode => "list" %>
-	  </h2>
+	  </h3>
 		
 		<table class="hours">
 			<tr>

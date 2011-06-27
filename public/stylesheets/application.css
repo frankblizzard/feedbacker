@@ -99,6 +99,10 @@ h2 {
     text-indent: 5px;
     width: 30%;
 }
+#comments_count {
+	background-color: none;
+	width: auto !important;
+}
 
 table {
 	border-collapse: collapse;	
