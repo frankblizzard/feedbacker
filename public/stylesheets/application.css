@@ -409,11 +409,14 @@ td.right_text {
   background-position: right center;  
 }  
 th .asc {   
-  background-image: url(/images/up_arrow.gif);   
+  background: url(/images/up_arrow.gif) left no-repeat;   
+  padding-left: 10px;
+  
 }  
   
 th .desc {   
-  background-image: url(/images/down_arrow.gif);   
+  background: url(/images/down_arrow.gif) left no-repeat;   
+  padding-left: 10px;
 }
 tr.total {
 	border-top: 2px dotted #000;
