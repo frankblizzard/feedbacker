@@ -14,6 +14,7 @@ class Project < ActiveRecord::Base
     has_many :users, :through => :assignments 
     has_many :hours
     has_many :plan_hours, :dependent => :destroy
+    has_many :user_plan_hours, :dependent => :destroy
     
     
     attr_reader :user_tokens, :name_number, :total_hours, :hours_on
@@ -64,6 +65,10 @@ class Project < ActiveRecord::Base
       end
       hours.to_a.sum { |hour| hour.amount }
     end   
+
+    def get_user_plan_hour(user=nil)
+      user_plan_hour = self.user_plan_hours.where(:user => user).first
+    end
 
     # helper function for jQuery tokenized input
     def user_tokens=(ids)

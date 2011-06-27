@@ -389,7 +389,7 @@ ul#calendar_stats li {
 	margin-right: 25px;
 }
 
-#plan_hours_show_hide {
+#plan_hours_show_hide, #user_plan_hours_show_hide {
 	display: none;
 }
 
@@ -414,4 +414,7 @@ th .asc {
   
 th .desc {   
   background-image: url(/images/down_arrow.gif);   
+}
+tr.total {
+	border-top: 2px dotted #000;
 }

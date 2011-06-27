@@ -5,11 +5,15 @@
 
 <script type="text/javascript" charset="utf-8">  
 var planhrs = 0;
+var usrplanhrs = 0;
   $(function () {
 	
 	$('#planhoursshowhide').click(function () {
 		planhrsShowHide();
-	})
+	});
+	$('#userplanhoursshowhide').click(function () {
+		userplanhrsShowHide();
+	});
 	  
     new Highcharts.Chart({  
       chart: { renderTo: 'hours_chart' },  
@@ -67,21 +71,62 @@ var planhrs = 0;
 	</tr>
 </table>
 <br/> 
+
+
+
+<!-- USER Plan Hours -->
+<% total_supplement_factor = 1 %>
+<% for data in @key_data %>
+	<% total_supplement_factor *= 1 + (data.percentage / 100) %>
+<% end %>
+
+<div class="user_plan_hours">
+  <h2>User Plan Hours</h2>
+  <h4 id="user_plan_hours_count"><%= pluralize(@project.user_plan_hours.count, "position") %></h4>
+  <div id="user_plan_hours">
+	<%= render @project.user_plan_hours %>
+  </div>
+</div>
+<% if current_user.admin? || current_user.accountant? %>
+<br/>
+<a id="userplanhoursshowhide" href="#">add user plan hours</a>
+<div id="user_plan_hours_show_hide">
+<% form_for [@project, UserPlanHour.new], :remote => true  do |f| %>
+  <p class="add_plan_hours">
+
+    <%= f.hidden_field :project_id, :value => @project.id %>
+	<%= f.hidden_field :burden_costs, :value => total_supplement_factor %>
+    <%= f.label :amount, "user hours (plan)" %><br />
+    <%= f.text_field :amount, :size => 5 %>
+	<%= f.collection_select :user_id, User.all, :id, :name %>  
+  </p>
+
+  <p>
+    <%= f.submit "Add plan hours" %>
+  </p>
+<% end %>
+</div>
+<% end %>
+<br/> 
+
+<!-- USER Plan Hours end -->
+
+<!-- Category Plan Hours -->
 <div class="plan_hours">
-  <h2>Plan Hours</h2>
+  <h2>Category Plan Hours</h2>
   <h4 id="plan_hours_count"><%= pluralize(@project.plan_hours.count, "position") %></h4>
   <div id="plan_hours">
 	<%= render @project.plan_hours %>
   </div>
 <% if current_user.admin? || current_user.project_manager? %>
 <br/>
-<a id="planhoursshowhide" href="#">add plan hours</a>
+<a id="planhoursshowhide" href="#">add category plan hours</a>
 <div id="plan_hours_show_hide">
 <% form_for [@project, PlanHour.new], :remote => true  do |f| %>
   <p class="add_plan_hours">
 
     <%= f.hidden_field :project_id, :value => @project.id %>
-    <%= f.label :amount, "hours (plan)" %><br />
+    <%= f.label :amount, "category hours (plan)" %><br />
     <%= f.text_field :amount, :size => 5 %>
 	<%= f.collection_select :work_category_id, WorkCategory.all, :id, :name %>  
   </p>
@@ -93,6 +138,9 @@ var planhrs = 0;
 </div>
 <% end %>
 </div>
+
+<!-- Category Plan Hours END -->
+
 <br/>
   <h2>Images</h2>
 <br/>
@@ -111,12 +159,16 @@ var planhrs = 0;
 <br/>
 <table class="project_hours_table">
 	<tr>
-		<th>User</th><th>Hours</th>
+		<th>User</th><th>Hours (plan)</th><th>Hours (real)</th><th>+/- (abs)</th><th>+/- (%)</th>
 		<% if current_user.accountant? %>
-		<th>hourly rate</th><th>Hours (monetary)</th>
+		<th>hourly rate (plan)</th><th>hourly rate (real)</th>
+		<th>Hours planned (monetary)</th><th>Hours real (monetary)</th>
+		<th>+/- (abs)</th><th>+/- (%)</th>
 		<% end %>
 	</tr>
 		<% project_monetary_acc = 0 %>
+		<% project_monetary_plan_acc = 0 %>
+		<% hours_plan_acc = 0 %>
 		<% for user in @users do %>
 	     <% user_hours = @project.total_hours(user) %>
 	   	    <% if user_hours > 0 %>
@@ -125,17 +177,123 @@ var planhrs = 0;
 	   	    		<%= link_to user.name, user %>
 	   	    	</td>
 	   	    	<td>
+					<% user_plan_hour = @project.get_user_plan_hour(user) %>
+					<% if user_plan_hour %>
+	   	    			<%= uph = user_plan_hour.amount  %>
+						<% # accumulate plan hours for total %>
+						<% hours_plan_acc += uph %>
+					<% else %>
+						--- 
+					<% end %>
+	   	    	</td>
+	   	    	<td>
 	   	    		<%= user_hours %>
 	   	    	</td>
+				<td>
+					<% if uph %>
+				   		<% diff_hrs = uph.to_f - user_hours.to_f %>
+				   		<% if diff_hrs < 0 %>
+				   			<span class="red">
+				   				<%= diff_hrs %>
+				   			</span>
+				   		<% elsif diff_hrs < 10%>
+				   		 	<span class="yellow">
+				   		    	<%= diff_hrs %>
+				   		    </span>
+				   		<% else %>
+				   		 	<span class="green">
+				   		    	<%= diff_hrs %>
+				   		    </span>
+				   		<% end %>
+					<% else %>
+						---
+					<% end %>
+				</td>
+				<td>
+					<% if uph %>
+						<% diff_percent = (uph.to_f - user_hours.to_f) / uph.to_f * 100 %>
+						<% if diff_hrs < 0 %>
+							<span class="red">
+								<%= number_to_percentage(diff_percent, :precision => 1) %>
+							</span>
+						<% elsif diff_hrs < 10%>
+				    	 	<span class="yellow">
+						    	<%= number_to_percentage(diff_percent, :precision => 1) %>
+						    </span>
+						<% else %>
+						 	<span class="green">
+						    	<%= number_to_percentage(diff_percent, :precision => 1) %>
+						    </span>
+						<% end %>
+					<% else %>
+						---
+					<% end %>
+				</td>
 			<% if current_user.accountant? %>
 				<td>
-	   	    		<%= number_to_currency(user.hourly_rate, :unit => "€ ") %>
+					<% if user_plan_hour %>
+						<% uph_rate = (user_plan_hour ?  user_plan_hour.individual_costs * user_plan_hour.burden_costs : 1 ) %>
+	   	    			<%= number_to_currency(uph_rate, :unit => "€ ") %>
+					<% else %>
+						---
+					<% end %>
+	   	    	</td>
+				<td>
+	   	    		<%= number_to_currency(user.hourly_rate * total_supplement_factor, :unit => "€ ") %>
 	   	    	</td>
 				<td class="right_text">
-					<% monetary_user_hours = user_hours * user.hourly_rate %>
+					<% if user_plan_hour %>	
+	   	    			<%= number_to_currency(user_plan_hour.total_costs, :unit => "€ ") %>
+						<% project_monetary_plan_acc += user_plan_hour.total_costs %>
+					<% else %>
+						---
+					<% end %>
+	   	    	</td>
+				<td class="right_text">
+					<% monetary_user_hours = user_hours * user.hourly_rate * total_supplement_factor %>
 	   	    		<%= number_to_currency(monetary_user_hours, :unit => "€ ") %>
 					<% project_monetary_acc += monetary_user_hours %>
 	   	    	</td>
+				<td>
+					<% if user_plan_hour %>
+				   		<% diff_mon = user_plan_hour.total_costs - monetary_user_hours %>
+				   		<% if diff_mon < 0 %>
+				   			<span class="red">
+					    		<%= number_to_currency(diff_mon, :unit => "€ ") %>
+				   			</span>
+				   		<% elsif diff_hrs < 10%>
+				   		 	<span class="yellow">
+					    		<%= number_to_currency(diff_mon, :unit => "€ ") %>
+				   		    </span>
+				   		<% else %>
+				   		 	<span class="green">
+					    		<%= number_to_currency(diff_mon, :unit => "€ ") %>
+				   		    </span>
+				   		<% end %>
+					<% else %>
+						---
+					<% end %>
+				</td>
+				<td>
+					<% if user_plan_hour %>
+						<% diff_percent = (user_plan_hour.total_costs - monetary_user_hours) / user_plan_hour.total_costs * 100 %>
+						<% if diff_mon < 0 %>
+							<span class="red">
+								<%= number_to_percentage(diff_percent, :precision => 1) %>
+							</span>
+						<% elsif diff_mon < 10%>
+				    	 	<span class="yellow">
+						    	<%= number_to_percentage(diff_percent, :precision => 1) %>
+						    </span>
+						<% else %>
+						 	<span class="green">
+						    	<%= number_to_percentage(diff_percent, :precision => 1) %>
+						    </span>
+						<% end %>
+					<% else %>
+						---
+					<% end %>
+				</td>
 			<% end %>
 	   	    </tr>
 	   	   <% end %>
@@ -145,11 +303,96 @@ var planhrs = 0;
 				<b><i>total</i></b> 
 			</td>
 			<td>
+				<b><i><%= hours_plan_acc %></i></b> 
+			</td>
+			<td>
 				<b><i><%= @project.total_hours %></i></b> 
 			</td>
+			<td>
+				<% diff = hours_plan_acc - @project.total_hours %>
+				<% if diff < 0 %>
+					<span class="red">
+						<b><%= sprintf( "%0.02f", diff) %></b>
+					</span>
+				<% elsif diff < 10%>
+		    	 	<span class="yellow">
+						<b><%= sprintf( "%0.02f", diff) %></b>
+				    </span>
+				<% else %>
+				 	<span class="green">
+ 						<b><%= sprintf( "%0.02f", diff) %></b>
+				    </span>
+				<% end %>
+			</td>
+			<td>
+			<% if hours_plan_acc > 0 %>
+				<% diff_percent = (hours_plan_acc.to_f - @project.total_hours.to_f) / hours_plan_acc.to_f * 100 %>
+				<% if diff < 0 %>
+					<span class="red">
+					<b>	<%= number_to_percentage(diff_percent, :precision => 1) %></b>
+					</span>
+				<% elsif diff < 10%>
+		    	 	<span class="yellow">
+				    <b>	<%= number_to_percentage(diff_percent, :precision => 1) %></b>
+				    </span>
+				<% else %>
+				 	<span class="green">
+				    <b>	<%= number_to_percentage(diff_percent, :precision => 1) %></b>
+				    </span>
+				<% end %>
+			<% else %>
+				---
+			<% end %>
+			</td>
+
 		<% if current_user.accountant? %>
-			<td colspan="2" class="right_text">
+			<td>
+				---
+			</td>
+			<td>
+				---
+			</td>
+			<td class="right_text">
+				<b><i><%= number_to_currency(project_monetary_plan_acc, :unit => "€ ") %></i></b> 
+			</td>
+			<td class="right_text">
 				<b><i><%= number_to_currency(project_monetary_acc, :unit => "€ ") %></i></b> 
+			</td>
+			<td>
+					<% diff = project_monetary_plan_acc - project_monetary_acc %>
+					<% if diff < 0 %>
+						<span class="red">
+						<b>	<%= number_to_currency(diff, :unit => "€ ") %></b>
+						</span>
+					<% elsif diff < 10%>
+			    	 	<span class="yellow">
+					    <b>	<%= number_to_currency(diff, :unit => "€ ") %></b>
+					    </span>
+					<% else %>
+					 	<span class="green">
+					    <b>	<%= number_to_currency(diff, :unit => "€ ") %></b>
+					    </span>
+					<% end %>
+			</td>
+			<td>
+				<% if hours_plan_acc > 0 %>
+					<% diff_percent = (project_monetary_plan_acc - project_monetary_acc) / project_monetary_plan_acc  * 100 %>
+					<% if diff < 0 %>
+						<span class="red">
+						<b>	<%= number_to_percentage(diff_percent, :precision => 1) %></b>
+						</span>
+					<% elsif diff < 10%>
+			    	 	<span class="yellow">
+					    <b>	<%= number_to_percentage(diff_percent, :precision => 1) %></b>
+					    </span>
+					<% else %>
+					 	<span class="green">
+					    <b>	<%= number_to_percentage(diff_percent, :precision => 1) %></b>
+					    </span>
+					<% end %>
+				<% else %>
+					---
+				<% end %>
 			</td>
 		<% end %>
 		</tr>

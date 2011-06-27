@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110624171750) do
+ActiveRecord::Schema.define(:version => 20110627105241) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -80,6 +80,13 @@ ActiveRecord::Schema.define(:version => 20110624171750) do
     t.integer  "user_id"
   end
 
+  create_table "key_datas", :force => true do |t|
+    t.string   "name"
+    t.float    "percentage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "plan_hours", :force => true do |t|
     t.float    "amount"
     t.integer  "project_id"
@@ -112,6 +119,17 @@ ActiveRecord::Schema.define(:version => 20110624171750) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "image_id"
+  end
+
+  create_table "user_plan_hours", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.float    "amount"
+    t.float    "individual_costs"
+    t.float    "burden_costs"
+    t.float    "total_costs"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

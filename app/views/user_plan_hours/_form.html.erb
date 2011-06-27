@@ -1,0 +1,24 @@
+<%= form_for @user_plan_hour do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </p>
+  <p>
+    <%= f.label :individual_costs %><br />
+    <%= f.text_field :individual_costs %>
+  </p>
+  <p>
+    <%= f.label :burden_costs %><br />
+    <%= f.text_field :burden_costs %>
+  </p>
+  <p>
+    <%= f.label :total_costs %><br />
+    <%= f.text_field :total_costs %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

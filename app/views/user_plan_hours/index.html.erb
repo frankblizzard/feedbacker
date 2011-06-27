@@ -1,0 +1,25 @@
+<% title "User Plan Hours" %>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Amount</th>
+    <th>Individual Costs</th>
+    <th>Burden Costs</th>
+    <th>Total Costs</th>
+  </tr>
+  <% for user_plan_hour in @user_plan_hours %>
+    <tr>
+      <td><%= user_plan_hour.user_id %></td>
+      <td><%= user_plan_hour.amount %></td>
+      <td><%= user_plan_hour.individual_costs %></td>
+      <td><%= user_plan_hour.burden_costs %></td>
+      <td><%= user_plan_hour.total_costs %></td>
+      <td><%= link_to "Show", user_plan_hour %></td>
+      <td><%= link_to "Edit", edit_user_plan_hour_path(user_plan_hour) %></td>
+      <td><%= link_to "Destroy", user_plan_hour, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New User Plan Hour", new_user_plan_hour_path(user_plan_hour) %></p>

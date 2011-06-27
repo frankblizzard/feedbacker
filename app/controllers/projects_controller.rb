@@ -34,8 +34,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:id], :include => [:plan_hours, :user_plan_hours, :hours])
     @users = User.all
+    @key_data = KeyData.all
     @categories = WorkCategory.all
   end
 

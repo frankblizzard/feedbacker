@@ -13,6 +13,9 @@ class Ability
      can :manage, [Project, Client, Hour, PlanHour]
      cannot :destroy, :project
      can :read, :all
+   elsif user.accountant?
+     can :manage, [KeyData]
+     can :read, :all
    elsif user.works_at_eve? || user.client_id == 17
      can :manage, [Hour]
      can :read, :all

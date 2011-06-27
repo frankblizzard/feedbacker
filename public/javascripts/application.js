@@ -50,11 +50,22 @@ commentsShowHide = function () {
 planhrsShowHide = function () {
 	if (planhrs == 1) {
 		$('#plan_hours_show_hide').slideUp();
-		$('#planhoursshowhide').text('add plan hours');
+		$('#planhoursshowhide').text('add category plan hours');
 		planhrs = 0;
 	} else{
 		$('#plan_hours_show_hide').slideDown();
 		$('#planhoursshowhide').text('hide');
 		planhrs = 1;
-	};	
+	}
+}
+userplanhrsShowHide = function () {
+	if (usrplanhrs == 1) {
+		$('#user_plan_hours_show_hide').slideUp();
+		$('#userplanhoursshowhide').text('add user plan hours');
+		usrplanhrs = 0;
+	} else{
+		$('#user_plan_hours_show_hide').slideDown();
+		$('#userplanhoursshowhide').text('hide');
+		usrplanhrs = 1;
+	}
 }

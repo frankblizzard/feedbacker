@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
   has_many :chat_messages
   has_many :answers
   
+  has_many :user_plan_hours
+  
   belongs_to :client
 
   # login can be either username or email address

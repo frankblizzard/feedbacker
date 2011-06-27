@@ -1,0 +1,29 @@
+<% title "Key Data / Kennzahlen" %>
+
+<p>
+	This is the place to manage all business and finance related key data. Entries should be named accordingly and percentage is in hundreds, e.g. 19 for a factor of 1,19.
+</p>
+
+<table class="pretty">
+  <tr>
+    <th>Name</th>
+    <th>Percentage</th>
+  </tr>
+  <% total_percent = 0 %>
+  <% for key_data in @key_datas %>
+    <tr>
+      <td><%= key_data.name %></td>
+      <td><%= number_to_percentage(key_data.percentage, :precision => 2, :delimiter => '.', :separator => ',') %></td>
+      <td><%= link_to "Show", key_data %></td>
+      <td><%= link_to "Edit", edit_key_data_path(key_data) %></td>
+      <td><%= link_to "Destroy", key_data, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% total_percent += key_data.percentage %>
+  <% end %>
+	<tr class="total">
+      <td> <b>Gemeinkosten-Aufschlag (gesamt) </b></td>
+      <td> <b><%= number_to_percentage(total_percent, :precision => 2, :delimiter => '.', :separator => ',') %></b></td>
+	</tr>
+</table>
+<br/>
+<p><%= link_to "New Key Data", new_key_data_path(key_data) %></p>

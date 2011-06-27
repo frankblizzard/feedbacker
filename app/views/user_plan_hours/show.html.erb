@@ -1,0 +1,32 @@
+<% title "User Plan Hour" %>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_plan_hour.user_id %>
+</p>
+<p>
+  <strong>Project:</strong>
+  <%= @user_plan_hour.project_id %>
+</p>
+<p>
+  <strong>Amount:</strong>
+  <%= @user_plan_hour.amount %>
+</p>
+<p>
+  <strong>Individual Costs:</strong>
+  <%= @user_plan_hour.individual_costs %>
+</p>
+<p>
+  <strong>Burden Costs:</strong>
+  <%= @user_plan_hour.burden_costs %>
+</p>
+<p>
+  <strong>Total Costs:</strong>
+  <%= @user_plan_hour.total_costs %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_user_plan_hour_path(@user_plan_hour) %> |
+  <%= link_to "Destroy", @user_plan_hour, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", user_plan_hours_path %>
+</p>

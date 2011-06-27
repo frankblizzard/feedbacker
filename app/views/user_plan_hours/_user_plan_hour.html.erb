@@ -1,0 +1,7 @@
+<div class="user_plan_hour">
+	<span class="hours_amout"><%= user_plan_hour.amount %> hours <span>
+	<span class="hours_category"><%= user_plan_hour.user.name %><span>
+	<% if current_user.admin? || current_user.accountant? %>
+	 <span class="delete">  <%= link_to "x", project_user_plan_hour_path(user_plan_hour.project, user_plan_hour), :confirm => "delete this plan_hour?", :method => :delete, :title => "delete plan hour" %></span>
+	<% end %>
+</div>

@@ -1,0 +1,4 @@
+$("#user_plan_hours").prepend("<%= escape_javascript render(@user_plan_hour) %>");  
+$('#user_plan_hours_count').html('<%= pluralize(@user_plan_hour.project.user_plan_hours.count, "Position") %>');  
+$("#user_plan_hour_amount").val("");
+$("#user_plan_hours .user_plan_hour:first").effect("highlight", { color:"#D3ECF4"}, 3000);

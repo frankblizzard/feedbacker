@@ -1,0 +1,16 @@
+<% title "Key Data" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @key_data.name %>
+</p>
+<p>
+  <strong>Percentage:</strong>
+  <%= @key_data.percentage %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_key_data_path(@key_data) %> |
+  <%= link_to "Destroy", @key_data, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", key_datas_path %>
+</p>
