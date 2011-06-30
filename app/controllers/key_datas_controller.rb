@@ -1,4 +1,6 @@
 class KeyDatasController < ApplicationController
+  load_and_authorize_resource :key_data
+  
   def index
     @key_datas = KeyData.all
   end
@@ -15,7 +17,7 @@ class KeyDatasController < ApplicationController
     @key_data = KeyData.new(params[:key_data])
     if @key_data.save
       flash[:notice] = "Successfully created key data."
-      redirect_to @key_data
+      redirect_to key_datas_url
     else
       render :action => 'new'
     end

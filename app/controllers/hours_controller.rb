@@ -17,10 +17,10 @@ class HoursController < ApplicationController
   
   def index
     if current_user.admin? || current_user.controller?
-      params[:user_id] ? @hours = Hour.where("user_id = ?", params[:user_id]).to_a : session[:hour_user_id] ? @hours = Hour.where("user_id = ?", session[:hour_user_id]).to_a : @hours = Hour.all
+      params[:user_id] ? @hours = Hour.where("user_id = ?", params[:user_id]).order("date").to_a : session[:hour_user_id] ? @hours = Hour.where("user_id = ?", session[:hour_user_id]).order("date").to_a : @hours = Hour.all
         session[:hour_user_id] = params[:user_id] if params[:user_id]
     else
-       @hours = current_user.hours
+       @hours = current_user.hours.order("date")
     end  
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
     respond_to do |format|

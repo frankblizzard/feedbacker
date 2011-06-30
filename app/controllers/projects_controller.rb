@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
 
   def index
     
-    if current_user.works_at_eve
+    if current_user.works_at_eve?
       @search = Project.visible.search(params[:search])
       if @search
         @projects = @search.order(sort_column + ' ' + sort_direction) 

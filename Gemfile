@@ -6,7 +6,6 @@ gem 'rails', '3.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql'
-gem "nifty-generators", :group => :development
 gem 'haml' 
 gem 'jquery-rails'
 gem 'simple_form'
@@ -24,6 +23,7 @@ gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 
 #authorization
 gem 'cancan'
+gem "bcrypt-ruby", :require => "bcrypt"
 
 # pagination
 gem "will_paginate", "~> 3.0.pre2"
@@ -57,10 +57,17 @@ gem 'tiny_mce'
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
-group :test do
-   gem 'webrat'
-   # testing
-   gem 'cucumber'
-   gem 'mocha' 
+group :development do
+   gem 'rspec-rails', '2.5.0'
+   gem "nifty-generators"
+   gem 'cucumber-rails'
+   gem 'capybara'
 end
-gem "bcrypt-ruby", :require => "bcrypt"
+
+group :test do
+   gem 'rspec-rails', '2.5.0'
+   gem 'database_cleaner'
+   gem 'cucumber-rails'
+   gem 'capybara'
+end
+

@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  load_and_authorize_resource :image
+
   load_and_authorize_resource :survey, :through => :image
   
   def index

@@ -14,9 +14,8 @@
     <tr>
       <td><%= key_data.name %></td>
       <td><%= number_to_percentage(key_data.percentage, :precision => 2, :delimiter => '.', :separator => ',') %></td>
-      <td><%= link_to "Show", key_data %></td>
       <td><%= link_to "Edit", edit_key_data_path(key_data) %></td>
-      <td><%= link_to "Destroy", key_data, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Delete", key_data, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% total_percent += key_data.percentage %>
   <% end %>
