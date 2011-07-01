@@ -101,21 +101,24 @@
 		
 	      <div>
 	      <%= date.day %>
-	      <% if (date.strftime("%m") == @date.strftime("%m")) && (["Mon", "Tue", "Wed", "Thu", "Fri"].include? date.strftime("%a"))%>
+	
+		<% # sum of all days inside the month except weekends is 'hours_needed' %>
+	      <% if ((date.strftime("%m") == @date.strftime("%m")) && (["Mon", "Tue", "Wed", "Thu", "Fri"].include? date.strftime("%a"))) %>
 	      	<% hours_needed += 8 %>
 		  <% end %>
 		  <% if hours %>
 		  <% total = 0.0 %>
 	      <ul class="task_list">
 	        <% for hour in hours %>
-			  
 	          		<% if hour.project %>
 					<li><%= link_to "#{h(hour.amount)}h #{h(hour.project.name.to_s)}", edit_hour_path(hour),:title => "edit" %></li>
 					<% else %>
 					<li><%= "#{h(hour.amount)}h deleted project" %></li>
 					<% end %>
 	          	<% total += hour.amount %>
-				<% hours_month += hour.amount %>
+			    <% if (date.strftime("%m") == @date.strftime("%m")) %>	
+				  <% hours_month += hour.amount %>
+				<% end %>
 			  <% end %>
 	      </ul>
 		  <span class="total"><%= total %>h</span>
@@ -127,7 +130,8 @@
 	</div>
 	<% # display statistic overview and selector for user hours (if current_user == admin || current_user == controller ) %>
 	<ul id="calendar_stats">
-			<li><%= hours_month %> / <%= hours_needed %> hours total in <%=h @date.strftime("%B %Y") %></li>
+			<% uberstunden = hours_month - hours_needed %>
+			<li><%= hours_month %> of <%= hours_needed %> hours total for <%=h @date.strftime("%B %Y") %> <i>(<%= uberstunden %> Überstunden) </i></li>
 			<% if current_user.admin? || current_user.controller? %>
 				<li> Show User: 
 				<%= collection_select(:hour, :user_id, User.order("name"), :id, :name, {:prompt => "select user", :selected => session[:hour_user_id] }) %>
