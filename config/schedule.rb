@@ -5,10 +5,9 @@
 
 # Example:
 #
-set :environment, ENV['RAILS_ENV']
 set :output, "/log/cron_log.log"
 
-every 5.minutes  do
+every 1.day :at => '2:30 am'  do
   dump_path = "/User/eveadmin/rails/db_backups/dump#{Date.today.to_s}"
   command "sudo mysqldump -uroot -prootz feedbacker_development > #{dump_path}.sql"
   command "tar -zcvf #{dump_path}.tar.gz #{dump_path}.sql"
