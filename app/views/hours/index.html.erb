@@ -95,9 +95,9 @@
 	    <%=h @date.strftime("%B %Y") %>
 	    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-%d") %>
 	  </h3>
-	  <% calendar_for @hours, :year => @date.year, :month => @date.month, :first_day_of_week => 1 do |calendar| %>
+	  <%= calendar_for @hours, :year => @date.year, :month => @date.month, :first_day_of_week => 1 do |calendar| %>
 	    <%= calendar.head('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') %>
-	    <% calendar.day(:day_method => :date) do |date, hours| %>
+	    <%= calendar.day(:day_method => :date) do |date, hours| %>
 		
 	      <div>
 	      <%= date.day %>

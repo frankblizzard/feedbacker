@@ -8,9 +8,7 @@ class Ability
 
    if user.admin?
      can :manage, :all
-     can :manage, [Survey]
      can :read, :all
-     cannot :update, [KeyData]
    elsif user.project_manager?
      can :manage, [Project, Client, Hour, PlanHour, Image, Survey]
      cannot :destroy, :project
