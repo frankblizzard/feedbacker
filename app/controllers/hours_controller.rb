@@ -20,7 +20,11 @@ class HoursController < ApplicationController
       params[:user_id] ? @hours = Hour.where("user_id = ?", params[:user_id]).order("date").to_a : session[:hour_user_id] ? @hours = Hour.where("user_id = ?", session[:hour_user_id]).order("date").to_a : @hours = Hour.all
         session[:hour_user_id] = params[:user_id] if params[:user_id]
     else
-       @hours = current_user.hours.order("date")
+      if params[:view_mode]=='list'
+        @hours = current_user.hours.order('date')
+      else
+        @hours = current_user.hours
+      end
     end  
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
     respond_to do |format|
