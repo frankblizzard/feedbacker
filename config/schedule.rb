@@ -5,14 +5,13 @@
 
 # Example:
 #
-set :output, "/log/cron_log.log"
+set :output, "/User/eveadmin/rails/feebacker/log/cron_log.log"
 
 every 1.day :at => '2:30 am'  do
   dump_path = "/User/eveadmin/rails/db_backups/dump#{Date.today.to_s}"
   command "sudo mysqldump -uroot -prootz feedbacker_development > #{dump_path}.sql"
   command "tar -zcvf #{dump_path}.tar.gz #{dump_path}.sql"
   command "rm #{dump_path}.sql"
-
   runner "Storage.store_dump '#{dump_path}.tar.gz'"
 end
 
