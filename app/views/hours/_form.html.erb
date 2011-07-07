@@ -49,7 +49,7 @@
 	  <span class="hint">Field will autocomplete, type project_nr. or name and choose</span>
 	 </div>
    <% else %>
-		<%= f.text_field :fake_project, :disabled => true, :value => "#{@hour.project.name}" %>
+		<%= link_to "#{@hour.project.project_nr} - #{@hour.project.name}", @hour.project %><br/>
 		<span class="hint">Project is locked in edit mode</span>
    <% end %>
 
