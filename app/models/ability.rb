@@ -8,6 +8,7 @@ class Ability
 
    if user.admin?
      can :manage, :all
+     can :manage, [Project, Client, Hour, PlanHour, Image, Survey]
      can :read, :all
    elsif user.project_manager?
      can :manage, [Project, Client, Hour, PlanHour, Image, Survey]

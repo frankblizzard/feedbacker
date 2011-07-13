@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110627105241) do
+ActiveRecord::Schema.define(:version => 20110713135519) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20110627105241) do
     t.float    "total_costs"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
   end
 
   create_table "users", :force => true do |t|

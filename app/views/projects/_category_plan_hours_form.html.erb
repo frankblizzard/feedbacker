@@ -1,0 +1,17 @@
+<br/>
+<a id="planhoursshowhide" href="#">add category plan hours</a>
+<div id="plan_hours_show_hide">
+<% form_for [@project, PlanHour.new], :remote => true  do |f| %>
+  <p class="add_plan_hours">
+
+    <%= f.hidden_field :project_id, :value => @project.id %>
+    <%= f.label :amount, "category hours (plan)" %><br />
+    <%= f.text_field :amount, :size => 5 %>
+	<%= f.collection_select :work_category_id, WorkCategory.all, :id, :name %>  
+  </p>
+
+  <p>
+    <%= f.submit "Add plan hours" %>
+  </p>
+<% end %>
+</div>

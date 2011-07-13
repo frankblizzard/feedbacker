@@ -1,0 +1,21 @@
+<br/>
+<a id="userplanhoursshowhide" href="#">add user plan hours</a>
+<div id="user_plan_hours_show_hide">
+<% form_for [project, UserPlanHour.new], :remote => true  do |f| %>
+  <p class="add_plan_hours">
+
+    <%= f.hidden_field :project_id, :value => @project.id %>
+	<%= f.hidden_field :burden_costs, :value => total_supplement_factor %>
+    <%= f.label :amount, "user hours (plan)" %><br />
+    <%= f.text_field :amount, :size => 5 %>
+	<%= f.collection_select :user_id, User.all, :id, :name %>  
+  </p>
+	<p>
+		<%= f.label :description, "job description" %><br />
+	    <%= f.text_field :description, :size => 25 %>
+	</p>
+  <p>
+    <%= f.submit "Add plan hours" %>
+  </p>
+<% end %>
+</div>
