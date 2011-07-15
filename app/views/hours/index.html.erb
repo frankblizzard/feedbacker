@@ -131,7 +131,7 @@
 	<% # display statistic overview and selector for user hours (if current_user == admin || current_user == controller ) %>
 	<ul id="calendar_stats">
 			<% uberstunden = hours_month - hours_needed %>
-			<li><%= hours_month %> of <%= hours_needed %> hours total for <%=h @date.strftime("%B %Y") %> <i>(<%= uberstunden %> Überstunden) </i></li>
+			<li><%= hours_month %> of <%= hours_needed %> hours total for <%=h @date.strftime("%B %Y") %> <i>(<%= uberstunden %> Uberstunden) </i></li>
 			<% if current_user.admin? || current_user.controller? %>
 				<li> Show User: 
 				<%= collection_select(:hour, :user_id, User.order("name"), :id, :name, {:prompt => "select user", :selected => session[:hour_user_id] }) %>
