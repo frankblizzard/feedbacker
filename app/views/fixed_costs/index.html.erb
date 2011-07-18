@@ -1,0 +1,19 @@
+<% title "Fixed Costs" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Amount</th>
+  </tr>
+  <% for fixed_cost in @fixed_costs %>
+    <tr>
+      <td><%= fixed_cost.name %></td>
+      <td><%= fixed_cost.amount %></td>
+      <td><%= link_to "Show", fixed_cost %></td>
+      <td><%= link_to "Edit", edit_fixed_cost_path(fixed_cost) %></td>
+      <td><%= link_to "Destroy", fixed_cost, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Fixed Cost", new_fixed_cost_path(fixed_cost) %></p>

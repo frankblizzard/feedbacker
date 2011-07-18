@@ -1,0 +1,19 @@
+<br/>
+<a id="fixedcostsshowhide" href="#">add fixed costs</a>
+<div id="fixed_costs_show_hide">
+<% form_for [@project, FixedCost.new], :remote => true  do |f| %>
+  <p class="add_plan_hours">
+
+    <%= f.hidden_field :project_id, :value => @project.id %>
+    <%= f.label :amount, "costs (EUR)" %><br />
+    <%= f.text_field :amount, :size => 7 %>
+  </p>
+	<p>
+		<%= f.label :name, "cost description" %><br />
+	    <%= f.text_field :name, :size => 25 %>
+	</p>
+  <p>
+    <%= f.submit "Add fixed costs" %>
+  </p>
+<% end %>
+</div>

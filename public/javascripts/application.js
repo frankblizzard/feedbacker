@@ -69,3 +69,25 @@ userplanhrsShowHide = function () {
 		usrplanhrs = 1;
 	}
 }
+fixedcostsShowHide = function () {
+	if (fixcosts == 1) {
+		$('#fixed_costs_show_hide').slideUp();
+		$('#fixedcostsshowhide').text('add fixed costs');
+		fixcosts = 0;
+	} else{
+		$('#fixed_costs_show_hide').slideDown();
+		$('#fixedcostsshowhide').text('hide');
+		fixcosts = 1;
+	}
+}
+triggerCalculation = function () {
+	if (calculation == 1) {
+		$('#calculation').slideUp();
+		$('#calculation_trigger').text('add fixed costs');
+		calculation = 0;
+	} else{
+		$('#calculation').slideDown();
+		$('#calculation_trigger').text('hide');
+		calculation = 1;
+	}
+}

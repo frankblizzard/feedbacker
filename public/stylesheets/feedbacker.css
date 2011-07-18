@@ -335,3 +335,11 @@ span.grey {
 #new_user .hint {
 	margin-left: 0;
 }
+
+#calculation {
+	width: 400px;
+	display: none;
+}
+#calculation h2{
+	width: 300px;
+}

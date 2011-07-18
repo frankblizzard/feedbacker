@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
     has_many :hours
     has_many :plan_hours, :dependent => :destroy
     has_many :user_plan_hours, :dependent => :destroy
-    
+    has_many :fixed_costs, :dependent => :destroy    
     
     attr_reader :user_tokens, :name_number, :total_hours, :hours_on
     

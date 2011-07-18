@@ -1,0 +1,5 @@
+$("#fixed_costs").prepend("<%= escape_javascript render(@fixed_cost) %>");  
+$('#fixed_costs_count').html('<%= pluralize(@fixed_cost.project.fixed_costs.count, "Position") %>');  
+$("#fixed_cost_amount").val("");
+$("#fixed_cost_name").val("");
+$("#fixed_cost").effect("highlight", { color:"#D3ECF4"}, 3000);

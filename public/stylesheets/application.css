@@ -429,3 +429,7 @@ th .desc {
 tr.total {
 	border-top: 2px dotted #000;
 }
+
+#fixed_costs_show_hide {
+	display: none;
+}

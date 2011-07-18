@@ -1,6 +1,5 @@
 Feedbacker::Application.routes.draw do
   
-
   resources :key_datas
 
   resource :chat_messages
@@ -31,6 +30,7 @@ Feedbacker::Application.routes.draw do
   resources :projects do
     resources :plan_hours
     resources :user_plan_hours
+    resources :fixed_costs
   end
 
   get "home/index"

@@ -1,0 +1,16 @@
+<% title "Fixed Cost" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @fixed_cost.name %>
+</p>
+<p>
+  <strong>Amount:</strong>
+  <%= @fixed_cost.amount %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_fixed_cost_path(@fixed_cost) %> |
+  <%= link_to "Destroy", @fixed_cost, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", fixed_costs_path %>
+</p>

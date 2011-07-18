@@ -1,4 +1,4 @@
-<% title "#{@project.project_nr} #{@project.name}" %>
+<% title "Project Details - #{@project.project_nr} #{@project.name}" %>
 
 <% content_for(:head) do %>
 <%= javascript_include_tag "highcharts", :cache => true %>
@@ -6,6 +6,8 @@
 <script type="text/javascript" charset="utf-8">  
 var planhrs = 0;
 var usrplanhrs = 0;
+var fixcosts = 0;
+var calculation = 0;
   $(function () {
 	
 	$('#planhoursshowhide').click(function () {
@@ -13,6 +15,9 @@ var usrplanhrs = 0;
 	});
 	$('#userplanhoursshowhide').click(function () {
 		userplanhrsShowHide();
+	});
+	$('#fixedcostsshowhide').click(function () {
+		fixedcostsShowHide();
 	});
 	  
     new Highcharts.Chart({  
@@ -47,7 +52,7 @@ var usrplanhrs = 0;
 <div id="hours_chart" style="position:absolute; top: 40px; right: 20px; width: 660px; height: 380px;">
 <!-- chart goes here -->	
 </div>  
-
+<br/>
 <table>
 	<tr width="600">
 		<th>Project Infos</th>
@@ -72,8 +77,14 @@ var usrplanhrs = 0;
 </table>
 <br/> 
 
+<br/>
 
+<!-- CALCULATION START -->
+<a id="calculation_trigger" href="javascript:triggerCalculation();">show calculation</a>
 
+<br/>
+
+<div id="calculation">
 <!-- USER Plan Hours -->
 <% total_supplement_factor = 1 %>
 <% for data in @key_data %>
@@ -106,13 +117,35 @@ var usrplanhrs = 0;
 
 <% if current_user.admin? || current_user.project_manager? %>
 
-	<%= render :partial => 'category_plan_hours_form', :locals => {:project => @project} %>
+	<%= render :partial => 'category_plan_hours_form', :project => @project %>
 
 <% end %>
 
 </div>
 <br/> <br/> 
 <!-- Category Plan Hours END -->
+
+<!-- Fixed Costs -->
+<div class="fixed_costs">
+  <h2>Fixed Costs</h2>
+  <h4 id="fixed_costs_count"><%= pluralize(@project.fixed_costs.count, "position") %></h4>
+  <div id="fixed_costs">
+	<%= render @project.fixed_costs %>
+  </div>
+
+<% if current_user.admin? || current_user.project_manager? %>
+
+	<%= render :partial => 'fixed_costs_form', :project => @project %>
+
+<% end %>
+
+</div>
+<!-- Fixed COsts END -->
+
+</div>
+<!-- CALCULATION END -->
+
+<br/><br/>
 
 <br/>
   <h2>Images</h2>
@@ -128,7 +161,147 @@ var usrplanhrs = 0;
 	</div>
 <br/>
 <br/> 
-  <h2>Hours by User</h2>
+
+
+
+  <h2>Hours by Category</h2>
+<br/>
+<table class="project_hours_table">
+	<tr>
+		<th>Category</th><th>Hours (plan)</th><th>Hours (real)</th><th>diff (abs.)</th><th>diff (%)</th>
+	</tr>
+			<% for cat in @categories do %>
+		     <% cat_hours = @project.category_hours(cat) %>
+		   	    <% if cat_hours > 0 %>
+		   	    <tr>
+		   	    	<td>
+		   	    		<%= cat.name %>
+		   	    	</td>
+		   	    	<td>
+						<% plan_cat = @project.plan_hours.where(:work_category_id => cat.id).first %>
+						<% if plan_cat %>
+							<%= plan_cat.amount %>
+						<% else %>
+							---
+						<% end %>
+		   	    	</td>
+		   	    	<td>
+		   	    		<%= cat_hours %>
+		   	    	</td>
+					
+		   	    	<td>
+		   	    		<% if plan_cat %>
+							<% diff = plan_cat.amount - cat_hours %>
+							<% if diff < 0 %>
+								<span class="red">
+									<%= diff %>
+								</span>
+							<% elsif diff < 10%>
+						     	<span class="yellow">
+							    	<%= diff %>
+							    </span>
+							<% else %>
+							 	<span class="green">
+							    	<%= diff %>
+							    </span>
+							<% end %>
+						<% else %>
+							---
+						<% end %>
+		   	    	</td>
+					
+		   	    	<td>
+		   	    		<% if plan_cat %>
+							<% diff_percent = (plan_cat.amount - cat_hours) / plan_cat.amount * 100 %>
+							<% if diff < 0 %>
+								<span class="red">
+									<%= number_to_percentage(diff_percent, :precision => 1) %>
+								</span>
+							<% elsif diff < 10%>
+						     	<span class="yellow">
+							    	<%= number_to_percentage(diff_percent, :precision => 1) %>
+							    </span>
+							<% else %>
+							 	<span class="green">
+							    	<%= number_to_percentage(diff_percent, :precision => 1) %>
+							    </span>
+							<% end %>
+						<% else %>
+							---
+						<% end %>
+		   	    	</td>
+		   	    </tr>
+		   	   <% end %>
+			<% end %>
+			<tr>
+				<td>
+					<b><i>total</i></b> 
+				</td>
+				<td>
+					
+						<% if @project.total_plan_hours == 0 %>
+							no plan hours<br/> for this project
+						<% else %>
+						<b><i>
+							<%= @project.total_plan_hours %>
+						</i></b> 
+						<% end %>						
+					
+				</td>
+				<td>
+					<b><i><%= @project.total_hours %></i></b> 
+				</td>
+				<td>
+					<b><i>
+					<% # first check if there are plan hours, if not divided by zero or senseless calculation %>
+					<% if @project.total_plan_hours == 0 %>
+						---
+					<% else %>
+						<% diff = @project.total_plan_hours - @project.total_hours %>
+						<% if diff < 0 %>
+							<span class="red">
+								<%= diff %>
+							</span>
+						<% elsif diff < 10 %>
+					     	<span class="yellow">
+						    	<%= diff %>
+						    </span>
+						<% else %>
+						 	<span class="green">
+						    	<%= diff %>
+						    </span>
+						<% end %>
+					<% end %>
+					</i></b> 
+				</td>
+				<td>
+					<b><i>
+						<% # first check if there are plan hours, if not divided by zero or senseless calculation %>
+						<% if @project.total_plan_hours == 0 %>
+							---
+						<% else %>
+							<% diff_percent = (@project.total_plan_hours - @project.total_hours) / @project.total_plan_hours * 100 %>
+							<% if diff < 0 %>
+								<span class="red">
+									<%= number_to_percentage(diff_percent, :precision => 1) %>
+								</span>
+							<% elsif diff < 10%>
+						     	<span class="yellow">
+							    	<%= number_to_percentage(diff_percent, :precision => 1) %>
+							    </span>
+							<% else %>
+							 	<span class="green">
+							    	<%= number_to_percentage(diff_percent, :precision => 1) %>
+							    </span>
+							<% end %>
+						<% end %>
+					</i></b> 
+				</td>
+			</tr>
+</table>
+<br/>
+
+<h2>Hours by User</h2>
 <br/>
 <table class="project_hours_table">
 	<tr>
@@ -274,7 +447,7 @@ var usrplanhrs = 0;
 		<% end %>
 		<tr>
 			<td>
-				<b><i>total</i></b> 
+				<b><i>total (hours)</i></b> 
 			</td>
 			<td>
 				<b><i><%= hours_plan_acc %></i></b> 
@@ -370,147 +543,29 @@ var usrplanhrs = 0;
 			</td>
 		<% end %>
 		</tr>
+		
+		<% if current_user.accountant? && (@project.fixed_costs.count > 0) %>
+			<% for cost in @project.fixed_costs %>
+				<tr>
+					<td colspan="7"> Fixed Cost: <%= cost.name %></td>
+					<td class="right_text"> <%= number_to_currency(cost.amount, :unit => "€ ") %> </td>
+					<td class="right_text"> <%= number_to_currency(cost.amount, :unit => "€ ") %> </td>
+					<% project_monetary_acc += cost.amount %>
+				<tr>
+			<% end %>
+			<tr>
+				<td colspan="8"><b>TOTAL:</b></td>
+				<td class="right_text"><b><i><%= number_to_currency(project_monetary_acc, :unit => "€ ") %></i></b></td>
+			</tr>
+		<% end %>
+		
+		
 </table>
 <% if current_user.accountant? %>
 <span class="myhint">Note: you can see monetary values because your user is accountant.</span>
 <% end %>
 <br/>
-  <h2>Hours by Category</h2>
-<br/>
-<table class="project_hours_table">
-	<tr>
-		<th>Category</th><th>Hours (plan)</th><th>Hours (real)</th><th>diff (abs.)</th><th>diff (%)</th>
-	</tr>
-			<% for cat in @categories do %>
-		     <% cat_hours = @project.category_hours(cat) %>
-		   	    <% if cat_hours > 0 %>
-		   	    <tr>
-		   	    	<td>
-		   	    		<%= cat.name %>
-		   	    	</td>
-		   	    	<td>
-						<% plan_cat = @project.plan_hours.where(:work_category_id => cat.id).first %>
-						<% if plan_cat %>
-							<%= plan_cat.amount %>
-						<% else %>
-							---
-						<% end %>
-		   	    	</td>
-		   	    	<td>
-		   	    		<%= cat_hours %>
-		   	    	</td>
-					
-		   	    	<td>
-		   	    		<% if plan_cat %>
-							<% diff = plan_cat.amount - cat_hours %>
-							<% if diff < 0 %>
-								<span class="red">
-									<%= diff %>
-								</span>
-							<% elsif diff < 10%>
-						     	<span class="yellow">
-							    	<%= diff %>
-							    </span>
-							<% else %>
-							 	<span class="green">
-							    	<%= diff %>
-							    </span>
-							<% end %>
-						<% else %>
-							---
-						<% end %>
-		   	    	</td>
-					
-		   	    	<td>
-		   	    		<% if plan_cat %>
-							<% diff_percent = (plan_cat.amount - cat_hours) / plan_cat.amount * 100 %>
-							<% if diff < 0 %>
-								<span class="red">
-									<%= number_to_percentage(diff_percent, :precision => 1) %>
-								</span>
-							<% elsif diff < 10%>
-						     	<span class="yellow">
-							    	<%= number_to_percentage(diff_percent, :precision => 1) %>
-							    </span>
-							<% else %>
-							 	<span class="green">
-							    	<%= number_to_percentage(diff_percent, :precision => 1) %>
-							    </span>
-							<% end %>
-						<% else %>
-							---
-						<% end %>
-		   	    	</td>
-		   	    </tr>
-		   	   <% end %>
-			<% end %>
-			<tr>
-				<td>
-					<b><i>total</i></b> 
-				</td>
-				<td>
-					
-						<% if @project.total_plan_hours == 0 %>
-							no plan hours<br/> for this project
-						<% else %>
-						<b><i>
-							<%= @project.total_plan_hours %>
-						</i></b> 
-						<% end %>						
-					
-				</td>
-				<td>
-					<b><i><%= @project.total_hours %></i></b> 
-				</td>
-				<td>
-					<b><i>
-					<% # first check if there are plan hours, if not divided by zero or senseless calculation %>
-					<% if @project.total_plan_hours == 0 %>
-						---
-					<% else %>
-						<% diff = @project.total_plan_hours - @project.total_hours %>
-						<% if diff < 0 %>
-							<span class="red">
-								<%= diff %>
-							</span>
-						<% elsif diff < 10 %>
-					     	<span class="yellow">
-						    	<%= diff %>
-						    </span>
-						<% else %>
-						 	<span class="green">
-						    	<%= diff %>
-						    </span>
-						<% end %>
-					<% end %>
-					</i></b> 
-				</td>
-				<td>
-					<b><i>
-						<% # first check if there are plan hours, if not divided by zero or senseless calculation %>
-						<% if @project.total_plan_hours == 0 %>
-							---
-						<% else %>
-							<% diff_percent = (@project.total_plan_hours - @project.total_hours) / @project.total_plan_hours * 100 %>
-							<% if diff < 0 %>
-								<span class="red">
-									<%= number_to_percentage(diff_percent, :precision => 1) %>
-								</span>
-							<% elsif diff < 10%>
-						     	<span class="yellow">
-							    	<%= number_to_percentage(diff_percent, :precision => 1) %>
-							    </span>
-							<% else %>
-							 	<span class="green">
-							    	<%= number_to_percentage(diff_percent, :precision => 1) %>
-							    </span>
-							<% end %>
-						<% end %>
-					</i></b> 
-				</td>
-			</tr>
-</table>
-<br/>
+
 <p>
   <%= link_to "Edit", edit_project_path(@project) %> |
   <%= link_to "Delete Project", @project, :confirm => "Are you sure that you want to delete #{@project.name} with all its images?", :method => :destroy %> |

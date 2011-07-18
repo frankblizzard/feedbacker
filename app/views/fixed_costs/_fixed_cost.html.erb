@@ -1,0 +1,6 @@
+<div class="fixed_cost">
+	<span class="cost_amout"><%= number_to_currency(fixed_cost.amount, :unit => "€") %> (<%= fixed_cost.name %>)<span>
+	<% if current_user.admin? || current_user.project_manager? %>
+	 <span class="delete">  <%= link_to "x", project_fixed_cost_path(fixed_cost.project, fixed_cost), :confirm => "delete this cost?", :method => :delete, :title => "delete cost" %></span>
+	<% end %>
+</div>
