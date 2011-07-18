@@ -6,7 +6,7 @@
   </p>
   <p>
     <%= f.label :project_id %><br />
-    <%= collection_select(:image, :project_id, Project.all, :id, :name, :prompt => true) %>
+    <%= collection_select(:image, :project_id, Project.order('project_nr asc'), :id, :name_number, :prompt => true) %>
   </p>
   <div class="field">
 	<p>
