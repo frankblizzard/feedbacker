@@ -43,7 +43,7 @@
 			</li>
 			<li class="<%= "active" if params[:controller] == "chat_messages" %>"><%= link_to "Lounge", chat_path %></li>
 			<li></li>
-			<% if can? :update, [KeyData] %>
+			<% if current_user.accountant? %>
 			<li class="<%= "active" if params[:controller] == "key_datas" %>"><%= link_to "Accounting", accounting_path %></li>
 			<% end %>
 			</ul>
