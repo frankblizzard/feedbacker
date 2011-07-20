@@ -83,7 +83,7 @@ fixedcostsShowHide = function () {
 triggerCalculation = function () {
 	if (calculation == 1) {
 		$('#calculation').slideUp();
-		$('#calculation_trigger').text('add fixed costs');
+		$('#calculation_trigger').text('show calculation');
 		calculation = 0;
 	} else{
 		$('#calculation').slideDown();
