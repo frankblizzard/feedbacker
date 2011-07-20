@@ -1,0 +1,21 @@
+one:
+  first_name: MyString
+  last_name: MyString
+  street: MyString
+  city: MyString
+  zipcode: 1
+  birthday: 2011-07-18
+  phone: MyString
+  avatar: MyString
+  country_id: 1
+
+two:
+  first_name: MyString
+  last_name: MyString
+  street: MyString
+  city: MyString
+  zipcode: 1
+  birthday: 2011-07-18
+  phone: MyString
+  avatar: MyString
+  country_id: 1

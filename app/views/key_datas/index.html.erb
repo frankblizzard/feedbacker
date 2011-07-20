@@ -3,7 +3,7 @@
 <p>
 	This is the place to manage all business and finance related key data. Entries should be named accordingly and percentage is in hundreds, e.g. 19 for a factor of 1,19.
 </p>
-
+<% factors = [] %>
 <table class="pretty">
   <tr>
     <th>Name</th>
@@ -11,6 +11,7 @@
   </tr>
   <% total_percent = 0 %>
   <% for key_data in @key_datas %>
+	
     <tr>
       <td><%= key_data.name %></td>
       <td><%= number_to_percentage(key_data.percentage, :precision => 2, :delimiter => '.', :separator => ',') %></td>
@@ -24,5 +25,14 @@
       <td> <b><%= number_to_percentage(total_percent, :precision => 2, :delimiter => '.', :separator => ',') %></b></td>
 	</tr>
 </table>
+<br/>
+<% factor = 1 %>
+<p> Der <i>Gemeinkosten-Fakor</i> beträgt somit:<br/>
+	  <% for key_data in @key_datas %>
+		<b><%= number_with_precision(1+(key_data.percentage / 100), :precision => 2) %></b> (<%= key_data.name %>) x 
+		<% factor *= 1 + (key_data.percentage / 100) %>
+	  <% end %>
+    = <b><%= number_with_precision(factor, :precision => 2) %></b>
+</p>
 <br/>
 <p><%= link_to "New Key Data", new_key_data_path(key_data) %></p>

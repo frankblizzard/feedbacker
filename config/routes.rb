@@ -1,5 +1,7 @@
 Feedbacker::Application.routes.draw do
   
+  resources :people
+
   resources :key_datas
 
   resource :chat_messages

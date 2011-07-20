@@ -1,0 +1,44 @@
+<% title "Person" %>
+
+<p>
+  <strong>First Name:</strong>
+  <%= @person.first_name %>
+</p>
+<p>
+  <strong>Last Name:</strong>
+  <%= @person.last_name %>
+</p>
+<p>
+  <strong>Street:</strong>
+  <%= @person.street %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @person.city %>
+</p>
+<p>
+  <strong>Zipcode:</strong>
+  <%= @person.zipcode %>
+</p>
+<p>
+  <strong>Birthday:</strong>
+  <%= @person.birthday %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%= @person.phone %>
+</p>
+<p>
+  <strong>Avatar:</strong>
+  <%= @person.avatar %>
+</p>
+<p>
+  <strong>Country:</strong>
+  <%= @person.country_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_person_path(@person) %> |
+  <%= link_to "Destroy", @person, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", people_path %>
+</p>
