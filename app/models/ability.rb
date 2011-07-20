@@ -18,7 +18,7 @@ class Ability
      can :manage, [Client, PlanHour, KeyData]
      can :read, :all
    elsif user.works_at_eve? || user.client_id == 17
-     can :manage, [Hour]
+     can :manage, [Hour, Image]
      can :read, :all
    else
      can :read, [Project], :client_id => user.client_id
