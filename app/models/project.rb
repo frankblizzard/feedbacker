@@ -55,6 +55,17 @@ class Project < ActiveRecord::Base
       sum_plan_hours = self.plan_hours.to_a.sum { |plan_hour| plan_hour.amount }
       difference = sum_plan_hours - sum_hours
     end
+    
+    
+    # total costs accumulated at a given date
+    def total_costs(date=Date.today, factor=1)
+      sum = 0
+      hours = self.hours.where("date <= ?", date)  
+      for hour in hours
+        sum += (hour.amount * hour.user.hourly_rate) * factor
+      end
+      sum.to_f
+    end    
 
     #  gives the total hours per category 
     def category_hours(category=nil)

@@ -1,4 +1,4 @@
 class KeyData < ActiveRecord::Base
-    attr_accessible :name, :percentage  
+    attr_accessible :name, :percentage
 
 end

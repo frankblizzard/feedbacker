@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110718094656) do
+ActiveRecord::Schema.define(:version => 20110725114519) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -93,6 +93,23 @@ ActiveRecord::Schema.define(:version => 20110718094656) do
     t.float    "percentage"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "people", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street"
+    t.string   "city"
+    t.integer  "zipcode"
+    t.date     "birthday"
+    t.string   "phone"
+    t.string   "avatar"
+    t.integer  "country_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "client_id"
+    t.integer  "user_id"
+    t.string   "email"
   end
 
   create_table "plan_hours", :force => true do |t|

@@ -1,5 +1,14 @@
 <% title "Project Details - #{@project.project_nr} #{@project.name}" %>
 
+
+
+<!-- get supplement factor (Fixkosten) -->
+<% total_supplement_factor = 1 %>
+<% for data in @key_data %>
+	<% total_supplement_factor *= 1 + (data.percentage / 100) %>
+<% end %>
+
+
 <% content_for(:head) do %>
 <%= javascript_include_tag "highcharts", :cache => true %>
 
@@ -30,16 +39,23 @@ var calculation = 0;
 	      title: { text: 'Hours acc.'}  
 	    },  
 	 series: [{ 
-		  name: "hours spent",
+		  name: "hours absolute",
 	      pointInterval: <%= 1.day * 1000 %>,  
 	      pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,  
 	      data: <%= (3.weeks.ago.to_date..Date.today).map { |date| @project.hours_on(date).to_f}.inspect %>
 	    },
 	 	{ 
-		  name: "plan hours left",
+		  name: "plan hours remaining",
 		  pointInterval: <%= 1.day * 1000 %>,  
 		  pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,  
 		  data: <%= (3.weeks.ago.to_date..Date.today).map { |date| @project.plan_hours_left(date).to_f}.inspect %>,
+		  visible: false
+		},
+		{ 
+		  name: "project costs",
+		  pointInterval: <%= 1.day * 1000 %>,  
+		  pointStart: <%= 3.weeks.ago.at_midnight.to_i * 1000 %>,  
+		  data: <%= (3.weeks.ago.to_date..Date.today).map { |date| @project.total_costs(date, total_supplement_factor).to_i}.inspect %>,
 		  visible: false
 		}
 	]
@@ -85,11 +101,6 @@ var calculation = 0;
 <br/>
 
 <div id="calculation">
-<!-- USER Plan Hours -->
-<% total_supplement_factor = 1 %>
-<% for data in @key_data %>
-	<% total_supplement_factor *= 1 + (data.percentage / 100) %>
-<% end %>
 
 <div class="user_plan_hours">
   <h2>User Plan Hours</h2>

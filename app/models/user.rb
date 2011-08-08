@@ -25,8 +25,9 @@ class User < ActiveRecord::Base
   has_many :answers
   
   has_many :user_plan_hours
-  
+  has_one :person
   belongs_to :client
+  
 
   # login can be either username or email address
   def self.authenticate(login, pass)
