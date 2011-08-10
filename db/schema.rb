@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110725114519) do
+ActiveRecord::Schema.define(:version => 20110810135409) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -37,9 +37,6 @@ ActiveRecord::Schema.define(:version => 20110725114519) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
-    t.string   "contact_person"
-    t.string   "phone"
-    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "client_nr"
@@ -175,6 +172,7 @@ ActiveRecord::Schema.define(:version => 20110725114519) do
     t.boolean  "controller"
     t.float    "hourly_rate"
     t.boolean  "accountant",      :default => false
+    t.boolean  "deactivated",     :default => false, :null => false
   end
 
   create_table "work_categories", :force => true do |t|

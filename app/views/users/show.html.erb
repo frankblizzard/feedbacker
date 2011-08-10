@@ -18,6 +18,14 @@
 <%= @user.name %> uploaded <i><%= pluralize(@user.images.count, "image") %>  </i>
 and posted <i><%= pluralize(@user.comments.count, "comment") %></i>
 </p>
+
+
+<% if current_user == @user || current_user.admin? %>
+	
+	<span class="edit" title="edit profile"><%= link_to image_tag("user_add.png", :border => 0 ), :controller => :people, :action => :edit, :user => @user.id, :client => @user.client_id %> </span>
+
+<% end %>
+
 <br/>
 <% if current_user.accountant? %>
 	<h2>Accounting</h2>

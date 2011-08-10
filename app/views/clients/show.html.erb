@@ -9,17 +9,14 @@
   <%= @client.full_name %>
 </p>
 <p>
-  <strong>Contact Person:</strong>
-  <%= @client.contact_person %>
+  <strong>Contacts:</strong>
+	<ul>
+	<% for person in @client.people %>
+		<li><%= link_to person.full_name, person %></li>
+    <% end %>
+	</ul>
 </p>
-<p>
-  <strong>Phone:</strong>
-  <%= @client.phone %>
-</p>
-<p>
-  <strong>Email:</strong>
-  <%= @client.email %>
-</p>
+
 
 <p>
   <%= link_to "Edit", edit_client_path(@client) %> |

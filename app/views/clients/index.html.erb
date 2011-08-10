@@ -10,26 +10,23 @@
   <tr>
     <th>Short Name</th>
 	<th>Full Name</th>
-    <th>Contact Person</th>
-    <th>Phone</th>
-    <th>Email</th>
+    <th>Contacts</th>
   </tr>
   <% for client in @clients %>
     <tr>
       <td><%= client.name %></td>
 	  <td><%= client.full_name %></td>
       <td>
+		<ul>
 		<% for person in client.people %>
-		<%= person.full_name %>
+			<li><%= link_to person.full_name, person %></li>
 	    <% end %>
+		</ul>
+		<span class="add" title="add contact"><%= link_to image_tag("user_add.png", :border => 0 ), :controller => :people, :action => :new, :client => client.id %> </span>
 	  </td>
-      <td><%= client.phone %></td>
-      <td><%= client.email %></td>
       <td><%= link_to "Show", client %></td>
 	  <% if current_user.admin? || current_user.project_manager? %>
       <td><%= link_to "Edit", edit_client_path(client) %></td>
-	<% end %>
-	<% if current_user.admin? %>
       <td><%= link_to "Destroy", client, :confirm => 'Are you sure?', :method => :delete %></td>
       <% end %>
     </tr>

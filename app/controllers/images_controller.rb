@@ -19,7 +19,7 @@ class ImagesController < ApplicationController
     @image = Image.new(params[:image])
     if @image.save
       flash[:notice] = "Successfully created image."
-      redirect_to images_path
+      redirect_to @image.project
     else
       render :action => 'new'
     end

@@ -1,15 +1,32 @@
+<% content_for(:head) do %>
+ <%= stylesheet_link_tag 'jquery-ui-1.8.12.custom', :cache => true %>
+ <%= javascript_include_tag 'jquery-ui-1.8.12.custom.min', :cache => true %>
+ <script type="text/javascript" charset="utf-8">
+ 	$(function (){  
+        $('#person_birthday').datepicker({ 
+											dateFormat: 'yy-mm-dd',
+											changeMonth: true,
+											changeYear: true,
+											yearRange: '1930:2000'
+										 });  
+    });
+ </script>
+<% end %>
+
 <%= simple_form_for @person do |f| %>
   <%= f.error_messages %>
-
+  <% if @user %>
+  	<%= f.hidden_field :user_id, :value => @user.id %>
+  <% end %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
   <%= f.input :email %>
   <%= f.input :street %>
   <%= f.input :city %>
   <%= f.input :zipcode %>
-  <%= f.input :birthday, :as => :date, :start_year => Date.today.year - 90, :end_year => Date.today.year - 10, :order => [:day, :month, :year] %>
+  <%= f.input :birthday, :as => :string %>
   <%= f.input :phone %>
-  <%= f.association :client, :collection => Client.all(:order => 'name'), :prompt => "Choose a Company" %>
+  <%= f.association :client, :collection => Client.all(:order => 'name'), :prompt => "Choose a Company", :selected => params[:client] %>
   <%= f.button :submit %>
 <% end %>
 

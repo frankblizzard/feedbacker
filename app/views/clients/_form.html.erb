@@ -2,8 +2,5 @@
 <%= simple_form_for @client do |f| %>
 	<%= f.input :name %>
 	<%= f.input :full_name %>
-	<%= f.input :contact_person %>
-	<%= f.input :phone %>
-	<%= f.input :email %>
     <%= f.submit (@client.new_record? ? "New Client" : "Update") %>
 <% end %>

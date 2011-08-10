@@ -19,6 +19,7 @@ var fixcosts = 0;
 var calculation = 0;
   $(function () {
 	
+	
 	$('#planhoursshowhide').click(function () {
 		planhrsShowHide();
 	});
@@ -169,6 +170,8 @@ var calculation = 0;
 		<% else %>
 		 <p>No images have been uploaded yet</p>
 		<% end %>
+		<br/>
+		<span class="add" title="add an image"><%= link_to image_tag("new_el.gif", :border => 0 ), :controller => :images, :action => :new, :project => @project.id %> <%= link_to "add image", :controller => :images, :action => :new, :project => @project.id %></span>
 	</div>
 <br/>
 <br/> 

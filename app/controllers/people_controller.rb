@@ -14,15 +14,20 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new(params[:person])
     if @person.save
-      flash[:notice] = "Successfully created person."
-      redirect_to @person
+      flash[:notice] = "Successfully created contact."
+      redirect_to clients_url
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @person = Person.find(params[:id])
+    if params[:user]
+      @user = User.find(params[:user])
+      @person = Person.find_or_initialize_by_user_id(params[:user])
+    else
+      @person = Person.find(params[:id])
+    end
   end
 
   def update

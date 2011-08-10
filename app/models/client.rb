@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-    attr_accessible :name, :contact_person, :phone, :email
+    attr_accessible :name, :full_name
     
     validates_presence_of :name
     
@@ -9,6 +9,5 @@ class Client < ActiveRecord::Base
     has_many :users
     
     has_many :people
-    
-    
+       
 end
