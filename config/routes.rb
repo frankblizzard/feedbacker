@@ -1,5 +1,7 @@
 Feedbacker::Application.routes.draw do
   
+  resources :announcements
+
   resources :people
 
   resources :key_datas
@@ -54,6 +56,8 @@ Feedbacker::Application.routes.draw do
   match 'get_user_hours' =>  'hours#show_xml', :as => :get_user_hours
   
   match 'hour_list' =>  'hours#list', :as => :hour_list
+  
+  match 'hide_announcement' => 'javascripts#hide_announcement', :as => :hide_announcement
 
   resources :sessions
 

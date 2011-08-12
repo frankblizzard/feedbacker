@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-    attr_accessible :name, :full_name
+    attr_accessible :name, :full_name, :web, :notes
     
     validates_presence_of :name
     

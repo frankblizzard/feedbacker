@@ -50,6 +50,18 @@
 		<% end %>
 		</div>
 		<div class="right_side">
+			
+			<!-- ANNOUNCEMENTS-->
+			
+			<% unless current_announcements.empty? %>
+			<div id="announcement">
+			  <% for announcement in current_announcements %>
+			    <p><%= announcement.message %></p>
+			  <% end %>
+			  <p id="announcement_close_link"><%= link_to "X", hide_announcement_url, :title => "Hide this message", :remote => true %></p>
+			</div>
+			<% end %>
+		
 			<div id="container">
 		      <% flash.each do |name, msg| %>
 		        <%= content_tag :div, msg, :id => "flash_#{name}" %>

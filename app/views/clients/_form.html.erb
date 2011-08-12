@@ -2,5 +2,7 @@
 <%= simple_form_for @client do |f| %>
 	<%= f.input :name %>
 	<%= f.input :full_name %>
+	<%= f.input :web, :hint => "internet adress, website" %>
+	<%= f.input :notes, :hint => "anything we should know when dealing with this client" %>
     <%= f.submit (@client.new_record? ? "New Client" : "Update") %>
 <% end %>

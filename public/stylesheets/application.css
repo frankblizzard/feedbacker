@@ -389,7 +389,7 @@ table.pretty {
 }
 
 .searchform {
-	margin: 10px 0 20px 250px;
+	margin: 10px 0;
 }
 
 ul#calendar_stats li {
@@ -432,4 +432,65 @@ tr.total {
 
 #fixed_costs_show_hide {
 	display: none;
+}
+
+.client {
+	position: relative;
+	min-width: 50%;
+	padding: 10px;
+	border: 1px dashed #ccc;
+	margin-bottom: 10px;
+}
+
+.client .image{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+
+
+.client .name{
+	position: absolute;
+	top: 36px;
+	left: 60px;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.client .image img{
+	height: 70px;
+}
+
+.client .contacts, .client .projects {
+	margin-top: 10px;
+
+}
+
+.client .contacts ul, .client .projects ul {
+	padding: 5px 0 0 5px;
+	list-style:none;
+}
+.clear {
+	clear: both;
+}
+
+#announcement {
+	margin: 0 250px 10px 50px;
+	background-color: #fffa73;
+	padding: 10px;
+	border: 1px solid #d68e53;
+	position: relative;
+}
+#announcement p {
+	font-size: 13px;
+	font-weight: bold;
+	color: #424242;
+}
+
+#announcement_close_link {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	font-size: 15px !important;
 }
