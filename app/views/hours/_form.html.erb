@@ -3,12 +3,20 @@
  <%= javascript_include_tag 'jquery-ui-1.8.12.custom.min', :cache => true %>
  <%= javascript_include_tag 'autocomplete-rails', :cache => true %>
  <script type="text/javascript" charset="utf-8">
- 	$(function (){  
+ 		
+	function uncheckAll () {
+		$('#new_hour input[type=checkbox]').attr('checked', false);
+	}
+
+	$(function (){  
         $('#hour_date').datepicker({ dateFormat: 'yy-mm-dd' });  
+
+		
 
 		$('#hour_holiday').click(function () {
 			if ($(this).is(':checked')) {
 				if(confirm("Make this day holiday (your input might be overwritten) ?")) {
+					uncheckAll();
 					$('#hour_amount').val("8");
 					$('#fake_project').val("000 - Urlaub");
 					$('#real_project_id').val("36");
@@ -20,6 +28,7 @@
 		$('#hour_krank').click(function () {
 			if ($(this).is(':checked')) {
 				if(confirm("Were you ill this day? (your input might be overwritten) ?")) {
+					uncheckAll();
 					$('#hour_amount').val("8");
 					$('#fake_project').val("001 - Krank");
 					$('#real_project_id').val("37");
@@ -31,6 +40,7 @@
 		$('#hour_feiertag').click(function () {
 			if ($(this).is(':checked')) {
 				if(confirm("Was this day vacation (Feiertag) ? (your input might be overwritten) ?")) {
+					uncheckAll();
 					$('#hour_amount').val("8");
 					$('#fake_project').val("010 - Feiertag");
 					$('#real_project_id').val("57");
