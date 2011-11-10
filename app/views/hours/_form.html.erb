@@ -59,8 +59,8 @@
 
     <%= f.input :extra %>   
    <%= f.input :holiday %>   
-	<%= check_box_tag :hour_krank %>  
-	<%= check_box_tag :hour_feiertag %>  
+	<%= check_box_tag :hour_krank, 'krank' %>  <br/>
+	<%= check_box_tag :hour_feiertag, 'Feiertag' %>  <br/>
 	<%= f.hidden_field :user_id, :value => (@hour.new_record? ? current_user.id : @hour.user_id ) %>
   
     <%= f.label "* Project Name" %>
