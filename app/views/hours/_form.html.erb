@@ -57,10 +57,19 @@
  
     <%= f.input :task, :label => "Task(s)", :hint => "what did you do?" %>
 
+
     <%= f.input :extra %>   
    <%= f.input :holiday %>   
-	<%= check_box_tag :hour_krank, 'krank' %>  <br/>
-	<%= check_box_tag :hour_feiertag, 'Feiertag' %>  <br/>
+
+	<div class="input boolean optional">
+		<input type="checkbox" value="1" name="krank" id="hour_krank" class="boolean optional">
+		<label for="hour_krank" class="boolean optional"> Krank</label>
+	</div>
+
+	<div class="input boolean optional">
+		<input type="checkbox" value="1" name="feiertag" id="hour_feiertag" class="boolean optional">
+		<label for="hour_feiertag" class="boolean optional"> Feiertag</label>
+	</div>
 	<%= f.hidden_field :user_id, :value => (@hour.new_record? ? current_user.id : @hour.user_id ) %>
   
     <%= f.label "* Project Name" %>
