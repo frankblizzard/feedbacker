@@ -17,6 +17,7 @@
 			if ($(this).is(':checked')) {
 				if(confirm("Make this day holiday (your input might be overwritten) ?")) {
 					uncheckAll();
+					$('#hour_holiday').attr('checked', true);
 					$('#hour_amount').val("8");
 					$('#fake_project').val("000 - Urlaub");
 					$('#real_project_id').val("36");
@@ -29,6 +30,7 @@
 			if ($(this).is(':checked')) {
 				if(confirm("Were you ill this day? (your input might be overwritten) ?")) {
 					uncheckAll();
+					$('#hour_krank').attr('checked', true);
 					$('#hour_amount').val("8");
 					$('#fake_project').val("001 - Krank");
 					$('#real_project_id').val("37");
@@ -41,6 +43,7 @@
 			if ($(this).is(':checked')) {
 				if(confirm("Was this day vacation (Feiertag) ? (your input might be overwritten) ?")) {
 					uncheckAll();
+					$('#hour_feiertag').attr('checked', true);
 					$('#hour_amount').val("8");
 					$('#fake_project').val("010 - Feiertag");
 					$('#real_project_id').val("57");
