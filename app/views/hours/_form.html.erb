@@ -16,7 +16,29 @@
 					$('#hour_work_category_id option').eq(7).attr('selected', 'selected');
 				}
 			}
-		})
+		});
+		$('#hour_krank').click(function () {
+			if ($(this).is(':checked')) {
+				if(confirm("Were you ill this day? (your input might be overwritten) ?")) {
+					$('#hour_amount').val("8");
+					$('#fake_project').val("001 - Krank");
+					$('#real_project_id').val("37");
+					$('#hour_task').val("Krank");
+					$('#hour_work_category_id option').eq(7).attr('selected', 'selected');
+				}
+			}
+		});
+		$('#hour_holiday').click(function () {
+			if ($(this).is(':checked')) {
+				if(confirm("Was this day vacation (Feiertag) ? (your input might be overwritten) ?")) {
+					$('#hour_amount').val("8");
+					$('#fake_project').val("010 - Feiertag");
+					$('#real_project_id').val("57");
+					$('#hour_task').val("Holiday");
+					$('#hour_work_category_id option').eq(7).attr('selected', 'selected');
+				}
+			}
+		});
 
     });
  </script>
@@ -37,6 +59,8 @@
 
     <%= f.input :extra %>   
    <%= f.input :holiday %>   
+	<%= f.input :krank %>  
+	<%= f.input :feiertag %>  
 	<%= f.hidden_field :user_id, :value => (@hour.new_record? ? current_user.id : @hour.user_id ) %>
   
     <%= f.label "* Project Name" %>
