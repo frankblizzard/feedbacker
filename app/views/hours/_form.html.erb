@@ -28,7 +28,7 @@
 				}
 			}
 		});
-		$('#hour_holiday').click(function () {
+		$('#hour_feiertag').click(function () {
 			if ($(this).is(':checked')) {
 				if(confirm("Was this day vacation (Feiertag) ? (your input might be overwritten) ?")) {
 					$('#hour_amount').val("8");
@@ -59,8 +59,8 @@
 
     <%= f.input :extra %>   
    <%= f.input :holiday %>   
-	<%= f.input :krank %>  
-	<%= f.input :feiertag %>  
+	<%= check_box_tag :hour_krank %>  
+	<%= check_box_tag :hour_feiertag %>  
 	<%= f.hidden_field :user_id, :value => (@hour.new_record? ? current_user.id : @hour.user_id ) %>
   
     <%= f.label "* Project Name" %>
