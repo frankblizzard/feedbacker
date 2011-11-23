@@ -7,7 +7,7 @@ development:
   password: rootz
   pool: 5
   timeout: 5000
-  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+  socket: /tmp/mysql.sock
  
 
 # Warning: The database defined as "test" will be erased and
@@ -20,7 +20,7 @@ test: &test
   password: rootz
   pool: 5
   timeout: 5000
-  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+  socket: /tmp/mysql.sock
 
 production:
   adapter: mysql
@@ -29,6 +29,6 @@ production:
   password: rootz
   pool: 5
   timeout: 5000
-  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+  socket: /tmp/mysql.sock
 cucumber:
   <<: *test

@@ -322,10 +322,10 @@ var calculation = 0;
 <br/>
 <table class="project_hours_table">
 	<tr>
-		<th>User</th><th>Hours (plan)</th><th>Hours (real)</th><th>+/- (abs)</th><th>+/- (%)</th>
+		<th>User</th><th>Hours (plan)</th><th>Hours (real)</th><th>Hours (extra)</th><th>+/- (abs)</th><th>+/- (%)</th>
 		<% if current_user.accountant? %>
-		<th>hourly rate (plan)</th><th>hourly rate (real)</th>
-		<th>Hours planned (monetary)</th><th>Hours real (monetary)</th>
+		<th>hour rate (plan)</th><th>hour rate (real)</th>
+		<th>hours pl. ($$)</th><th>Hours real ($$)</th>
 		<th>+/- (abs)</th><th>+/- (%)</th>
 		<% end %>
 	</tr>
@@ -334,6 +334,7 @@ var calculation = 0;
 		<% hours_plan_acc = 0 %>
 		<% for user in @users do %>
 	     <% user_hours = @project.total_hours(user) %>
+	     <% user_extra_hours = @project.extra_hours(user) %>
 	   	    <% if user_hours > 0 %>
 	   	    <tr>
 	   	    	<td>
@@ -352,6 +353,9 @@ var calculation = 0;
 	   	    	</td>
 	   	    	<td>
 	   	    		<%= user_hours %>
+	   	    	</td>
+	   	    	<td>
+	   	    		<%= user_extra_hours %>
 	   	    	</td>
 				<td>
 					<% if uph %>
@@ -471,6 +475,9 @@ var calculation = 0;
 			</td>
 			<td>
 				<b><i><%= @project.total_hours %></i></b> 
+			</td>
+			<td>
+				<b><i><%= @project.extra_hours %></i></b> 
 			</td>
 			<td>
 				<% diff = hours_plan_acc - @project.total_hours %>

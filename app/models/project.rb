@@ -37,6 +37,16 @@ class Project < ActiveRecord::Base
       hours.to_a.sum { |hour| hour.amount }
     end
     
+    # gives the extra hours per user in projects
+    def extra_hours(user=nil)
+      if user
+        hours = self.hours.where(:user => user, :extra => true)
+      else
+        hours = self.hours.where(:extra => true)
+      end
+      hours.to_a.sum { |hour| hour.amount }
+    end
+    
     # sum of all plan hours in the project
     def total_plan_hours
       plan_hours.to_a.sum { |plan_hour| plan_hour.amount }
