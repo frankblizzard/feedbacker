@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   end
   
   # sum of all ill days in the given month
-  def monthly_ldays(month)
+  def monthly_illdays(month)
     month_hours = self.hours.ill.by_month Date.new(2011, month)
     sum = month_hours.to_a.sum { |month_hour| month_hour.amount }
     (sum / 8).to_i
