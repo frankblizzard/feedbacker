@@ -20,6 +20,9 @@ and posted <i><%= pluralize(@user.comments.count, "comment") %></i>
 </p>
 <br/>
 <br/>
+
+<% if @user.admin || @user == current_user %>
+
 <div id="hours_overview">
 	<table>
 		<tr>
@@ -98,6 +101,9 @@ and posted <i><%= pluralize(@user.comments.count, "comment") %></i>
 	</table>
 	
 </div>
+
+
+<% end %>
 
 <br/><br/>
 
