@@ -55,15 +55,22 @@ class User < ActiveRecord::Base
   end
   
   # sum of all ill days in the given month
-  def monthly_illdays(month)
+  def monthly_ldays(month)
     month_hours = self.hours.ill.by_month Date.new(2011, month)
     sum = month_hours.to_a.sum { |month_hour| month_hour.amount }
     (sum / 8).to_i
   end
-
-  def extra_hours(month)
+  
+  def workdays(month)
     d1 = Date.new( Time.now.year, month, 1) #first day of month\period
     d2 = Date.new( Time.now.year, month, -1) #end day of month\period
+    wdays = [0,6] #weekend days by numbers on week
+    weekdays = (d1..d2).reject { |d| wdays.include? d.wday} #Day.wday number day in week
+  end
+
+  def extra_hours(month, year)
+    d1 = Date.new( year, month, 1) #first day of month\period
+    d2 = Date.new( year, month, -1) #end day of month\period
     wdays = [0,6] #weekend days by numbers on week
     weekdays = (d1..d2).reject { |d| wdays.include? d.wday} #Day.wday number day in week
     todo_hours = weekdays.count * 8

@@ -57,7 +57,7 @@ and posted <i><%= pluralize(@user.comments.count, "comment") %></i>
 				<% summe_stunden += @user.monthly_hours month %>
 			</td>
 			<td>
-				<%=  @user.extra_hours month %>
+				<%=  @user.extra_hours(month, 2011) %>
 				<% summe_ueberstunden += @user.extra_hours month %>
 			</td>
 			<td>
