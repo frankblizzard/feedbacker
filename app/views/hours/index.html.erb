@@ -115,7 +115,7 @@
 					<% else %>
 					<li><%= "#{h(hour.amount)}h deleted project" %></li>
 					<% end %>
-	          	<% total += hour.amount %>
+	          	<% total += hour.amount	 %>
 			    <% if (date.strftime("%m") == @date.strftime("%m")) %>	
 				  <% hours_month += hour.amount %>
 				<% end %>

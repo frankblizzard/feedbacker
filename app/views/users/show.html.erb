@@ -18,7 +18,88 @@
 <%= @user.name %> uploaded <i><%= pluralize(@user.images.count, "image") %>  </i>
 and posted <i><%= pluralize(@user.comments.count, "comment") %></i>
 </p>
+<br/>
+<br/>
+<div id="hours_overview">
+	<table>
+		<tr>
+			<th>
+				Monat
+			</th>
+			<th>
+				Stunden
+			</th>
+			<th>
+				Überstunden
+			</th>
+			<th>
+				Urlaubstage
+			</th>	
+			<th>
+				Krakheitstage
+			</th>
+		</tr>
+		<% summe_stunden = 0 %>
+		<% summe_ueberstunden = 0 %>
+		<% summe_urlaub = 0 %>
+		<% summe_krank = 0 %>
+	<% (1..12).each do |month| %>
+		<tr>
+			<td>
+				<% d = Date.new(2011, month) %>
+				<%= d.strftime('%B') %>
+			</td>
+			<td>
+				<%=  @user.monthly_hours month %>
+				<% summe_stunden += @user.monthly_hours month %>
+			</td>
+			<td>
+				<%=  @user.extra_hours month %>
+				<% summe_ueberstunden += @user.extra_hours month %>
+			</td>
+			<td>
+				<%= @user.monthly_holidays month %>
+				<% summe_urlaub += @user.monthly_holidays month %>
+			</td>
+			<td>
+				<%= @user.monthly_illdays month %>
+				<% summe_krank += @user.monthly_illdays month %>
+			</td>
+		</tr>
+	<% end %>
+	<tr>
+		<td>
+			<b>
+				Summe
+			</b>
+		</td>
+		<td>
+			<b>
+			<%= summe_stunden %>
+			</b>
+		</td>
+		<td>
+			<b>
+			<%= summe_ueberstunden %>
+			</b>
+		</td>
+		<td>
+			<b>
+			<%= summe_urlaub %>
+			</b>
+		</td>
+		<td>
+			<b>
+			<%= summe_krank %>
+			</b>
+		</td>
+	</tr>
+		
+	</table>
+	
+</div>
 
+<br/><br/>
 
 <% if current_user == @user || current_user.admin? %>
 	

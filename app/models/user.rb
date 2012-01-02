@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
   belongs_to :client
   
 
+  
+
   # login can be either username or email address
   def self.authenticate(login, pass)
     user = find_by_name(login) || find_by_email(login)
@@ -37,6 +39,40 @@ class User < ActiveRecord::Base
 
   def matching_password?(pass)
     self.password_hash == encrypt_password(pass)
+  end
+
+  # sum of all user hours in the given month
+  def monthly_hours(month)
+    month_hours = self.hours.by_month Date.new(2011, month)
+    month_hours.to_a.sum { |month_hour| month_hour.amount }
+  end
+  
+  # sum of all holiday days in the given month
+  def monthly_holidays(month)
+    month_hours = self.hours.holiday.by_month Date.new(2011, month)
+    sum = month_hours.to_a.sum { |month_hour| month_hour.amount }
+    (sum / 8).to_i
+  end
+  
+  # sum of all ill days in the given month
+  def monthly_illdays(month)
+    month_hours = self.hours.ill.by_month Date.new(2011, month)
+    sum = month_hours.to_a.sum { |month_hour| month_hour.amount }
+    (sum / 8).to_i
+  end
+
+  def extra_hours(month)
+    d1 = Date.new( Time.now.year, month, 1) #first day of month\period
+    d2 = Date.new( Time.now.year, month, -1) #end day of month\period
+    wdays = [0,6] #weekend days by numbers on week
+    weekdays = (d1..d2).reject { |d| wdays.include? d.wday} #Day.wday number day in week
+    todo_hours = weekdays.count * 8
+    ist_hours = self.monthly_hours( month )
+    if ist_hours > 0
+      ist_hours - todo_hours
+    else
+      0
+    end
   end
 
   private
